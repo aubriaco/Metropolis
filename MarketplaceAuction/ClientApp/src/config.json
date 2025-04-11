@@ -1,0 +1,6 @@
+{
+  "appName": "Bidea Online",
+  "domainName": "localhost",
+  "serverUrl": "https://localhost:3001",
+  "devMode": false
+}

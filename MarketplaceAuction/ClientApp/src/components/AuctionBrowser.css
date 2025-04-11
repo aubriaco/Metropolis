@@ -1,0 +1,29 @@
+﻿
+.auction-title {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.auction-image {
+    height: 220px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    cursor: pointer;
+    position: relative;
+}
+
+.auction-image.hover {
+    opacity: 0.9;
+}
+
+.auction-info {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    z-index: 9;
+    background-color: #000;
+    color: #fff;
+}

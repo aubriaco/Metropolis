@@ -1,0 +1,17 @@
+.Store-name span {
+    color: #444;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.Store-cover.card {
+    border: 0;
+}
+
+.Store-cover .card-body {
+    padding: 0;
+}
+
+.Store-cover-gradient {
+    background-image:  linear-gradient(to right, #fff , rgba(0,0,0,0));;
+}

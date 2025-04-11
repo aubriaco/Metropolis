@@ -1,0 +1,55 @@
+{
+  "ident": "dev",
+  "master": true,
+  "stage": "default",
+  "connectionString": "Host=localhost;Username=marketplace;Password=Test123!;Database=marketplace;Pooling=false",
+  "redis": {
+    "host": "localhost",
+    "port": 6379
+  },
+  "crypt": "35t2435oigjio3",
+  "secret": "4389t4hutg4wrtugh3w4hg9wrhteguw4eg95hguw4gwu4igtbwrtignew",
+  "debug": true,
+  "squish": true,
+  "wkhtmltopdf": "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe",
+  "baseUrl": "https://localhost:8080",
+  "appUrl": "https://localhost:3000",
+  "auctionAppUrl": "https://localhost:44415",
+  "additionalAppUrls": [ "https://localhost:44415" ],
+  "host": "localhost",
+  "smtp": {
+    "mailer": "Bidea Online <notify@bideaonline.com>",
+    "host": "smtp.sendgrid.net",
+    "username": "apikey",
+    "password": ""
+  },
+  "storage": {
+    "bucketName": "coquimarket"
+  },
+  "comm": {
+    "twilio": {
+      "apiKey": "",
+      "apiSecret": "",
+      "phones": [
+        "+1231231234"
+      ]
+    }
+  },
+  "paymentIntegration": "stripe",
+  "stripe": {
+    "pk": "",
+    "sk": ""
+  },
+  "fees": {
+    "vehicle": {
+      "buyersPercent": 4,
+      "buyersMin": 25,
+      "buyersMax": 1000
+    },
+    "appliance": {
+      "buyersPercent": 10,
+      "buyersMin": 1,
+      "buyersMax": 5000
+    }
+  }
+}

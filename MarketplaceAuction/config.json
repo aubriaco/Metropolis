@@ -1,0 +1,75 @@
+{
+  "ident": "dev",
+  "master": true,
+  "stage": "default",
+  "connectionString": "Host=localhost;Username=metropolis;Password=Test123!;Database=metropolis;Pooling=false",
+  "redis": {
+    "host": "localhost",
+    "port": 6379
+  },
+  "initialUser": {
+    "username": "info@solusek.com",
+    "email": "info@solusek.com",
+    "password": "Test123!",
+    "firstName": "Solusek",
+    "lastName": "Founder",
+    "phone": "0000000000",
+    "address": {
+      "line1": "123 Test St.",
+      "city": "San Juan",
+      "state": "PR",
+      "country": "USA",
+      "postalCode": "12345"
+    }
+  },
+  "crypt": "435234543453543",
+  "secret": "453223452435325435234532445",
+  "debug": true,
+  "squish": true,
+  "wkhtmltopdf": "/path/to/wkhtmltopdf",
+  "baseUrl": "http://localhost:8080",
+  "appUrl": "http://localhost:3000",
+  "additionalAppUrls": [],
+  "host": "localhost",
+  "smtp": {
+    "mailer": "Email <email@example.com>",
+    "host": "",
+    "username": "",
+    "password": ""
+  },
+  "storage": {
+    "bucketName": "metropolis"
+  },
+  "comm": {
+    "twilio": {
+      "apiKey": "",
+      "apiSecret": "",
+      "phones": [
+        "+12221112222"
+      ]
+    }
+  },
+  "paymentIntegration": "stripe",
+  "shippingIntegrations": [
+    "doordash",
+    "usps-express",
+    "usps-priority",
+    "usps-economy"
+  ],
+  "stripe": {
+    "pk": "",
+    "sk": ""
+  },
+  "fees": {
+    "vehicle": {
+      "buyersPercent": 4,
+      "buyersMin": 25,
+      "buyersMax": 1000
+    },
+    "appliance": {
+      "buyersPercent": 10,
+      "buyersMin": 1,
+      "buyersMax": 5000
+    }
+  }
+}

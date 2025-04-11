@@ -1,0 +1,166 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (Metropolis)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/Marketplace/bin/Release/net6.0/Marketplace.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Marketplace",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Launch (Auction)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/MarketplaceAuction/bin/Release/net6.0/MarketplaceAuction.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/MarketplaceAuction",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Launch (Referral)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/MarketplaceReferral/bin/Release/net6.0/MarketplaceReferral.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/MarketplaceReferral",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Launch (Tasker)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/MarketplaceTasker/bin/Release/net6.0/MarketplaceTasker.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/MarketplaceTasker",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Launch (Shop)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/MarketplaceShop/bin/Release/net6.0/MarketplaceShop.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/MarketplaceShop",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Launch (WaiterNet)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/WaiterNet/bin/Release/net6.0/WaiterNet.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/WaiterNet",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Launch (Worker)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/MarketplaceWorker/bin/Release/net6.0/MarketplaceWorker.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/MarketplaceWorker",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ],
+    "compounds": [
+        {
+          "name": "All",
+          "configurations": [
+            ".NET Core Launch (Auction)",
+            ".NET Core Launch (Referral)",
+            ".NET Core Launch (Tasker)",
+            ".NET Core Launch (Shop)",
+            ".NET Core Launch (Worker)"
+          ],
+          "stopAll": true
+        }
+      ]
+}

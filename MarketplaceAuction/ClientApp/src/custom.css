@@ -1,0 +1,160 @@
+
+
+html {
+    touch-action: pan-y;
+}
+
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #E01A76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+body {
+    color: #262626;
+    background-color: #eee;
+    font-family: -apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,noto sans,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol,noto color emoji;
+}
+
+html body .navbar-collapse {
+    z-index: 999;
+    background-color: #fff;
+    border: 1px solid #fafafa;
+}
+
+
+.page-wrapper, header {
+    background-color: #fff;
+}
+
+
+.page-wrapper {
+    padding-top: 120px;
+    padding-bottom: 50px;
+}
+
+.page-wrapper.native {
+    padding-top: 15px;
+}
+
+body h1 {
+    font-size: 24px;
+}
+
+
+.filters .form-control {
+    color: #888;
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+}
+
+select, .filters select {
+    background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAKCAYAAAC9vt6cAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACSSURBVHgBjZJBEYAgEEVBIpABzkYwgg2kiRjBBFbRBp45WQAy+HV0BpVFdoZhWf57wwHGUEopo7XuWGHFeXEcOOcT+lZKybz3Sw4GOCFvr/xWve4tAn0OxmbimQghrDBx9M01a1IvScCDc24UR4fwnJMQsD1fcE8oCZah4IeAkmDVFPwREBISTgoISRL+rZIPtgNC7EqjsksFDwAAAABJRU5ErkJggg==') no-repeat;
+    background-position: 95% center;
+}
+
+.auction-types a {
+    text-decoration: none;
+    color: #777;
+}
+
+.auction-types a:hover {
+    text-decoration: underline;
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 0;
+}
+.card .card-header {
+    background-color: transparent;
+    border-bottom: 0;
+}
+    .card .card-header .card-title {
+        font-weight: 700;
+    }
+
+
+    .container-narrow {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .sell h1, .container-narrow h1, .container h1 {
+        font-size: 2em;
+        line-height: 48px;
+        font-weight: 700;
+    }
+
+
+
+    .sell h3 {
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: 700;
+    }
+
+.sell .heading {
+    margin-bottom: 50px;
+}
+
+.sell .signup {
+    text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+}
+
+
+.drop-shadow {
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+}
+
+
+    .sell .reviews {
+        background-color: #e9dfff;
+    }
+
+    footer {
+        padding-top: 15px;
+        background-color: #eee;
+        padding-bottom: 50px;
+    }
+
+
+    .pointer {
+        cursor: pointer;
+    }
+
+div.currency {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+div.currency input {
+    border: 0;
+}
+
+    div.currency::before {
+        content: '$';
+        color: #000;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .tos {
+        font-family: sans-serif;
+    }
+
+    .tos h2 {
+        font-size: 20px;
+        text-align: center;
+    }

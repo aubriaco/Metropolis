@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI',SegoeUI,'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.dropdown-toggle-nocaret:after {
+    display: none !important;
+}

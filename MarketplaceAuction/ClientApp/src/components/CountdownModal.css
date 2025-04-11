@@ -1,0 +1,9 @@
+﻿
+.CountdownModal .modal-title {
+    width: 100%;
+    display: block;
+}
+
+.CountdownModal .box-shadow-down {
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+}

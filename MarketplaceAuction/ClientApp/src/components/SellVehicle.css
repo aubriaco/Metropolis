@@ -1,0 +1,10 @@
+﻿
+.sell-vehicle .img-thumbnail {
+    max-width: 50%;
+}
+
+@media (max-width: 767.98px) {
+    .sell-vehicle .img-thumbnail {
+        max-width: 100%;
+    }
+}

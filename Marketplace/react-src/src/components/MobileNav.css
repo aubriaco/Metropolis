@@ -1,0 +1,10 @@
+
+/* Small Screen & Mobile */
+@media (max-width: 991.98px) {
+    div.view-wrapper > div.container  div.alert {
+        margin-top: 20px;
+        background: none;
+        border: none;
+        opacity: 0.5;
+    }
+}

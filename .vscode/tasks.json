@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run: Marketplace (Debug)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/Marketplace/Marketplace.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Run: Worker (Debug)",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/MarketplaceWorker/MarketplaceWorker.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

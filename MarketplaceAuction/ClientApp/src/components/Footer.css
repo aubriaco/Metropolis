@@ -1,0 +1,21 @@
+﻿
+footer h6 {
+    line-height: 34px;
+}
+
+footer li.navbar-item a {
+    text-decoration: none;
+    color: #000;
+}
+
+footer li.navbar-item {
+    line-height: 30px;
+}
+
+footer .copyright {
+    text-align: center;
+}
+
+footer img.lang-img {
+    height: 20px;
+}

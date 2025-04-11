@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" ng-app="app" ng-controller="Root">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--favicon-->
+	<link rel="icon" href="/favicon.png" type="image/png" />
+	<!--plugins-->
+	<link href="/assets/plugins/OwlCarousel/css/owl.carousel.min.css" rel="stylesheet" />
+
+	<link href="/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+	<!-- loader-->
+	<link href="/assets/css/pace.min.css" rel="stylesheet" />
+	<script src="/assets/js/pace.min.js"></script>
+	<!-- Bootstrap CSS -->
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+	<link href="/assets/css/app.css?v=[[Version]]" rel="stylesheet">
+	<link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+	<link href="/assets/css/icons.css" rel="stylesheet">
+	<link href="/css/wysihtml.css" rel="stylesheet" type="text/css" />
+	<link href="/css/ng-tags-input.bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/css/extra.css?v=[[Version]]" rel="stylesheet" type="text/css" />
+	<title>Metropolis Market</title>
+	<meta name="description" content="Discover the ultimate e-commerce marketplace! Find everything you need and more with our wide selection of products from trusted vendors. From fashion and electronics to home goods and beauty, we've got it all. Plus, enjoy convenient and secure shopping with our easy checkout process. Don't miss out on unbeatable deals and great prices." />
+	<meta property="og:title" content="Metropolis Market" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://metropolis.market/img/og-image.jpg" />
+	<meta property="og:description" content="Discover the ultimate e-commerce marketplace! Find everything you need and more with our wide selection of products from trusted vendors. From fashion and electronics to home goods and beauty, we've got it all. Plus, enjoy convenient and secure shopping with our easy checkout process. Don't miss out on unbeatable deals and great prices." />
+
+	<base href="/" />
+</head>
+
+<body ng-controller="General">
+	<!--wrapper-->
+	<div id="body-wrapper" style="display:none;">
+		<div ng-include="RootTheme"></div>
+	</div>
+	<div id="loading">
+		<img src="img/loading.gif" alt="" />
+	</div>
+	<div id="landing" style="display: none;">
+		<div class="landing-info">
+			<img src="/img/logo.png" alt="" style="max-width:100%;" />
+			<hr />
+			<div class="container font-20">
+				<p>¡Descubre el mercado en línea definitivo! Encuentra todo lo que necesitas y más con nuestra amplia selección de productos de vendedores confiables. Desde moda y electrónica hasta productos para el hogar y belleza, lo tenemos todo. Además, disfruta de una compra conveniente y segura con nuestro proceso de pago fácil. No te pierdas las ofertas impresionantes y los buenos precios. Pr&oacute;nto en: <strong>www.metropolis.market</strong>.</p>
+				<p><i>Discover the ultimate e-commerce marketplace! Find everything you need and more with our wide selection of products from trusted vendors. From fashion and electronics to home goods and beauty, we've got it all. Plus, enjoy convenient and secure shopping with our easy checkout process. Don't miss out on unbeatable deals and great prices. Coming soon on this location: <strong>www.metropolis.market</strong>.</i></p>
+			</div>
+		</div>
+	</div>
+	<!--end wrapper-->
+	
+	<!-- Bootstrap JS -->
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+	<!--plugins-->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/plugins/OwlCarousel/js/owl.carousel.min.js"></script>
+	<script src="/assets/plugins/OwlCarousel/js/owl.carousel2.thumbs.min.js"></script>
+	<script src="/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+	<!--app JS-->
+	<script src="/api/content/js?v=[[Version]]"></script>
+</body>
+
+</html>

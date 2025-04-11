@@ -1,0 +1,161 @@
+html {
+    overflow-x: hidden;
+}
+
+body {
+    position: relative;
+}
+
+
+.c-loader {
+    align-items: center;
+    background: #fff;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: opacity 0.2s linear;
+    width: 100%;
+    z-index: 9999;
+    opacity: 1;
+}
+
+.c-loader img {
+    max-width: 50vw;
+}
+
+.bg-info {
+    --bs-info-rgb: 174, 200, 226;
+}
+
+.nav-mobile {
+    display: none;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 90px;
+    padding-bottom: 10px;
+    background-color: #eee;
+    z-index: 899;
+    box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-mobile-top {
+    z-index: 900;
+}
+
+.nav-mobile-item {
+    text-align: center;
+    width: 20%;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-mobile-item:hover,
+.nav-mobile-item:active {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-mobile-item.active {
+    color: rgba(0, 0, 0, 1);
+}
+
+.nav-mobile-item svg,
+.nav-mobile-item i {
+    display: block;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    margin-bottom: 0.01rem;
+    padding-top: 0;
+}
+
+.nav-mobile.nav-mobile-manager a {
+    color: #272b00;
+}
+
+
+.app-actions {
+    display: block;
+    z-index: 999;
+    position: fixed;
+    bottom: 100px;
+    right: 2rem;
+}
+
+.app-actions.app-actions-form {
+    bottom: 7rem;
+}
+
+.app-actions .btn {
+    display: inline-block;
+    font-size: 1rem;
+    margin: 0 0.4rem;
+    border-radius: 7px;
+}
+
+.wrapper-admin .navbar-nav a.active {
+    font-weight: 600;
+}
+
+
+/* Small Screen & Mobile */
+@media (max-width: 991.98px) {
+    body {
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+        height: 100vh;
+        overflow: auto;
+    }
+
+    .app-actions .btn {
+        display: inline-block;
+        padding: 1.2rem 1.5rem;
+        border-radius: 50%;
+        font-size: 1rem;
+        margin: 0 0.4rem;
+    }
+
+    .app-actions .btn-lg svg {
+        height: 2rem;
+        width: 2rem;
+    }
+
+
+
+    .nav-mobile {
+        display: flex;
+    }
+
+    .wrapper.search-hidden .view-wrapper {
+        margin-top: 40px;
+    }
+
+    .wrapper.search-hidden.wrapper-admin .view-wrapper {
+        margin-top: 50px;
+    }
+
+    .app-form-actions {
+        position: fixed;
+        display: flex;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        background-color: #eee;
+        box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
+        height: 80px;
+        padding: 5px 20px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+        flex-direction: row-reverse;
+    }
+
+    footer {
+        display: none;
+    }
+}

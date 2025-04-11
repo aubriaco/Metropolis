@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Cloud.Storage.V1" Version="4.10.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="StackExchange.Redis" Version="2.7.33" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.0" />
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
+    <PackageReference Include="ZXing.Net.Bindings.SkiaSharp" Version="0.16.13" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.308.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MarketplaceData\MarketplaceData.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Ubriaco">
+      <HintPath>../lib/Ubriaco.dll</HintPath>
+  </Reference>
+  <Reference Include="UbriacoUtil">
+      <HintPath>../lib/UbriacoUtil.dll</HintPath>
+  </Reference>
+  </ItemGroup>
+
+
+</Project>
