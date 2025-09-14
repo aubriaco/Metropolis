@@ -155,6 +155,8 @@ namespace Marketplace.Util
             if (FooterHTML != null)
                 body += FooterHTML;
 
+            body += "<p style=\"text-align:center;\"><small>" + DateTime.UtcNow.ToLongDateString() + " UTC</small></p>";
+
             string content = TplContent;
 
             content = content.Replace("%(BODY)", body).Replace("%(SUBJECT)", subject).Replace("%(APPURL)", Config.I.AppUrl);
