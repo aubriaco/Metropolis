@@ -12,7 +12,7 @@ namespace MarketplaceData.Models.API
         public long UserID { get; set; }
         public long VendorID { get; set; }
         public string SessionID { get; set; } = (Guid.NewGuid().ToString() + Guid.NewGuid().ToString()).Replace("-","");
-        public DateTime ExpiresDate { get; set; } = DateTime.UtcNow.AddDays(30);
+        public DateTime ExpiresDate { get; set; } = DateTime.UtcNow.AddMinutes(5);
 
         [ModelLocal]
         public string? Url

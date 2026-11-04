@@ -1,0 +1,6 @@
+{
+  "appName": "Nexus Admin",
+  "domainName": "localhost",
+  "serverUrl": "https://localhost:3003",
+  "devMode": false
+}

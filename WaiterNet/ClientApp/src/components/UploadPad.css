@@ -1,0 +1,33 @@
+﻿
+.UploadPad .o-img {
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 200px;
+}
+
+.UploadPad-dropzone {
+    height: 150px;
+    background-color: #fff;
+    border: 1px dotted #ccc;
+    text-align: center;
+    padding-top: 50px;
+    cursor: pointer;
+}
+
+.UploadPad-remove {
+    padding: 0;
+    width: 21px;
+    height: 21px;
+    border-radius: 10px;
+    opacity: 0.6;
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    align-items: center;
+    justify-content: center;
+    background: #000 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACgSURBVHgBrdIBDYYgEAVg+Iv8RrCBNsEGRrCKEbSBTYxghOdtDgfT457OtzHcwX1TwbmP4uMDgF6mWsbsvZ+YZunpZGpkLGcBeQKBDGlDLI64JrBICrW4T2AQyZp9r4VpiIzq8vM0jEYIjEceYDZCYLfIr2D9lXrljktIvc0AO+ENsj3CUDhiEPfMRJI9ZUzZkCEWFhdHBilhcaFlEQXbdrDHoT5X4lsRAAAAAElFTkSuQmCC) no-repeat 0/50%;
+    background-position: center center;
+    z-index: 3;
+    display: block;
+}

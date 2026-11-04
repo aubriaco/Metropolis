@@ -1,0 +1,36 @@
+
+
+.Home {
+    margin-top: -85px;
+}
+
+.Home .header {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+}
+
+.Home .input-group .form-control {
+    border-radius: 0;
+}
+
+.Home .input-group .input-group-text {
+    padding: 0;
+    border: 0;
+}
+
+.Home .input-group .btn-primary {
+    border-radius: 0;
+}
+
+.Home .faded-dark-bg {
+    display: inline-block;
+    background-color: #0000009b;
+}
+
+.Home .up-register {
+    margin-top: -94px;
+    background-color: #0000009b;
+}

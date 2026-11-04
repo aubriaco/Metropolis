@@ -1,0 +1,12 @@
+[Unit]
+Description=Referral
+
+[Service]
+ExecStart=/home/aubriaco/.dotnet/dotnet /home/aubriaco/referral/MarketplaceReferral.dll
+WorkingDirectory=/home/aubriaco/referral
+User=aubriaco
+Group=aubriaco
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

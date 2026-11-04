@@ -1,0 +1,73 @@
+﻿
+header {
+    position: fixed;
+    z-index: 9;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.page-wrapper {
+    margin-top: 80px;
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+nav {
+    background-color: #000;
+    color: #eee;
+}
+
+.nav-link {
+    text-transform: uppercase;
+}
+
+    .nav-link.active {
+        background-color: #232323;
+        border-radius: 5px;
+        font-weight: 500;
+    }
+
+    nav a.navbar-brand, nav ul.navbar-brand a.nav-link {
+        color: #eee;
+    }
+
+.offcanvas {
+    font-size: 18px;
+}
+
+.offcanvas .offcanvas-body {
+    overflow-y: visible;
+}
+
+
+.offcanvas .btn-close {
+    background: transparent url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27 fill=%27%23FFF%27%3e%3cpath d=%27M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z%27/%3e%3c/svg%3e") center/1em auto no-repeat;
+}
+
+header a {
+    text-decoration:none;
+}
+
+.dropdown-item a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}

@@ -5,6 +5,7 @@
  using Marketplace;
 using MarketplaceData.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,10 @@ using System.Threading.Tasks;
 
 namespace MarketplaceUtil.Util
 {
+    public sealed class CheckoutCardDeclinedException : Exception
+    {
+    }
+
     public class StripePaymentUtil : PaymentUtil
     {
         public override async Task<string> GetSession()
@@ -47,7 +52,6 @@ namespace MarketplaceUtil.Util
                 if (resp.IsSuccessStatusCode)
                 {
                     var body = await resp.Content.ReadAsStringAsync();
-                    Console.WriteLine("CreateCustomer: " + body);
                     dynamic json = JsonConvert.DeserializeObject(body);
                     return (string)json.id;
                 }
@@ -112,17 +116,24 @@ namespace MarketplaceUtil.Util
                 {
                     if (resp.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("AttachPaymentMethod: " + body);
                         return (string)json.id;
                     }
                     else
                     {
-                        Console.WriteLine("AttachPaymentMethod: ERROR: " + body);
                         throw new Exception((string)json.error.message);
                     }
                 }
                 throw new Exception("Could not attach payment method.");
             }
+        }
+
+        private static bool IsMarketplaceCheckout(Payment payment) =>
+            payment.ItemType == "Order" && payment.TransactionID?.StartsWith("marketplace-order:", StringComparison.Ordinal) == true;
+
+        private static void AddCheckoutKey(HttpClient client, Payment payment, string operation)
+        {
+            if (IsMarketplaceCheckout(payment))
+                client.DefaultRequestHeaders.Add("Idempotency-Key", payment.TransactionID + ":" + payment.ID + ":" + operation);
         }
 
         public override async Task<string> CreateCharge(PaymentMethod source, Payment payment, UserCustomer uc, bool onlyVerify = false, string? connectedAccountID = null)
@@ -142,6 +153,7 @@ namespace MarketplaceUtil.Util
                     ["customer"] = uc.CustomerID,
                     ["capture_method"] = "manual"
                 });
+                AddCheckoutKey(client, payment, "create");
                 var resp = await client.PostAsync("https://api.stripe.com/v1/payment_intents", content);
                 var body = await resp.Content.ReadAsStringAsync();
                 dynamic? json = JsonConvert.DeserializeObject(body);
@@ -149,7 +161,6 @@ namespace MarketplaceUtil.Util
                 {
                     if (resp.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("CreateCharge: " + body);
                         if (onlyVerify)
                         {
                             payment.ChargeID = (string)json.id;
@@ -166,7 +177,6 @@ namespace MarketplaceUtil.Util
                     }
                     else
                     {
-                        Console.WriteLine("CreateCharge: ERROR: " + body);
                         throw new Exception((string)json.error.message);
                     }
                 }
@@ -186,25 +196,35 @@ namespace MarketplaceUtil.Util
                 {
                     ["payment_method"] = pm.ExternalID
                 });
+                AddCheckoutKey(client, payment, "confirm");
                 var resp = await client.PostAsync("https://api.stripe.com/v1/payment_intents/" + payment.ChargeID + "/confirm", content);
+                if (IsMarketplaceCheckout(payment) && resp.StatusCode == System.Net.HttpStatusCode.PaymentRequired)
+                    throw new CheckoutCardDeclinedException();
+
                 var body = await resp.Content.ReadAsStringAsync();
                 dynamic? json = JsonConvert.DeserializeObject(body);
                 if (json != null)
                 {
                     if (resp.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("ConfirmCharge: " + body);
                         payment.Confirmed = true;
                         return (string)json.id;
                     }
                     else
                     {
-                        Console.WriteLine("ConfirmCharge: ERROR: " + body);
                         throw new Exception((string)json.error.message);
                     }
                 }
                 throw new Exception("Could not confirm charge.");
             }
+        }
+
+        private static void VerifyCheckoutCapture(JObject intent, Payment payment)
+        {
+            if ((string?)intent["status"] != "succeeded" ||
+                (string?)intent["currency"] != "usd" ||
+                (long?)intent["amount_received"] != (long)(payment.ChargeAmount * 100m))
+                throw new InvalidOperationException("Stripe capture does not match the checkout amount.");
         }
 
         public override async Task<string> CaptureCharge(Payment payment)
@@ -217,6 +237,20 @@ namespace MarketplaceUtil.Util
                 var content = new FormUrlEncodedContent(new Dictionary<string, string>()
                 {
                 });
+                if (IsMarketplaceCheckout(payment))
+                {
+                    using var lookup = await client.GetAsync("https://api.stripe.com/v1/payment_intents/" + payment.ChargeID);
+                    lookup.EnsureSuccessStatusCode();
+                    var intent = JObject.Parse(await lookup.Content.ReadAsStringAsync());
+                    if ((string?)intent["status"] == "succeeded")
+                    {
+                        VerifyCheckoutCapture(intent, payment);
+                        payment.Captured = true;
+                        payment.CapturedDate = DateTime.UtcNow;
+                        return payment.ChargeID!;
+                    }
+                }
+                AddCheckoutKey(client, payment, "capture");
                 var resp = await client.PostAsync("https://api.stripe.com/v1/payment_intents/" + payment.ChargeID + "/capture", content);
                 var body = await resp.Content.ReadAsStringAsync();
                 dynamic? json = JsonConvert.DeserializeObject(body);
@@ -224,14 +258,15 @@ namespace MarketplaceUtil.Util
                 {
                     if (resp.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("Capture: " + body);
+                        if (IsMarketplaceCheckout(payment))
+                            VerifyCheckoutCapture(JObject.Parse(body), payment);
+
                         payment.Captured = true;
                         payment.CapturedDate = DateTime.UtcNow;
                         return (string)json.id;
                     }
                     else
                     {
-                        Console.WriteLine("Capture: ERROR: " + body);
                         throw new Exception((string)json.error.message);
                     }
                 }
@@ -256,14 +291,12 @@ namespace MarketplaceUtil.Util
                 {
                     if (resp.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("Cancel: " + body);
                         payment.Canceled = true;
                         payment.CanceledDate = DateTime.UtcNow;
                         return (string)json.id;
                     }
                     else
                     {
-                        Console.WriteLine("Cancel: ERROR: " + body);
                         throw new Exception((string)json.error.message);
                     }
                 }

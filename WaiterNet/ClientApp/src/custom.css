@@ -1,0 +1,150 @@
+/* Provide sufficient contrast against white background */
+
+:root {
+    --bg-color: #fff;
+    --faded-bg-color: #ffffff86;
+    --very-faded-bg-color: #ffffff2d;
+    --primary-color: #fc8019;
+    --faded-color: #fc7f1960;
+    --text-color: #000;
+    --muted-color: #ccc;
+    --secondary-color: #3b4146;
+    --box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    --left-side-width: 280px;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+code {
+    color: #E01A76;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-faded {
+    background-color: var(--faded-color) !important;
+}
+
+* {
+    font-family: poppins, sans-serif;
+    font-size: 16px;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+header a {
+    color: var(--bg-color);
+}
+
+header a:hover {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+.menu-title {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn:disabled,
+.btn.disabled,
+fieldset:disabled .btn {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    opacity: 0.65;
+}
+
+.faded {
+    opacity: 0.65;
+}
+
+h2 {
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 25px;
+}
+
+h3 {
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.thumb {
+    height: 80px;
+}
+
+.page-wrapper .list-group-item {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.main-left-side {
+    width: var(--left-side-width);
+}
+
+.left-pad {
+    margin-left: var(--left-side-width);
+}
+
+.list-group-item {
+    background-color: #f7f7f7;
+    border-color: #eee;
+}
+
+.box-shadow {
+    box-shadow: var(--box-shadow);
+}
+
+.card {
+    box-shadow: var(--box-shadow);
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+@media (min-width: 576px) {
+    .navbar-expand-sm .navbar-toggler {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar-expand-sm .navbar-toggler {
+        display: none;
+    }
+
+    .main-side {
+        height: calc(100vh - 180px);
+        overflow: auto;
+    }
+
+    .main-left-side {
+        height: calc(100vh - 180px);
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}

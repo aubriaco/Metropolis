@@ -11,7 +11,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketplaceWorker", "Market
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketplaceUtil", "MarketplaceUtil\MarketplaceUtil.csproj", "{F8FB25B6-CB29-4ACD-8354-53F91406D985}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Toolkit", "Toolkit\Toolkit.csproj", "{7E6CF07A-484F-4CE4-A796-6267A8107101}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketplaceAuction", "MarketplaceAuction\MarketplaceAuction.csproj", "{833CBB3E-F57E-4552-A269-55CFB3412A8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolkitUtil", "ToolkitUtil\ToolkitUtil.csproj", "{0F7D6B55-E196-42BA-A1AB-399D8720A5D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketplaceSocial", "MarketplaceSocial\MarketplaceSocial.csproj", "{45CB514B-A640-4C04-8DF1-FAECDC30017F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NexusAdmin", "NexusAdmin\NexusAdmin.csproj", "{FD77FA5A-9ED5-4987-8D71-DDC452D38DDC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketplaceTasker", "MarketplaceTasker\MarketplaceTasker.csproj", "{89466444-0D54-42C1-941D-7512AF2EAA32}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketplaceReferral", "MarketplaceReferral\MarketplaceReferral.csproj", "{C24C18CE-A6CB-44DD-8D6B-4365B8A984A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketplaceShop", "MarketplaceShop\MarketplaceShop.csproj", "{549CE707-8988-4A47-8D36-F4E0510DDF24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaiterNet", "WaiterNet\WaiterNet.csproj", "{BF15DF85-0DF0-45A9-9040-CD8E69C3B83D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +51,6 @@ Global
 		{F8FB25B6-CB29-4ACD-8354-53F91406D985}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8FB25B6-CB29-4ACD-8354-53F91406D985}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8FB25B6-CB29-4ACD-8354-53F91406D985}.Release|Any CPU.Build.0 = Release|Any CPU
-		{87712479-1E57-4875-8CA6-A273CE80E2F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{87712479-1E57-4875-8CA6-A273CE80E2F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{87712479-1E57-4875-8CA6-A273CE80E2F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{87712479-1E57-4875-8CA6-A273CE80E2F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7E6CF07A-484F-4CE4-A796-6267A8107101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E6CF07A-484F-4CE4-A796-6267A8107101}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E6CF07A-484F-4CE4-A796-6267A8107101}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,10 +87,6 @@ Global
 		{BF15DF85-0DF0-45A9-9040-CD8E69C3B83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF15DF85-0DF0-45A9-9040-CD8E69C3B83D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF15DF85-0DF0-45A9-9040-CD8E69C3B83D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2AB4779-F63F-4073-9355-4623694C58C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2AB4779-F63F-4073-9355-4623694C58C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2AB4779-F63F-4073-9355-4623694C58C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2AB4779-F63F-4073-9355-4623694C58C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

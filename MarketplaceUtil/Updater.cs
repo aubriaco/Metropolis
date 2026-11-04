@@ -14,7 +14,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Ubriaco.Attributes;
 using Ubriaco.Models;
-using Newtonsoft.Json;
 
 namespace Marketplace
 {
@@ -43,11 +42,24 @@ namespace Marketplace
                     db.TryExec(@"CREATE UNIQUE INDEX _user_masterid_idx ON _user (masterid)");
                     db.TryExec(@"CREATE INDEX _user_lname_idx ON _user ((lower(firstname || ' ' || lastname)))");
 
-                    if(Config.I.InitialUser == null)
-                        throw new Exception("Please define an initial user.");
-
-                    var user = Config.I.InitialUser;
-
+                    var user = new User()
+                    {
+                        Username = "aubriaco@solusek.com",
+                        Email = "aubriaco@solusek.com",
+                        Password = CryptUtil.HashPassword(Guid.NewGuid().ToString()),
+                        FirstName = "Alessandro",
+                        LastName = "Ubriaco",
+                        Phone = "6176517938",
+                        Address = new Address()
+                        {
+                            Line1 = "Urb. Beverly Hills Cam. Palma 33",
+                            City = "Guaynabo",
+                            State = "PR",
+                            Country = "Puerto Rico",
+                            PostalCode = "00926",
+                        },
+                        IsAdmin = true
+                    };
                     if (!user.Select(db, "Email"))
                     {
                         user.ID = user.Insert(db);
@@ -55,6 +67,9 @@ namespace Marketplace
                             MailUtil.SendPasswordReset(user, Config.I.BaseUrl);
                     }
 
+                    user = new User() { Username = "aubriaco@coqui.market" };
+                    if (user.Select(db, "Username"))
+                        user.DeleteFromId(db);
 
 
                     //vendor

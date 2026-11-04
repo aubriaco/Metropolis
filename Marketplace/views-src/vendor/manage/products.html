@@ -1,0 +1,26 @@
+<div ng-init="manageProducts()">
+    <div class="btn-group mb-2">
+        <a href="/vendor/manage/{{Vendor.masterID}}/products-edit/new" class="btn btn-primary"><i class="bx bx-plus"></i> {{getLang('New Product')}} </a>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th style="width: 50px;" class="text-center"><input ng-change="toggleAll(CheckAll)" ng-model="CheckAll" type="checkbox" class="form-check-input form-check-inline" /></th>
+                <th> {{getLang('Product')}} </th>
+                <th> {{getLang('Status')}} </th>
+                <th> {{getLang('Inventory')}} </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="a in Products" class="cursor-pointer">
+                <td class="text-center"><input type="checkbox" class="form-check-input form-check-inline" /></td>
+                <td ng-click="go('/vendor/manage/' + Vendor.masterID + '/products-edit/' + a.masterID)"><a href="/vendor/manage/{{Vendor.masterID}}/products-edit/{{a.masterID}}" title="Edit Product" data-toggle="tooltip">{{a.name}}</a></td>
+                <td ng-click="go('/vendor/manage/' + Vendor.masterID + '/products-edit/' + a.masterID)">{{a.status}}</td>
+                <td ng-click="go('/vendor/manage/' + Vendor.masterID + '/products-edit/' + a.masterID)">{{a.sku}} left</td>
+            </tr>
+        </tbody>
+    </table>
+    <div ng-show="Products.length == 0" class="alert alert-warning">
+        <i class="bx bx-alarm-exclamation"></i> {{getLang('You have no products on your store.')}} <a href="/vendor/manage/{{Vendor.masterID}}/products-edit/new">{{getLang('Add your first product!')}}</a>
+    </div>
+</div>

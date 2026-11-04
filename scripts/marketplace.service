@@ -1,0 +1,12 @@
+[Unit]
+Description=Marketplace
+
+[Service]
+ExecStart=/home/aubriaco/.dotnet/dotnet /home/aubriaco/marketplace/Marketplace.dll
+WorkingDirectory=/home/aubriaco/marketplace
+User=aubriaco
+Group=aubriaco
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

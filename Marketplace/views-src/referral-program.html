@@ -1,0 +1,90 @@
+﻿
+<div ng-controller="ReferralProgram">
+    <section class="slider-section mb-4" ng-init="initBanner()">
+        <div class="first-slider p-0">
+
+            <div class="banner-slider owl-carousel owl-theme">
+                <div class="item bg-light">
+                    <div class="position-relative">
+                        <div class="position-absolute top-50 slider-content translate-middle">
+                            <h3 class="h3 fw-bold d-none d-md-block bg-light-t"> {{getLang('Get paid to bring businesses to Metropolis')}} </h3>
+                            <h1 class="h1 fw-bold d-none d-md-block bg-light-t"> {{getLang('with our Referral Program')}} </h1>
+                            <div class="">
+                                <a class="btn btn-primary btn-lg btn-ecomm px-md-4 py-md-3 rounded-1 mb-1 drop-shadow" href="/signup/as/ref"> <i class="bx bx-money"></i> {{getLang('Register as a Referrer!')}} </a>
+                                <a class="btn btn-secondary btn-lg btn-ecomm px-md-4 py-md-3 rounded-1 mb-1" ng-click="scrollTo('v-learn')"> {{getLang('Learn more...')}} </a>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="position-absolute slider-content d-none d-lg-block" style="margin-left: 500px; margin-top: 10%;">
+                            <img src="img/sell-banner.png" alt="" />
+                        </div>
+                        -->
+                        <a href="javascript:;">
+                            <img src="/img/slides/referral-program-1.png" class="img-fluid" alt="..." />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <div class="page-wrapper">
+        <div class="page-content">
+            <!--start breadcrumb-->
+            <section></section>
+            <!--end breadcrumb-->
+            <div class="container d-block d-lg-none text-center">
+                <img src="img/sell-banner.png" alt="" class="img-fluid" />
+            </div>
+            <section class="py-0 py-lg-4">
+                <div class="container" id="v-learn">
+                    <h4> {{getLang('About Metropolis Market Referral Program')}} </h4>
+                    <hr />
+                    <div class="font-18">
+                        <p>
+                            {{getLang('Looking for an effortless way to earn some extra money? Introducing our exciting paid referral program! If you know other businesses that could benefit from our platform, why not refer them and earn generous commissions in return? It\'s as simple as connecting us with the businesses you think would thrive on our platform, and when they sign up, you\'ll start earning money. Imagine the satisfaction of not only helping other businesses succeed but also earning a passive income while doing so. Our program rewards your valuable connections and network by providing you with a steady stream of income for each successful referral. So, whether you\'re an entrepreneur, a business professional, or simply someone with a wide network, seize this opportunity to monetize your connections and make some serious cash. Join our paid referral program today and let the referrals and earnings flow your way!')}}
+                        </p>
+                    </div>
+                    <a class="btn btn-primary btn-lg mt-4 p-2 d-block rounded-1 drop-shadow" href="/signup/as/ref/"> <i class="bx bx-money"></i> {{getLang('Click here to sign up and start making money!')}} </a>
+                    <hr class="mt-4 border-dark" style="border-width: 2px;" />
+                </div>
+            </section>
+            <section class="py-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="p-5 bg-dark text-light rounded-5">
+                                <form ng-submit="submitNewsletter(NewsletterForm)" ng-show="!NewsletterSubscribed">
+                                    <div class="form-body">
+                                        <h4 class="mb-0 text-uppercase text-light fw-bolder title-light-big"> {{getLang('Stay Connected')}} </h4>
+                                        <h6 class="text-light"> {{getLang('Get helpful tips on selling with us!')}} </h6>
+                                        <div class="mb-1 border-bottom bg-light"></div>
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <div class="col-12 col-md-10 mt-2">
+                                                    <input ng-model="NewsletterForm.email" type="email" class="form-control form-control-lg" placeholder="Enter your email address" ng-required="true" />
+                                                </div>
+                                                <div class="col-12 col-md-2 mt-2">
+                                                    <button class="btn btn-light btn-lg rounded"> {{getLang('Subscribe')}} </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <small> {{getLang('Unsubscribe at any time!')}} </small>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div ng-show="NewsletterSubscribed">
+                                    <h4 class="mb-0 text-uppercase text-light fw-bolder" style="font-size: 50px; font-family: Book Antiqua, Helvetica, sans-serif;"> {{getLang('Thank you for subscribing!')}} </h4>
+                                    <h6 class="text-light"> {{getLang('You can subscribe any time via embedded link in the email.')}} </h6>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end row-->
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

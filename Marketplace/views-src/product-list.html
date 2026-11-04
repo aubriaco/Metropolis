@@ -1,0 +1,201 @@
+<div class="page-wrapper" ng-controller="Product" ng-init="search()">
+    <div ng-init="pullUser()"></div>
+    <div class="page-content">
+        <!--start breadcrumb-->
+        <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
+            <div class="container">
+                <div class="page-breadcrumb d-flex align-items-center">
+                    <h3 class="breadcrumb-title pe-3"> {{getLang('Marketplace')}} </h3>
+                    <div class="ms-auto">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item">
+                                    <a href="/"><i class="bx bx-home-alt"></i> {{getLang('Home')}} </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/"> {{getLang('Marketplace')}} </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page"> {{getLang('Search')}} </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end breadcrumb-->
+        <!--start shop area-->
+        <section class="py-4">
+            <div class="container">
+                <div class="btn btn-dark btn-ecomm d-xl-none position-fixed top-50 start-0 translate-middle-y z-index-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarFilter"><span><i class="bx bx-filter-alt me-1"></i> {{getLang('Filters')}} </span></div>
+                <div class="row">
+                    <div class="col-12 col-xl-3 filter-column">
+                        <nav class="navbar navbar-expand-xl flex-wrap p-0">
+                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbarFilter" aria-labelledby="offcanvasNavbarFilterLabel">
+                                <div class="offcanvas-header">
+                                    <h5 class="offcanvas-title mb-0 fw-bold" id="offcanvasNavbarFilterLabel"> {{getLang('Filters')}} </h5>
+                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <div class="filter-sidebar">
+                                        <div class="card rounded-0 shadow-none border">
+                                            <div class="card-header d-none d-xl-block bg-transparent">
+                                                <h5 class="mb-0 fw-bold"> {{getLang('Filters')}} </h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div ng-show="ShowCategoryFilter">
+                                                    <h6 class="p-1 fw-bold bg-light"> {{getLang('Categories')}} </h6>
+                                                    <div class="categories">
+                                                        <div class="categories-wrapper height-1 p-1">
+                                                            <div ng-repeat="a in Categories" class="form-check">
+                                                                <input ng-model="Filter.categories[a.id]" ng-change="applyFilter(Filter)" class="form-check-input" type="checkbox" id="filter-category-{{a.ident}}" />
+                                                                <label class="form-check-label">
+                                                                    <span>{{a.name}}</span>
+                                                                    <span ng-show="false" class="product-number"> {{getLang('(1548)')}} </span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                </div>
+                                                <div class="Price">
+                                                    <h6 class="p-1 fw-bold bg-light"> {{getLang('Price')}} </h6>
+                                                    <div class="Price-wrapper p-1">
+                                                        <div class="input-group">
+                                                            <input ng-model="Filter.priceStart" type="number" class="form-control rounded-0" placeholder="$10" />
+                                                            <span class="input-group-text bg-section-1 border-0"> {{getLang('-')}} </span>
+                                                            <input ng-model="Filter.priceEnd" type="number" class="form-control rounded-0" placeholder="$10000" />
+                                                            <button ng-click="applyFilter(Filter)" type="button" class="btn btn-outline-dark rounded-0 ms-2"><i class="bx bx-chevron-right me-0"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-12 col-xl-9">
+                        <div class="product-wrapper">
+                            <div class="toolbox d-flex align-items-center mb-3 gap-2 border p-3">
+                                <div class="d-flex flex-wrap flex-grow-1 gap-1">
+                                    <div class="d-flex align-items-center flex-nowrap">
+                                        <p class="mb-0 font-13 text-nowrap"> {{getLang('Sort By:')}} </p>
+                                        <select class="form-select ms-3 rounded-0">
+                                            <option value="menu_order" selected="selected"> {{getLang('Default sorting')}} </option>
+                                            <option value="popularity"> {{getLang('Sort by popularity')}} </option>
+                                            <option value="rating"> {{getLang('Sort by average rating')}} </option>
+                                            <option value="date"> {{getLang('Sort by newness')}} </option>
+                                            <option value="price"> {{getLang('Sort by price: low to high')}} </option>
+                                            <option value="price-desc"> {{getLang('Sort by price: high to low')}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-wrap" ng-show="false">
+                                    <div class="d-flex align-items-center flex-nowrap">
+                                        <p class="mb-0 font-13 text-nowrap"> {{getLang('Show:')}} </p>
+                                        <select class="form-select ms-3 rounded-0">
+                                            <option> {{getLang('9')}} </option>
+                                            <option> {{getLang('12')}} </option>
+                                            <option> {{getLang('16')}} </option>
+                                            <option> {{getLang('20')}} </option>
+                                            <option> {{getLang('50')}} </option>
+                                            <option> {{getLang('100')}} </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div ng-show="false">
+                                    <a href="shop-grid-left-sidebar.html" class="btn btn-light rounded-0"><i class="bx bxs-grid me-0"></i></a>
+                                </div>
+                                <div ng-show="false">
+                                    <a href="shop-list-left-sidebar.html" class="btn btn-white rounded-0"><i class="bx bx-list-ul me-0"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-grid d-flex flex-column gap-4">
+
+                                <div ng-show="SearchLoaded && List.length == 0" class="alert alert-warning"><i class="bx bx-info-circle"></i> {{getLang('No products found under this search/category.')}} </div>
+
+                                <div ng-repeat="a in List" class="card rounded-0 border">
+                                    <div ng-show="false" class="d-flex align-items-center justify-content-end gap-3 position-absolute end-0 top-0 p-3">
+                                        <a href="javascript:;">
+                                            <div class="product-compare">
+                                                <span><i class="bx bx-git-compare"></i> {{getLang('Compare')}} </span>
+                                            </div>
+                                        </a>
+                                        <a ng-click="Wishlist.add(Product.id)" href="javascript:;">
+                                            <div class="product-wishlist">
+                                                <i class="bx bx-heart"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <a href="/p/{{a.ident}}" class="bg-light d-block">
+                                                <img src="{{a.images[0].url}}" class="p-3" alt="..." style="display: block; max-height: 200px; width: auto; margin: 0 auto;" />
+                                            </a>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <div class="product-info">
+                                                    <a href="/c/{{a.categoryIdent}}">
+                                                        <p class="product-catergory font-13 mb-1">{{a.categoryName}}</p>
+                                                    </a>
+                                                    <a href="/p/{{a.ident}}">
+                                                        <h6 class="product-name mb-2">{{a.name}}</h6>
+                                                    </a>
+                                                    <p class="card-text">{{a.shortDescription}}</p>
+                                                    <div class="cursor-pointer" ng-bind-html="a.ratingHTML"></div>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="mb-1 product-price">
+                                                            <span ng-show="a.comparePrice && a.price != a.comparePrice" class="me-1 text-decoration-line-through">{{formatCurrency(a.comparePrice, '$')}}</span>
+                                                            <span class="fs-5">{{formatCurrency(a.price, '$')}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-action mt-2">
+                                                        <div class="d-flex gap-2">
+                                                            <a ng-click="Cart.add(a.id)" href="javascript:;" class="btn btn-dark btn-ecomm"> <i class="bx bxs-cart-add"></i> {{getLang('Add to Cart')}} </a>
+                                                            <a href="/p/{{a.ident}}" class="btn btn-light btn-ecomm"><i class="bx bx-zoom-in"></i> {{getLang('View Product')}} </a>
+                                                            <!--<a href="javascript:;" class="btn btn-light btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class="bx bx-zoom-in"></i> {{getLang('View Product')}} </a>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+                            <hr />
+                            <nav class="d-flex justify-content-between" aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li class="page-item {{Filter.page <= 1 ? 'disabled' : ''}}">
+                                        <a ng-show="Filter.page > 1" class="page-link" href="{{getPageLoc(Filter.page-1)}}" aria-label="Prev"><i class="bx bx-chevron-left"></i> {{getLang('Prev')}} </a>
+                                        <span ng-show="Filter.page <= 1" class="page-link" aria-label="Prev"><i class="bx bx-chevron-left"></i> {{getLang('Prev')}} </span>
+                                    </li>
+                                </ul>
+                                <ul class="pagination">
+                                    <li class="page-item {{a.current ? 'active' : ''}} d-none d-sm-block" ng-repeat="a in Paging">
+                                        <a href="{{getPageLoc(a.page)}}" class="page-link">{{a.page}}<span ng-show="a.current" class="visually-hidden"> {{getLang('(current)')}} </span></a>
+                                    </li>
+                                </ul>
+                                <ul class="pagination">
+                                    <li class="page-item {{Filter.page >= PageCount ? 'disabled' : ''}}">
+                                        <a ng-show="Filter.page < PageCount" class="page-link" href="{{getPageLoc(Filter.page+1)}}" aria-label="Next"> {{getLang('Next')}} <i class="bx bx-chevron-right"></i></a>
+                                        <span ng-show="Filter.page >= PageCount" class="page-link" aria-label="Next"> {{getLang('Next')}} <i class="bx bx-chevron-right"></i></span>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+        </section>
+        <!--end shop area-->
+    </div>
+</div>

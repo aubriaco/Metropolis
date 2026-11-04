@@ -1,0 +1,5 @@
+{
+  "domainName": "localhost",
+  "serverUrl": "https://localhost:3007",
+  "devMode": false
+}

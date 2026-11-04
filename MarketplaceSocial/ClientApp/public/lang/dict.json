@@ -1,0 +1,390 @@
+﻿{
+  "Unleash Your Speed. Connect. Compete. Conquer!": {
+    "en": "Unleash Your Speed. Connect. Compete. Conquer!",
+    "es": "Libera tu Velocidad. Conéctate. Compite. ¡Conquista!"
+  },
+  "Discover the thrilling world of car racing and connect with fellow enthusiasts on our premier social network. Join a community of speed enthusiasts, share your passion for high-octane action, and engage in adrenaline-pumping competitions. Stay up-to-date with the latest news, events, and trends in the racing world. Fuel your racing dreams, build lasting connections, and ignite your competitive spirit. Unleash your inner racer and embark on an exhilarating journey with our vibrant car racing social network.": {
+    "en": "Discover the thrilling world of car racing and connect with fellow enthusiasts on our premier social network. Join a community of speed enthusiasts, share your passion for high-octane action, and engage in adrenaline-pumping competitions. Stay up-to-date with the latest news, events, and trends in the racing world. Fuel your racing dreams, build lasting connections, and ignite your competitive spirit. Unleash your inner racer and embark on an exhilarating journey with our vibrant car racing social network.",
+    "es": "Descubre el emocionante mundo de las carreras de autos y conéctate con otros entusiastas en nuestra principal red social. Únete a una comunidad de apasionados por la velocidad, comparte tu pasión por la acción de alta octanaje y participa en competencias llenas de adrenalina. Mantente al día con las últimas noticias, eventos y tendencias en el mundo de las carreras. Alimenta tus sueños de correr, construye conexiones duraderas e impulsa tu espíritu competitivo. Libera tu piloto interior y emprende un viaje emocionante con nuestra vibrante red social de carreras de autos."
+  },
+  "Add Vehicle": {
+    "en": "Add Vehicle",
+    "es": "Agregar vehículo"
+  },
+  "Submit": {
+    "en": "Submit",
+    "es": "Enviar"
+  },
+  "Uploads in process...": {
+    "en": "Uploads in process...",
+    "es": "Cargas en proceso..."
+  },
+  "Make": {
+    "en": "Make",
+    "es": "Marca"
+  },
+  "Model": {
+    "en": "Model",
+    "es": "Modelo"
+  },
+  "Year": {
+    "en": "Year",
+    "es": "Año"
+  },
+  "Mods": {
+    "en": "Mods",
+    "es": "Modificaciones"
+  },
+  "garage": {
+    "en": "garage",
+    "es": "garaje"
+  },
+  "Owned by:": {
+    "en": "Owned by:",
+    "es": "Propiedad de:"
+  },
+  "All Stock": {
+    "en": "All Stock",
+    "es": "Fábrica"
+  },
+  "Edit Profile": {
+    "en": "Edit Profile",
+    "es": "Editar perfil"
+  },
+  "Save": {
+    "en": "Save",
+    "es": "Guardar"
+  },
+  "Username": {
+    "en": "Username",
+    "es": "Nombre de usuario"
+  },
+  "Bio": {
+    "en": "Bio",
+    "es": "Bio"
+  },
+  "Unknown error ocurred, please try again.": {
+    "en": "Unknown error ocurred, please try again.",
+    "es": "Ocurrió un error desconocido, inténtalo de nuevo."
+  },
+  "Forgot Password?": {
+    "en": "Forgot Password?",
+    "es": "¿Has olvidado tu contraseña?"
+  },
+  "Go back to login.": {
+    "en": "Go back to login.",
+    "es": "Vuelva a iniciar sesión."
+  },
+  "An email has been sent to": {
+    "en": "An email has been sent to",
+    "es": "Se ha enviado un correo electrónico a"
+  },
+  "with further instructions.": {
+    "en": "with further instructions.",
+    "es": "con más instrucciones."
+  },
+  "Request": {
+    "en": "Request",
+    "es": "Pedido"
+  },
+  "Email": {
+    "en": "Email",
+    "es": "Correo electrónico"
+  },
+  "Search keywords...": {
+    "en": "Search keywords...",
+    "es": "Buscar palabras clave..."
+  },
+  "MM": {
+    "en": "MM",
+    "es": "MM"
+  },
+  "DD": {
+    "en": "DD",
+    "es": "DD"
+  },
+  "YYYY": {
+    "en": "YYYY",
+    "es": "AAAA"
+  },
+  "Login": {
+    "en": "Login",
+    "es": "Acceso"
+  },
+  "Ready to get started?": {
+    "en": "Ready to get started?",
+    "es": "¿Listo para comenzar?"
+  },
+  "Create your account!": {
+    "en": "Create your account!",
+    "es": "¡Crea tu cuenta!"
+  },
+  "I forgot my password!": {
+    "en": "I forgot my password!",
+    "es": "¡Olvidé mi contraseña!"
+  },
+  "Password": {
+    "en": "Password",
+    "es": "Contraseña"
+  },
+  "My Garage": {
+    "en": "My Garage",
+    "es": "Mi garage"
+  },
+  "Are you sure you want to remove": {
+    "en": "Are you sure you want to remove",
+    "es": "Estás seguro de que desea eliminar"
+  },
+  "You have no vehicles in your garage.": {
+    "en": "You have no vehicles in your garage.",
+    "es": "No tienes vehículos en tu garaje."
+  },
+  "Remove Vehicle": {
+    "en": "Remove Vehicle",
+    "es": "Eliminar vehículo"
+  },
+  "View Vehicle": {
+    "en": "View Vehicle",
+    "es": "Ver vehículo"
+  },
+  "Reloading profile": {
+    "en": "Reloading profile",
+    "es": "Perfil de recarga"
+  },
+  "Please wait....": {
+    "en": "Please wait....",
+    "es": "Espere por favor...."
+  },
+  "Edit Personal Info": {
+    "en": "Edit Personal Info",
+    "es": "Editar información"
+  },
+  "Close": {
+    "en": "Close",
+    "es": "Cerca"
+  },
+  "Language": {
+    "en": "Language",
+    "es": "Idioma"
+  },
+  "Please verify your email": {
+    "en": "Please verify your email",
+    "es": "Por favor verifica tu correo electrónico"
+  },
+  "Just a few more steps! We've sent a verification email to:": {
+    "en": "Just a few more steps! We've sent a verification email to:",
+    "es": "¡Solo unos pocos pasos más! Hemos enviado un correo electrónico de verificación a:"
+  },
+  "Please click the button within the email to activate your account.": {
+    "en": "Please click the button within the email to activate your account.",
+    "es": "Haga clic en el botón dentro del correo electrónico para activar su cuenta."
+  },
+  "Can't find the email?": {
+    "en": "Can't find the email?",
+    "es": "¿No encuentras el correo electrónico?"
+  },
+  "Please check your spam folder in case the email is located there. If you're still encountering difficulties, kindly add": {
+    "en": "Please check your spam folder in case the email is located there. If you're still encountering difficulties, kindly add",
+    "es": "Por favor revise su carpeta de correo no deseado en caso de que el correo electrónico se encuentre allí. Si aún tiene dificultades, agregue amablemente"
+  },
+  "to your email contacts.": {
+    "en": "to your email contacts.",
+    "es": "a sus contactos de correo electrónico."
+  },
+  "Sign Up!": {
+    "en": "Sign Up!",
+    "es": "¡Inscribirse!"
+  },
+  "Create Account": {
+    "en": "Create Account",
+    "es": "Crear una cuenta"
+  },
+  "By creating a": {
+    "en": "By creating a",
+    "es": "Al crear un"
+  },
+  "account, you are agreeing to our Terms of Use and Privacy Policy. You also agree to receive email communications from": {
+    "en": "account, you are agreeing to our Terms of Use and Privacy Policy. You also agree to receive email communications from",
+    "es": "cuenta, usted acepta nuestros Términos de uso y Política de privacidad. También acepta recibir comunicaciones por correo electrónico de"
+  },
+  "and can change your subscription preferences at any time.": {
+    "en": "and can change your subscription preferences at any time.",
+    "es": "y puede cambiar sus preferencias de suscripción en cualquier momento."
+  },
+  "Already have an account?": {
+    "en": "Already have an account?",
+    "es": "¿Ya tienes una cuenta?"
+  },
+  "Login here!": {
+    "en": "Login here!",
+    "es": "¡Entre aquí!"
+  },
+  "Next": {
+    "en": "Next",
+    "es": "Próximo"
+  },
+  "Username (public display name)": {
+    "en": "Username (public display name)",
+    "es": "Nombre de usuario (nombre para mostrar público)"
+  },
+  "Email address": {
+    "en": "Email address",
+    "es": "Dirección de correo electrónico"
+  },
+  "Timeline": {
+    "en": "Timeline",
+    "es": "Lo nuevo"
+  },
+  "There are no stories in your timeline.": {
+    "en": "There are no stories in your timeline.",
+    "es": "No hay historias en tu línea de tiempo."
+  },
+  "Personal Information": {
+    "en": "Personal Information",
+    "es": "Informacion personal"
+  },
+  "To ensure a secure and trustworthy environment, we kindly request your personal information before allowing the addition of payment details, bidding, or selling. Your privacy and protection are our top priorities.": {
+    "en": "To ensure a secure and trustworthy environment, we kindly request your personal information before allowing the addition of payment details, bidding, or selling. Your privacy and protection are our top priorities.",
+    "es": "Para garantizar un entorno seguro y confiable, solicitamos amablemente su información personal antes de permitir agregar detalles de pago, ofertar o vender. Su privacidad y protección son nuestras principales prioridades."
+  },
+  "First Name": {
+    "en": "First Name",
+    "es": "Nombre"
+  },
+  "Last Name": {
+    "en": "Last Name",
+    "es": "Apellido(s)"
+  },
+  "Phone Number": {
+    "en": "Phone Number",
+    "es": "Número de teléfono"
+  },
+  "Zip Code/Postal Code": {
+    "en": "Zip Code/Postal Code",
+    "es": "Código postal"
+  },
+  "Create post": {
+    "en": "Create post",
+    "es": "Crear publicación"
+  },
+  "Add to your post:": {
+    "en": "Add to your post:",
+    "es": "Agrega a tu publicación:"
+  },
+  "Post": {
+    "en": "Post",
+    "es": "Publicar"
+  },
+  "Uploading please wait...": {
+    "en": "Uploading please wait...",
+    "es": "Cargando ... Por favor espere..."
+  },
+  "Message": {
+    "en": "Message",
+    "es": "Mensaje"
+  },
+  "Edit Race Track": {
+    "en": "Edit Race Track",
+    "es": "Editar pista de carreras"
+  },
+  "Manage Race Tracks": {
+    "en": "Manage Race Tracks",
+    "es": "Administrar pistas de carreras"
+  },
+  "Race Track Name": {
+    "en": "Race Track Name",
+    "es": "Nombre de la pista de carreras"
+  },
+  "Track Image": {
+    "en": "Track Image",
+    "es": "Imagen de la pista"
+  },
+  "Home": {
+    "en": "Home",
+    "es": "Home"
+  },
+  "My Laps": {
+    "en": "My Laps",
+    "es": "Mis tiempos"
+  },
+  "Groups": {
+    "en": "Groups",
+    "es": "Grupos"
+  },
+  "Race Tracks": {
+    "en": "Race Tracks",
+    "es": "Pistas"
+  },
+  "My Profile": {
+    "en": "My Profile",
+    "es": "Mi perfil"
+  },
+  "Logout": {
+    "en": "Logout",
+    "es": "Cerrar sesión"
+  },
+  "Create new account": {
+    "en": "Create new account",
+    "es": "Crear una nueva cuenta"
+  },
+  "User": {
+    "en": "User",
+    "es": "Usuario"
+  },
+  "There are no stories.": {
+    "en": "There are no stories.",
+    "es": "No hay historias."
+  },
+  "User Profiles": {
+    "en": "User Profiles",
+    "es": "Perfiles de usuario"
+  },
+  "Results": {
+    "en": "Results",
+    "es": "Resultados"
+  },
+  "Password must contain at least 8 characters, uppercase letters, lowercase letters, one or more numbers and 1 or more symbols.": {
+    "en": "Password must contain at least 8 characters, uppercase letters, lowercase letters, one or more numbers and 1 or more symbols.",
+    "es": "La contraseña debe contener al menos 8 caracteres, letras mayúsculas, letras minúsculas, uno o más números y 1 o más símbolos."
+  },
+  "Verify Account": {
+    "en": "Verify Account",
+    "es": "Verificar Cuenta"
+  },
+  "Redirecting...": {
+    "en": "Redirecting...",
+    "es": "Redireccionando..."
+  },
+  "Password must contain at least 8 characters, uppercase letters, lowercase letters, one or more numbers, and one or more symbols.": {
+    "en": "Password must contain at least 8 characters, uppercase letters, lowercase letters, one or more numbers, and one or more symbols.",
+    "es": "La contraseña debe contener al menos 8 caracteres, letras mayúsculas, letras minúsculas, uno o más números y uno o más símbolos."
+  },
+  "Share": {
+    "en": "Share",
+    "es": "Compartir"
+  },
+  "Uploading...": {
+    "en": "Uploading...",
+    "es": "Subiendo..."
+  },
+  "Share this page!": {
+    "en": "Share this page!",
+    "es": "¡Comparte esta página!"
+  },
+  "Copy Link": {
+    "en": "Copy Link",
+    "es": "Copiar link"
+  },
+  "Facebook": {
+    "en": "Facebook",
+    "es": "Facebook"
+  },
+  "Garage": {
+    "en": "Garage",
+    "es": "Cochera"
+  },
+  "Posts": {
+    "en": "Posts",
+    "es": "Publicaciones"
+  }
+}

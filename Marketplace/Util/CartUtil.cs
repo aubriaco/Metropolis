@@ -13,14 +13,24 @@ namespace Marketplace.Util
     {
         public static string? GetSID(HttpContext context, User? user = null)
         {
-            string? sid;
-            if (!string.IsNullOrEmpty(context.Request.Cookies["CM-Cart"]))
-                sid = context.Request.Cookies["CM-Cart"];
-            else
+            const string cookieName = "CM-Cart";
+            if (context.Items.TryGetValue(cookieName, out var cached) && cached is string requestId)
+                return requestId;
+
+            var sid = context.Request.Cookies[cookieName];
+            if (sid == null || !sid.StartsWith("c-", StringComparison.Ordinal) ||
+                !Guid.TryParseExact(sid.AsSpan(2), "D", out _))
             {
-                sid = "c-" + Guid.NewGuid().ToString();
-                context.Response.Cookies.Append("CM-Cart", sid, new CookieOptions() { Expires = DateTime.UtcNow.AddDays(1) });
+                sid = "c-" + Guid.NewGuid();
+                context.Response.Cookies.Append(cookieName, sid, new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddDays(1),
+                    HttpOnly = true,
+                    Secure = context.Request.IsHttps
+                });
             }
+
+            context.Items[cookieName] = sid;
             return sid;
         }
 
@@ -106,6 +116,7 @@ namespace Marketplace.Util
 
         public static void Add(HttpContext context, CartProduct product, User? user = null)
         {
+            product = new CartProduct { ProductID = product.ProductID, Quantity = product.Quantity };
             string? sid = GetSID(context, user);
             if (sid == null)
                 throw new Exception("CM-Cart is null.");
@@ -122,13 +133,15 @@ namespace Marketplace.Util
                         {
                             if(i.ProductID == product.ProductID)
                             {
-                                i.Quantity++;
+                                if (i.Quantity < int.MaxValue)
+                                    i.Quantity++;
                                 found = true;
                                 break;
                             }
                         }
                         if(!found)
                             o.List.Add(product);
+                        o.Step = Math.Min(o.Step, 3);
                         redis.Put(sid, JsonConvert.SerializeObject(o), DateTime.UtcNow.AddDays(1));
                         return;
                     }
@@ -170,6 +183,7 @@ namespace Marketplace.Util
                         }
                         if(toRemove != null)
                             o.List.Remove(toRemove);
+                        o.Step = Math.Min(o.Step, 3);
                         redis.Put(sid, JsonConvert.SerializeObject(o), DateTime.UtcNow.AddDays(1));
                         return;
                     }
@@ -195,10 +209,11 @@ namespace Marketplace.Util
                         {
                             if (i.ProductID == product.ProductID)
                             {
-                                o.List[o.List.IndexOf(i)] = product;
+                                i.Quantity = product.Quantity;
                                 break;
                             }
                         }
+                        o.Step = Math.Min(o.Step, 3);
                         redis.Put(sid, JsonConvert.SerializeObject(o), DateTime.UtcNow.AddDays(1));
                         return;
                     }

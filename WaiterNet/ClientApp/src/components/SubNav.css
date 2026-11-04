@@ -1,0 +1,16 @@
+
+.SubNav {
+    background-color: #eee;
+    position: fixed;
+    left: 0;
+    top: 76px;
+    width: 100%;
+    z-index: 9;
+    min-height: 64px;
+    max-height: 64px;
+    overflow: hidden;
+}
+
+.SubNav .left-side {
+    width: var(--left-side-width);
+}

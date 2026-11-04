@@ -1,0 +1,13 @@
+﻿
+.InitSignUp .input-group .form-control {
+    border-radius: 0;
+}
+
+.InitSignUp .input-group .input-group-text {
+    padding: 0;
+    border: 0;
+}
+
+.InitSignUp .input-group .btn-primary {
+    border-radius: 0;
+}

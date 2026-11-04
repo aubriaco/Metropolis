@@ -1,0 +1,9 @@
+﻿.car-profile .profile {
+    height: 600px;
+}
+
+.car-profile .photo {
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+}

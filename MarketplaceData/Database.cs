@@ -31,7 +31,6 @@ namespace MarketplaceData
             await db.C.OpenAsync();
             return db;
         }
-        
 
         public void Dispose()
         {

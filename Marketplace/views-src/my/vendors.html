@@ -1,0 +1,42 @@
+<div ng-controller="Vendor" ng-init="list()">
+    <h4>{{getLang('My Stores')}}</h4>
+    <div ng-show="Error" class="alert alert-danger mb-2">{{Error}}</div>
+    <div ng-show="List && List.length == 0" class="alert alert-info mb-2"> {{getLang('You have no vendors registered.')}} </div>
+    <div class="btn-group mb-2">
+        <a href="/vendor/new" class="btn btn-primary"><i class="bx bx-plus"></i> {{getLang('Create New Vendor')}} </a>
+    </div>
+    <ul ng-show="List && List.length != 0" class="list-group">
+        <li class="list-group-item" ng-repeat="a in List">
+            <a href="/vendor/manage/{{a.masterID}}" class="font-20 text-uppercase">
+                {{a.name}}
+                <span class="badge bg-primary"> {{getLang('edit')}} </span>
+            </a><br />
+            <small> {{getLang('Status:')}} <span class="{{a.goodStatus ? 'text-success' : 'text-danger'}}">{{a.status}}</span></small>
+            <hr />
+            <div class="row">
+                <div class="col col-md-2">
+                    <img ng-show="!a.imageIdent" src="/img/noimage.png" class="img-thumbnail" alt="" />
+                    <img ng-show="a.imageIdent" src="/api/storage/get?ident={{a.imageIdent}}" class="img-thumbnail" alt="" />
+                </div>
+                <div class="col col-md-5">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold"> {{getLang('Order:')}} </td>
+                                <td> {{getLang('0')}} </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold"> {{getLang('Processed Orders:')}} </td>
+                                <td> {{getLang('0')}} </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold"> {{getLang('Confirmed Orders:')}} </td>
+                                <td> {{getLang('0')}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

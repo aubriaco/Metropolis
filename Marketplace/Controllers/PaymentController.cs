@@ -12,6 +12,9 @@ using MarketplaceData.Util;
 using MarketplaceUtil.Util;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Npgsql;
+using System.Security.Cryptography;
+using System.Text;
 using static Marketplace.Util.CartUtil;
 
 namespace Marketplace.Controllers
@@ -117,11 +120,10 @@ namespace Marketplace.Controllers
                 return BASE(1, "No user.");
 
 
-            if (req.PaymentMethodID == 0)
+            if (req.PaymentMethodID <= 0)
                 return BASE(2, "No payment method selected.");
 
-
-            req.ItemType = "Order";
+            req = new Payment { PaymentMethodID = req.PaymentMethodID, ItemType = "Order" };
 
             var putil = PaymentUtil.GetUtil(Config.I.PaymentIntegration);
 
@@ -130,46 +132,68 @@ namespace Marketplace.Controllers
                 //if (!UserAgreement.IsAgreed(db, CurrentUser.ID, "TOSBuyers"))
                 //    return BASE(10, "Must agree to terms and conditions.");
 
-                req.EmptyNonEditable();
                 req.UserID = CurrentUser.ID;
 
-                Order order;
-                CartData data;
-                if (req.ItemType == "Order")
-                {
-                    data = CartUtil.GetData(HttpContext, CurrentUser);
-                    if (data.Order == null)
-                        return BASE(7, "Cart Order is null.");
-                    order = data.Order;
-                }
-                else
-                    return BASE(2, "Invalid item type.");
+                var data = CartUtil.GetData(HttpContext, CurrentUser);
+                var order = data.Order;
+                if (order == null)
+                    return BASE(7, "Cart order is missing.");
 
-                if(data.List.Count == 0)
+                if (!Guid.TryParse(order.Ident, out var checkoutId))
+                    return BASE(7, "Restart checkout to initialize the order.");
+
+                var checkoutKey = $"marketplace-order:{CurrentUser.ID}:{checkoutId:N}";
+                // Hold a cross-process lock independently of the order write transaction.
+                using var lockDb = await Database.CreateAsync();
+                await using var lockTransaction = await lockDb.C.BeginTransactionAsync();
+                using var lockCommand = new NpgsqlCommand(
+                    "SELECT pg_try_advisory_xact_lock(hashtextextended(@key, 0))", lockDb.C, lockTransaction);
+                lockCommand.Parameters.AddWithValue("key", checkoutKey);
+                if (await lockCommand.ExecuteScalarAsync() is not true)
+                    return BASE(22, "Checkout is already in progress. Retry shortly.");
+
+                var saved = new Payment { UserID = CurrentUser.ID, TransactionID = checkoutKey, ItemType = "Order", Rejected = false };
+                var retry = saved.Select(db, "UserID,TransactionID,ItemType,Rejected");
+                if (retry && saved.Captured && saved.ItemID > 0)
+                {
+                    var existingOrder = Order.GetFromID<Order>(db, saved.ItemID);
+                    return existingOrder == null ? BASE(23, "Paid order requires reconciliation.") : ITEM(existingOrder);
+                }
+
+                if (data.List.Count == 0)
                     return BASE(20, "Cart is empty.");
+                if (!retry && data.Step != 4)
+                    return BASE(21, "Confirm shipping before paying.");
+                if (data.List.Any(item => item.ProductID <= 0 || item.Quantity <= 0))
+                    return BASE(20, "Cart contains an invalid product or quantity.");
 
-                foreach(var i in data.GetVendors(db))
-                {
-                    var st = order.GetVendorShippingType(i.ID);
-                    if(st == null || string.IsNullOrEmpty(st.ShippingType))
-                        return BASE(21, "Shipping type for vendor '" + i.Name  + "' is not selected.");
-                }
+                if (order.ShippingAddress == null || order.BillingAddress == null)
+                    return BASE(21, "Shipping and billing addresses are required.");
 
                 var vendorIDList = new Dictionary<long, decimal>();
                 var vendorProductCountList = new Dictionary<long, int>();
-                var vendorShippingAmountList = new Dictionary<long, decimal>();
                 decimal chargeTotal = 0;
-                int productCount = 0;
+                var productCount = data.List.Sum(line => (long)line.Quantity);
+                if (productCount > int.MaxValue)
+                    return BASE(20, "Cart quantity exceeds the supported limit.");
+
                 foreach(var i in data.List)
                 {
                     var product = Product.GetFromID<Product>(db, i.ProductID);
                     if(product == null)
-                        return BASE(12, "Product '" + product.ID + "' not found.");
+                        return BASE(12, "Product '" + i.ProductID + "' not found.");
+                    if (!product.IsActive || product.Price < 0)
+                        return BASE(12, "Product '" + i.ProductID + "' is unavailable.");
+
+                    var shipping = order.GetVendorShippingType(product.VendorID);
+                    if (shipping == null || string.IsNullOrEmpty(shipping.ShippingType) || shipping.Amount < 0)
+                        return BASE(21, "Valid shipping is required for each vendor.");
                     i.Product = product;
-                    TaxUtil.CalculateTaxes(db, i, CurrentUser.Address);
+                    i.SalesTax = 0;
+                    i.SalesTaxPercent = 0;
+                    TaxUtil.CalculateTaxes(db, i, order.ShippingAddress);
                     i.Calculate(product);
                     chargeTotal += i.Total;
-                    productCount += i.Quantity;
                     if(!vendorIDList.ContainsKey(product.VendorID))
                         vendorIDList.Add(product.VendorID, i.Total);
                     else
@@ -178,63 +202,108 @@ namespace Marketplace.Controllers
                         vendorProductCountList.Add(product.VendorID, i.Quantity);
                     else
                         vendorProductCountList[product.VendorID] += i.Quantity;
-                    if(!vendorShippingAmountList.ContainsKey(product.VendorID))
-                        vendorShippingAmountList.Add(product.VendorID, i.TotalShipping);
-                    else
-                        vendorShippingAmountList[product.VendorID] += i.TotalShipping;
+
                 }
 
 
-                chargeTotal += order.ShippingAmount;
+                order.ShippingAmount = vendorIDList.Keys.Sum(vendorId => order.GetVendorShippingType(vendorId)!.Amount);
+                if (order.ShippingAmount < 0)
+                    return BASE(21, "Shipping amount is invalid.");
 
-                if(chargeTotal == 0)
-                    return BASE(21, "Can not make a payment for the amount of zero.");
+                chargeTotal = decimal.Round(chargeTotal + order.ShippingAmount, 2, MidpointRounding.AwayFromZero);
+                if (chargeTotal <= 0 || chargeTotal > int.MaxValue / 100m)
+                    return BASE(21, "Payment amount is invalid.");
+
+                var fingerprint = Convert.ToHexString(SHA256.HashData(Encoding.UTF8.GetBytes(
+                    JsonConvert.SerializeObject(new
+                    {
+                        order.ShippingAddress,
+                        order.BillingAddress,
+                        order.ClientDate,
+                        Shipping = order.VendorShippingTypes.OrderBy(type => type.VendorID),
+                        Lines = data.List.OrderBy(line => line.ProductID).Select(line => new
+                        {
+                            line.ProductID, line.Quantity, line.Price, line.Total, line.TotalShipping,
+                            VendorID = line.Product!.VendorID
+                        })
+                    }))));
 
                 req.ChargeAmount = chargeTotal;
+                req.ItemID = 0;
+                req.TransactionID = checkoutKey;
+                req.CheckoutFingerprint = fingerprint;
 
-                var pm = PaymentMethod.GetFromID<PaymentMethod>(db, req.PaymentMethodID);
-                if (pm == null || pm.UserID != CurrentUser.ID)
-                    return BASE(3, "Payment method not found.");
-
-
-
-
-                var uc = new UserCustomer() { UserID = CurrentUser.ID, ExternalSource = "STRIPE" };
-                if (!uc.Select(db, "UserID,ExternalSource"))
-                    return BASE(10, "Customer for this user not found.");
-
-
-                req.ID = req.Insert(db);
-
-                try
+                if (retry)
                 {
-                    var r = await putil.CreateCharge(pm, req, uc);
-
-                    if (r == null)
-                        return BASE(4, "Error creating charge.");
-
-                    r = await putil.CaptureCharge(req);
-
-                    if(r == null)
-                        return BASE(4, "Error capturing charge.");
-                }
-                catch (Exception ex)
-                {
-                    req.Rejected = true;
-                    req.Update(db, "Rejected");
-                    return BASE(5, ex.Message);
+                    if (saved.PaymentMethodID != req.PaymentMethodID || saved.ChargeAmount != chargeTotal ||
+                        saved.CheckoutFingerprint != fingerprint)
+                        return BASE(23, "Checkout details changed during payment. This attempt requires reconciliation.");
+                    req = saved;
                 }
 
-                req.Confirmed = true;
-                req.Update(db, "Confirmed,ChargeID,Captured,CapturedDate");
+                if (!req.Captured)
+                {
+                    var pm = PaymentMethod.GetFromID<PaymentMethod>(db, req.PaymentMethodID);
+                    if (pm == null || pm.UserID != CurrentUser.ID)
+                        return BASE(3, "Payment method not found.");
 
+                    var uc = new UserCustomer() { UserID = CurrentUser.ID, ExternalSource = "STRIPE" };
+                    if (!uc.Select(db, "UserID,ExternalSource"))
+                        return BASE(10, "Customer for this user not found.");
+
+                    if (!retry)
+                        req.ID = req.Insert(db);
+
+                    try
+                    {
+                        if (string.IsNullOrEmpty(req.ChargeID))
+                        {
+                            // Stripe retains idempotency keys for at least 24 hours.
+                            if (DateTime.UtcNow - req.CreatedDate > TimeSpan.FromHours(20))
+                                return BASE(23, "This payment attempt requires reconciliation.");
+
+                            var charge = await putil.CreateCharge(pm, req, uc);
+                            if (string.IsNullOrEmpty(charge))
+                                return BASE(4, "Unable to authorize payment.");
+
+                            req.Confirmed = true;
+                            req.Update(db, "Confirmed,ChargeID");
+                        }
+
+                        var capture = await putil.CaptureCharge(req);
+                        if (string.IsNullOrEmpty(capture))
+                            return BASE(4, "Unable to capture payment. Retry this checkout.");
+
+                        req.Update(db, "Confirmed,Captured,CapturedDate");
+                    }
+                    catch (CheckoutCardDeclinedException)
+                    {
+                        req.Rejected = true;
+                        req.Update(db, "Rejected,ChargeID");
+                        return BASE(5, "The card was declined. Select a payment method and retry.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Error.WriteLine($"Checkout payment {req.ID} requires a retry ({ex.GetType().Name}).");
+                        return BASE(5, "Payment status is pending. Retry this checkout.");
+                    }
+                }
+
+                // Capture status survives order write failures. A retry can finish the order
+                // without issuing another charge, and partial order records roll back together.
+                await using var orderTransaction = await db.C.BeginTransactionAsync();
+                using (var sequenceLock = new NpgsqlCommand(
+                    "SELECT pg_advisory_xact_lock(hashtextextended('marketplace-order-sequence', 0))", db.C, orderTransaction))
+                    await sequenceLock.ExecuteNonQueryAsync();
+
+                var vendorOrders = new List<Order>();
                 order.UserID = CurrentUser.ID;
                 order.VendorID = 0;
                 order.Paid = req.ChargeAmount;
                 order.ShippingID = order.ShippingAddress.Insert(db);
                 order.BillingID = order.BillingAddress.Insert(db);
                 order.OrderType = Order.OrderTypeUser;
-                order.ProductCount = productCount;
+                order.ProductCount = (int)productCount;
                 order.VendorShippingTypesJsonData = JsonConvert.SerializeObject(order.VendorShippingTypes);
                 order.CreatedDate = DateTime.UtcNow;
                 order.CreateIdent(db);
@@ -268,7 +337,7 @@ namespace Marketplace.Controllers
                     vendorOrder.UserID = CurrentUser.ID;
                     vendorOrder.ShippingID = order.ShippingID;
                     vendorOrder.BillingID = order.BillingID;
-                    vendorOrder.ShippingAmount = vendorShippingAmountList[kpv.Key];
+                    vendorOrder.ShippingAmount = st.Amount;
                     vendorOrder.Paid = kpv.Value + vendorOrder.ShippingAmount;
                     vendorOrder.OrderType = Order.OrderTypeVendor;
                     vendorOrder.ProductCount = vendorProductCountList[kpv.Key];
@@ -298,14 +367,20 @@ namespace Marketplace.Controllers
                         i.Insert(db);
                     }
 
-                    var vendor = Vendor.GetFromID<Vendor>(db, vendorOrder.VendorID);
-                    if(vendor != null)
-                        MailUtil.SendOrderCreatedVendor(db, vendorOrder, vendor);
+                    vendorOrders.Add(vendorOrder);
                 }
 
-                await AuditLog.WriteAsync(db, "Paid order " + order.ID + " of: " + order.Paid, CurrentUser.ID);
+                await orderTransaction.CommitAsync();
 
                 CartUtil.Clear(HttpContext, CurrentUser);
+                await AuditLog.WriteAsync(db, "Paid order " + order.ID + " of: " + order.Paid, CurrentUser.ID);
+
+                foreach (var vendorOrder in vendorOrders)
+                {
+                    var vendor = Vendor.GetFromID<Vendor>(db, vendorOrder.VendorID);
+                    if (vendor != null)
+                        MailUtil.SendOrderCreatedVendor(db, vendorOrder, vendor);
+                }
 
                 MailUtil.SendOrderCreated(order, CurrentUser, LangUtil.Get(Request));
                 

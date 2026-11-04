@@ -1,10 +1,8 @@
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) by Solusek Systems. All rights reserved.
  *--------------------------------------------------------------------------------------------*/
-
-using MarketplaceData.Models;
-using MarketplaceData.Util;
-using Newtonsoft.Json;
+ 
+ using Newtonsoft.Json;
 
 namespace Marketplace
 {
@@ -12,6 +10,9 @@ namespace Marketplace
     {
         public const string ImageInputQueue = "image-input-queue";
         public static Config I = new Config();
+
+        // Token name to the external merchant IDs this integration may manage.
+        public Dictionary<string, string[]> IntegrationMerchants { get; set; } = new();
 
         public class _REDIS
         {
@@ -31,6 +32,7 @@ namespace Marketplace
         public class _STORAGE
         {
             public string? BucketName { get; set; }
+            public string[] ImageImportHosts { get; set; } = Array.Empty<string>();
         }
 
         public class _COMM_ITEM
@@ -92,10 +94,10 @@ namespace Marketplace
         // Config
         public string Title { get; set; } = "Metropolis Market";
         public string TitleShort { get; set; } = "Metropolis";
-        public string AdminEmail { get; set; } = "info@solusek.com";
         public List<string> NotifyEmails { get; set; } = new List<string>()
         {
-            "info@solusek.com"
+            "aubriaco@metropolis.market",
+            "alessandro.ubriaco@gmail.com"
         };
         public List<string> NotifyPhones { get; set; } = new List<string>()
         {
@@ -116,8 +118,8 @@ namespace Marketplace
         public string PaymentIntegration { get; set; } = "stripe";
         public List<string> ShippingIntegrations { get;set; } = new List<string>();
         public string? Crypt { get; set; }
-        public string? BaseUrl { get; set; } = "http://localhost:8080";
-        public string? AppUrl { get; set; } = "http://localhost:3000";
+        public string? BaseUrl { get; set; }
+        public string? AppUrl { get; set; }
         public string? VendorIdent { get; set; }
         public string? AuctionAppUrl { get; set; }
         public List<string> AdditionalAppUrls = new List<string>();
@@ -131,7 +133,6 @@ namespace Marketplace
         public bool Debug { get; set; } = false;
         public bool Squish { get; set; } = false;
 
-        public User? InitialUser { get; set; }
 
         public string AppName { get; set; } = "Metropolis Market";
         public string AppDescription { get; set; } = "";

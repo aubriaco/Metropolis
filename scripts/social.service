@@ -1,0 +1,12 @@
+[Unit]
+Description=Social
+
+[Service]
+ExecStart=/home/aubriaco/.dotnet/dotnet /home/aubriaco/social/MarketplaceSocial.dll
+WorkingDirectory=/home/aubriaco/social
+User=aubriaco
+Group=aubriaco
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

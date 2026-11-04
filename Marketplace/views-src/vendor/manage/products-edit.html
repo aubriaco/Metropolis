@@ -1,0 +1,147 @@
+<div ng-init="manageProductsEdit()">
+    <form ng-submit="submit()">
+        <div class="float-end btn-group">
+            <button type="submit" class="btn btn-success"><i class="bx bx-save"></i> {{getLang('Save')}} </button>
+            <a ng-click="_goBack()" class="btn btn-primary"><i class="bx bx-arrow-back"></i> {{getLang('Go Back')}} </a>
+        </div>
+        <h4 ng-show="Product.name">{{Product.name}} <span class="badge {{Product.goodStatus ? 'bg-green' : 'bg-light text-dark'}}">{{Product.status}}</span></h4>
+        <h4 ng-show="!Product.name"><i> {{getLang('Untitled Product')}} <span class="badge bg-light text-dark">{{Product.status}}</span></i></h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-8">
+                <h5> {{getLang('Basic Information')}} </h5>
+                <hr />
+                <label class="form-label d-block"> {{getLang('Title')}} </label>
+                <input ng-model="Product.name" ng-required="true" ng-change="Product.name = capitalize(Product.name)" type="text" class="form-control" />
+                <label class="form-label d-block mt-2"> {{getLang('Short Description')}} </label>
+                <div>
+                    <textarea ng-model="Product.shortDescription" ng-required="true" class="form-control" maxlength="200"></textarea>
+                    <small>{{getLang('Character count:')}} {{Product.shortDescription.length}} {{getLang('Maximum Allowed:')}} 200</small>
+                </div>
+                <label class="form-label d-block mt-2"> {{getLang('Description')}} </label>
+                <div id="product-input-description" class="wysihtml">
+                    <div class="toolbar"></div>
+                    <textarea ng-model="Product.description" ng-required="true" class="form-control" rows="10"></textarea>
+                    <small>{{getLang('Character count:')}} {{Product.description.length}}</small>
+                </div>
+                <h5 class="mt-4"> {{getLang('Media')}} </h5>
+                <hr />
+
+                <div ng-show="Product.images" class="mb-2">
+                    <small> {{getLang('First image will be the primary product image. You can re-arrange the images by drag-and-drop.')}} </small>
+                </div>
+
+                <div class="bg-light bg-light-white-1 rounded-2 border-2 p-3 ps-4 pe-4">
+                    <div class="row row-cols-3 product-images" dnd-list="Product.images">
+                        <div class="product-images-item p-2 rounded-5" style="cursor:move;" ng-repeat="a in Product.images" dnd-draggable="a" dnd-effect-allowed="move" dnd-moved="Product.images.splice($index, 1)">
+                            <div class="col">
+                                <div class="text-center">
+                                    <img src="{{a.url}}" class="img-thumbnail thumbnail-padding" alt="" style="height: 150px;" />
+                                </div>
+                                <div class="text-center mt-1">
+                                    <button ng-click="deleteImage(a)" type="button" class="btn btn-danger"><i class="bx bx-trash"></i> {{getLang('Delete')}} </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input id="uploader" type="file" accept="image/*" nv-file-select="" uploader="Uploader" multiple="" style="visibility: hidden; width: 0; height: 0; margin: 0; padding: 0;" />
+                <div ng-click="triggerUpload($event)" class="card bg-dark bg-dark-1 border-2 rounded-2 cursor-pointer" nv-file-drop="" nv-file-over="" uploader="Uploader" over-class="bg-dark-4">
+                    <div class="card-body text-center">
+                        <span class="badge bg-primary"> {{getLang('Add Files')}} </span><br />
+                        <span class="font-24"> {{getLang('Drop files or click here to upload...')}} </span>
+                    </div>
+                </div>
+                <h5 class="mt-4"> {{getLang('Pricing')}} </h5>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label d-block mt-2"> {{getLang('Price')}} </label>
+                        <div class="input-group">
+                            <span class="input-group-text"> {{getLang('$')}} </span>
+                            <input ng-model="Product.price" ng-required="false" type="number" step="0.01" class="form-control" placeholder="0.00" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label d-block mt-2"> {{getLang('Compare at price')}} </label>
+                        <div class="input-group">
+                            <span class="input-group-text"> {{getLang('$')}} </span>
+                            <input ng-model="Product.comparePrice" ng-required="false" type="number" step="0.01" class="form-control" placeholder="0.00" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label d-block mt-2"> {{getLang('Cost per item (optional)')}} </label>
+                        <div class="input-group">
+                            <span class="input-group-text"> {{getLang('$')}} </span>
+                            <input ng-model="Product.cost" ng-required="false" type="number" step="0.01" class="form-control" placeholder="0.00" />
+                        </div>
+                        <small> {{getLang('Not displayed to consumer. This is used for analytics.')}} </small>
+                    </div>
+                </div>
+                <h5 class="mt-4"> {{getLang('Inventory')}} </h5>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label d-block mt-2"> {{getLang('In Stock (SKU)')}} </label>
+                        <input ng-model="Product.sku" ng-required="false" type="number" step="1" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label d-block mt-2"> {{getLang('Barcode (optional)')}} </label>
+                        <input ng-model="Product.barcode" ng-required="false" type="text" class="form-control" />
+                    </div>
+                </div>
+                <h5 class="mt-4"> {{getLang('Shipping')}} </h5>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label d-block mt-2"> {{getLang('Weight')}} </label>
+                        <div class="input-group">
+                            <input ng-model="Product.weight" ng-required="false" type="number" step="0.1" class="form-control" placeholder="0.0" />
+                            <span class="input-group-text">
+                                <select ng-model="Product.weightUnit" ng-options="a as a for a in WeightUnits" class="form-control"></select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h5> {{getLang('Product Settings')}} </h5>
+                <hr />
+                <div class="form-check form-switch form-control-lg">
+                    <input ng-model="Product.isActive" class="form-check-input" type="checkbox" ng-change="validate()" />
+                    <label class="form-check-label"> {{getLang('Active')}} </label>
+                </div>
+                <small ng-show="Product.isActive" class="d-block"> {{getLang('Product will be visible in store.')}} </small>
+                <h5 class="mt-4"> {{getLang('Product Category')}} </h5>
+                <select ng-model="Product.categoryID" class="form-control" ng-options="a.id as a.name for a in Categories">
+                    <option value=""> {{getLang('&#9660; Select One')}} </option>
+                </select>
+                <h5 class="mt-4"> {{getLang('Product Tags')}} </h5>
+                <tags-input ng-model="Product._tags"></tags-input>
+                <small class="d-block"> {{getLang('Up to 5 tags are allowed.')}} </small>
+            </div>
+        </div>
+        <div class="float-end btn-group">
+            <button type="submit" class="btn btn-success"><i class="bx bx-save"></i> {{getLang('Save')}} </button>
+            <a ng-click="_goBack()" class="btn btn-primary"><i class="bx bx-arrow-back"></i> {{getLang('Go Back')}} </a>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>
+<style type="text/css">
+    .product-images .product-images-item:first-child {
+        background-color: #ede8ce;
+    }
+
+    .dndDraggingSource {
+        display: none;
+    }
+
+    .dndDragover {
+        padding-left: 100px;
+    }
+
+    .dndPlaceholder {
+        list-style: none;
+    }
+</style>

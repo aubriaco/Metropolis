@@ -1,0 +1,301 @@
+		<!--start slider section-->
+<section ng-controller="Index" class="slider-section mb-4" ng-init="localInit()" ng-show="RootLive">
+    <div class="first-slider p-0">
+
+        <div class="banner-slider owl-carousel owl-theme">
+            <div class="item">
+                <div class="position-relative">
+                    <div class="position-absolute top-50 slider-content translate-middle">
+                        <h3 class="h3 fw-bold d-none d-md-block">{{getLang('New Trending')}}</h3>
+                        <h1 class="h1 fw-bold">{{getLang('Women Fashion')}}</h1>
+                        <p class="fw-bold text-dark d-none d-md-block"><i>{{getLang('Last call for upto 15%')}}</i></p>
+                        <div class="">
+                            <a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">{{getLang('Shop Now')}}</a>
+                        </div>
+                    </div>
+                    <a href="javascript:;">
+                        <img src="assets/images/banners/01.png" class="img-fluid" alt="...">
+                    </a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="position-relative">
+                    <div class="position-absolute top-50 slider-content translate-middle">
+                        <h3 class="h3 fw-bold d-none d-md-block">{{getLang('New Trending')}}</h3>
+                        <h1 class="h1 fw-bold">{{getLang('Men Fashion')}}</h1>
+                        <p class="fw-bold text-dark d-none d-md-block"><i>{{getLang('Last call for upto 15%')}}</i></p>
+                        <div class="">
+                            <a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">{{getLang('Shop Now')}}</a>
+                        </div>
+                    </div>
+                    <a href="javascript:;">
+                        <img src="assets/images/banners/02.png" class="img-fluid" alt="...">
+                    </a>
+                </div>
+            </div>
+            <div class="item">
+                <div class="position-relative">
+                    <div class="position-absolute top-50 slider-content translate-middle">
+                        <h3 class="h3 fw-bold d-none d-md-block">{{getLang('New Trending')}}</h3>
+                        <h1 class="h1 fw-bold">{{getLang('Kids Fashion')}}</h1>
+                        <p class="fw-bold text-dark d-none d-md-block"><i>{{getLang('Last call for upto 15%')}}</i></p>
+                        <div class="">
+                            <a class="btn btn-dark btn-ecomm px-4" href="shop-grid.html">{{getLang('Shop Now')}}</a>
+                        </div>
+                    </div>
+                    <a href="javascript:;">
+                        <img src="assets/images/banners/04.png" class="img-fluid" alt="...">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--end slider section-->
+<!--start page wrapper -->
+<div class="page-wrapper" ng-controller="Product" ng-init="featured()">
+    <div class="page-content">
+        <section class="py-4">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
+                    <div class="col">
+                        <div class="card rounded-0 shadow-none bg-info bg-opacity-25">
+                            <div class="row g-0 align-items-center">
+                                <div class="col">
+                                    <img src="/img/categories/electronics.png" class="img-fluid" alt="" />
+                                </div>
+                                <div class="col">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase fw-bold">{{getLang('Electronics')}}</h5>
+                                        <p class="card-text">{{getLang('Stay connected and productive with our wide range of computers and electronics!')}}</p>
+                                        <a href="/c/electronics" class="btn btn-outline-dark btn-ecomm">{{getLang('SHOP NOW')}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card rounded-0 shadow-none bg-danger bg-opacity-25">
+                            <div class="row g-0 align-items-center">
+                                <div class="col">
+                                    <img src="/img/categories/clothing-shoes--jewelry.png" class="img-fluid" alt="" />
+                                </div>
+                                <div class="col">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase fw-bold">{{getLang('Clothing')}}</h5>
+                                        <p class="card-text">{{getLang('Step up your style with our latest collection of clothing and fashion!')}}</p>
+                                        <a href="/c/clothing-shoes--jewelry" class="btn btn-outline-dark btn-ecomm">{{getLang('SHOP NOW')}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card rounded-0 shadow-none bg-warning bg-opacity-25">
+                            <div class="row g-0 align-items-center">
+                                <div class="col">
+                                    <img src="/img/categories/home--kitchen.png" class="img-fluid" alt="" />
+                                </div>
+                                <div class="col">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-uppercase fw-bold">{{getLang('Home &amp; Kitchen')}}</h5>
+                                        <p class="card-text">{{getLang('Upgrade your home with a wide selection of home and kitchen products!')}}</p>
+                                        <a href="/c/home--kitchen" class="btn btn-outline-dark btn-ecomm">{{getLang('SHOP NOW')}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+        </section>
+        <!--end pramotion-->
+        <!--start Featured product-->
+        <section class="py-4">
+            <div class="container">
+                <div class="separator pb-4">
+                    <div class="line"></div>
+                    <h5 class="mb-0 fw-bold separator-title">{{getLang('FEATURED PRODUCTS')}}</h5>
+                    <div class="line"></div>
+                </div>
+                <div class="product-grid">
+                    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-5 g-3 g-sm-4">
+                        <div class="col" ng-repeat="a in Featured">
+                            <div class="card">
+                                <div class="position-relative overflow-hidden text-center bg-light" style="min-height: 175px;">
+                                    <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                        <a ng-click="Cart.add(a.id)" href="javascript:;"><i class="bx bx-cart-add"></i></a>
+                                    </div>
+                                    <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                        <a href="/p/{{a.ident}}">{{getLang('View')}}</a>
+                                    </div>
+                                    <a href="/p/{{a.ident}}">
+                                        <img src="{{a.images[0].url}}" class="img-fluid" alt="..." style="max-height: 175px;" />
+                                    </a>
+                                </div>
+                                <div class="card-body px-0">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="">
+                                            <p class="mb-1 product-short-name"><a href="/c/{{a.categoryIdent}}">{{a.categoryName}}</a></p>
+                                            <h6 class="mb-0 fw-bold product-short-title"><a href="/p/{{a.ident}}">{{a.name}}</a></h6>
+                                        </div>
+                                        <div class="icon-wishlist">
+                                            <a ng-click="Wishlist.add(Product.id)" href="javascript:;"><i class="bx bx-heart"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer rating mt-2" ng-bind-html="a.ratingHTML"></div>
+                                    <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                        <div ng-show="a.comparePrice && a.price != a.comparePrice" class="h6 fw-light fw-bold text-secondary text-decoration-line-through">{{formatCurrency(a.comparePrice, '$')}}</div>
+                                        <div class="h6 fw-bold">{{formatCurrency(a.price, '$')}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end row-->
+
+                </div>
+            </div>
+        </section>
+        <!--end Featured product-->
+        <!--start support info-->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-1 row-cols-xl-3 g-3">
+                    <div class="col">
+                        <div class="text-center border p-3 bg-white">
+                            <div class="font-50 text-dark">
+                                <i class='bx bx-cart-add'></i>
+                            </div>
+                            <h5 class="fs-5 text-uppercase mb-0 fw-bold">{{getLang('Fast delivery')}}</h5>
+                            <p class="text-capitalize">{{getLang('Get what you need, when you need it')}}</p>
+                            <p>{{getLang('Since our vendors/distributors are located locally in the island of Puerto Rico.')}}</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center border p-3 bg-white">
+                            <div class="font-50 text-dark">
+                                <i class='bx bx-credit-card'></i>
+                            </div>
+                            <h5 class="fs-5 text-uppercase mb-0 fw-bold">{{getLang('Secure payment')}}</h5>
+                            <p class="text-capitalize">{{getLang('Provided by our partner Stripe')}}</p>
+                            <p>{{getLang('Our secure payment system guarantees the protection of your personal and financial information.')}}</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center border p-3 bg-white">
+                            <div class="font-50 text-dark">
+                                <i class='bx bx-support'></i>
+                            </div>
+                            <h5 class="fs-5 text-uppercase mb-0 fw-bold">{{getLang('Customer Support')}}</h5>
+                            <p class="text-capitalize">{{getLang('Friendly 24/7 customer support')}}</p>
+                            <p>{{getLang('Our team of experts are available 24/7 to help you with any questions or concerns you may have.')}}</p>
+                        </div>
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+        </section>
+        <!--end support info-->
+        <!--start bottom products section-->
+        <section class="py-4 border-top">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
+                    <div class="col">
+                        <div class="bestseller-list mb-3">
+                            <h6 class="mb-3 text-uppercase fw-bold">{{getLang('Best Selling Products')}}</h6>
+                            <div ng-repeat="a in Featured | limitTo: 3">
+                                <hr />
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bottom-product-img">
+                                        <a href="/p/{{a.ident}}">
+                                            <img src="{{a.images[0].url}}" width="80" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="">
+                                        <h6 class="mb-0 fw-light mb-1 fw-bold">{{a.name}}</h6>
+                                        <div class="rating" ng-bind-html="a.ratingHTML"></div>
+                                        <p class="mb-0 pro-price">
+                                            <strong>{{formatCurrency(a.price, '$')}}</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="featured-list mb-3">
+                            <h6 class="mb-3 text-uppercase fw-bold">{{getLang('Featured Products')}}</h6>
+                            <div ng-repeat="a in Featured | limitTo: 3">
+                                <hr />
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bottom-product-img">
+                                        <a href="/p/{{a.ident}}">
+                                            <img src="{{a.images[0].url}}" width="80" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="">
+                                        <h6 class="mb-0 fw-light mb-1 fw-bold">{{a.name}}</h6>
+                                        <div class="rating" ng-bind-html="a.ratingHTML"></div>
+                                        <p class="mb-0 pro-price">
+                                            <strong>{{formatCurrency(a.price, '$')}}</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="new-arrivals-list mb-3">
+                            <h6 class="mb-3 text-uppercase fw-bold">{{getLang('New arrivals')}}</h6>
+                            <div ng-repeat="a in Featured | limitTo: 3">
+                                <hr />
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bottom-product-img">
+                                        <a href="/p/{{a.ident}}">
+                                            <img src="{{a.images[0].url}}" width="80" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="">
+                                        <h6 class="mb-0 fw-light mb-1 fw-bold">{{a.name}}</h6>
+                                        <div class="rating" ng-bind-html="a.ratingHTML"></div>
+                                        <p class="mb-0 pro-price">
+                                            <strong>{{formatCurrency(a.price, '$')}}</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="top-rated-products-list mb-3">
+                            <h6 class="mb-3 text-uppercase fw-bold">{{getLang('Top rated Products')}}</h6>
+                            <div ng-repeat="a in Featured | limitTo: 3">
+                                <hr />
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bottom-product-img">
+                                        <a href="/p/{{a.ident}}">
+                                            <img src="{{a.images[0].url}}" width="80" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="">
+                                        <h6 class="mb-0 fw-light mb-1 fw-bold">{{a.name}}</h6>
+                                        <div class="rating" ng-bind-html="a.ratingHTML"></div>
+                                        <p class="mb-0 pro-price">
+                                            <strong>{{formatCurrency(a.price, '$')}}</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+        </section>
+        <!--end bottom products section-->
+    </div>
+</div>
+<!--end page wrapper -->

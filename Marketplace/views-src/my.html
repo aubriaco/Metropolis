@@ -1,0 +1,66 @@
+		<!--start page wrapper -->
+<div ng-controller="My" class="page-wrapper">
+
+    <div ng-show="User" class="page-content">
+        <section></section>
+        <!--start breadcrumb-->
+        <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
+            <div class="container">
+                <div class="page-breadcrumb d-flex align-items-center">
+                    <h3 class="breadcrumb-title pe-3">{{getLang('My Account')}}</h3>
+                    <div class="ms-auto">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item">
+                                    <a href="javascript:;"><i class="bx bx-home-alt"></i>{{getLang('Home')}}</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript:;">{{getLang('Account')}}</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">{{getLang('My Account')}}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end breadcrumb-->
+        <!--start shop cart-->
+        <section class="py-4">
+            <div class="container">
+                <h3 class="d-none">{{getLang('Account')}}</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card shadow-none mb-3 mb-lg-0 border rounded-0">
+                                    <div class="card-body">
+                                        <h4>{{getLang('My Menu')}}</h4>
+                                        <div class="list-group list-group-flush">
+                                            <a href="/my" class="{{Sub == 'dashboard' ? 'active' : ''}} list-group-item d-flex justify-content-between align-items-center">{{getLang('Dashboard')}}<i class="bx bx-tachometer fs-5"></i></a>
+                                            <a ng-show="RootMode != 'vendorsignup'" href="/my/orders" class="{{Sub == 'orders' ? 'active' : ''}} list-group-item d-flex justify-content-between align-items-center">{{getLang('Orders')}}<i class="bx bx-cart-alt fs-5"></i></a>
+                                            <a href="/my/vendors" class="{{Sub == 'vendors' ? 'active' : ''}} list-group-item d-flex justify-content-between align-items-center">{{getLang('My Stores')}}<i class="bx bx-home-smile fs-5"></i></a>
+                                            <a ng-show="RootMode != 'vendorsignup'" href="/my/wallet" class="{{Sub == 'wallet' ? 'active' : ''}} list-group-item d-flex justify-content-between align-items-center">{{getLang('Payment Methods')}}<i class="bx bx-credit-card fs-5"></i></a>
+                                            <a href="/my/account" class="{{Sub == 'account' ? 'active' : ''}} list-group-item d-flex justify-content-between align-items-center">{{getLang('Account Details')}}<i class="bx bx-user-circle fs-5"></i></a>
+                                            <a ng-click="logout()" class="cursor-pointer list-group-item d-flex justify-content-between align-items-center">{{getLang('Logout')}}<i class="bx bx-log-out fs-5"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="card shadow-none mb-0">
+                                    <div class="card-body">
+                                        <div ng-include="SubInc"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end row-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end shop cart-->
+    </div>
+</div>
+<!--end page wrapper -->

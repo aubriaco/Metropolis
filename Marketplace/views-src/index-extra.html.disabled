@@ -1,0 +1,726 @@
+<div>
+    <!--start New Arrivals-->
+    <section ng-show="false" class="py-4">
+        <div class="container">
+            <div class="separator pb-4">
+                <div class="line"></div>
+                <h5 class="mb-0 fw-bold separator-title">{{getLang('New Arrivals')}}</h5>
+                <div class="line"></div>
+            </div>
+            <div class="product-grid">
+                <div class="new-arrivals owl-carousel owl-theme position-relative">
+                    <div class="item">
+                        <div class="card">
+                            <div class="position-relative overflow-hidden">
+                                <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                    <a ng-click="Cart.add(a.id)" href="javascript:;"><i class="bx bx-cart-add"></i></a>
+                                </div>
+                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">{{getLang('Quick View')}}</a>
+                                </div>
+                                <a href="javascript:;">
+                                    <img src="assets/images/products/11.png" class="img-fluid" alt="...">
+                                </a>
+                            </div>
+                            <div class="card-body px-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <p class="mb-1 product-short-name">{{getLang('Topwear')}}</p>
+                                        <h6 class="mb-0 fw-bold product-short-title">{{getLang('White Polo Shirt')}}</h6>
+                                    </div>
+                                    <div class="icon-wishlist">
+                                        <a href="javascript:;"><i class="bx bx-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="cursor-pointer rating mt-2">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                </div>
+                                <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                    <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">{{getLang('$59.00')}}</div>
+                                    <div class="h6 fw-bold">{{getLang('$48.00')}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card">
+                            <div class="position-relative overflow-hidden">
+                                <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                    <a ng-click="Cart.add(a.id)" href="javascript:;"><i class="bx bx-cart-add"></i></a>
+                                </div>
+                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">{{getLang('Quick View')}}</a>
+                                </div>
+                                <a href="javascript:;">
+                                    <img src="assets/images/products/12.png" class="img-fluid" alt="...">
+                                </a>
+                            </div>
+                            <div class="card-body px-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <p class="mb-1 product-short-name">{{getLang('Topwear')}}</p>
+                                        <h6 class="mb-0 fw-bold product-short-title">{{getLang('White Polo Shirt')}}</h6>
+                                    </div>
+                                    <div class="icon-wishlist">
+                                        <a href="javascript:;"><i class="bx bx-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="cursor-pointer rating mt-2">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                </div>
+                                <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                    <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">{{getLang('$59.00')}}</div>
+                                    <div class="h6 fw-bold">{{getLang('$48.00')}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card">
+                            <div class="position-relative overflow-hidden">
+                                <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                    <a ng-click="Cart.add(a.id)" href="javascript:;"><i class="bx bx-cart-add"></i></a>
+                                </div>
+                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">{{getLang('Quick View')}}</a>
+                                </div>
+                                <a href="javascript:;">
+                                    <img src="assets/images/products/13.png" class="img-fluid" alt="...">
+                                </a>
+                            </div>
+                            <div class="card-body px-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <p class="mb-1 product-short-name">{{getLang('Topwear')}}</p>
+                                        <h6 class="mb-0 fw-bold product-short-title">{{getLang('White Polo Shirt')}}</h6>
+                                    </div>
+                                    <div class="icon-wishlist">
+                                        <a href="javascript:;"><i class="bx bx-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="cursor-pointer rating mt-2">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                </div>
+                                <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                    <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">{{getLang('$59.00')}}</div>
+                                    <div class="h6 fw-bold">{{getLang('$48.00')}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card">
+                            <div class="position-relative overflow-hidden">
+                                <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                    <a ng-click="Cart.add(a.id)" href="javascript:;"><i class="bx bx-cart-add"></i></a>
+                                </div>
+                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">{{getLang('Quick View')}}</a>
+                                </div>
+                                <a href="javascript:;">
+                                    <img src="assets/images/products/14.png" class="img-fluid" alt="...">
+                                </a>
+                            </div>
+                            <div class="card-body px-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <p class="mb-1 product-short-name">{{getLang('Topwear')}}</p>
+                                        <h6 class="mb-0 fw-bold product-short-title">{{getLang('White Polo Shirt')}}</h6>
+                                    </div>
+                                    <div class="icon-wishlist">
+                                        <a href="javascript:;"><i class="bx bx-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="cursor-pointer rating mt-2">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                </div>
+                                <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                    <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">{{getLang('$59.00')}}</div>
+                                    <div class="h6 fw-bold">{{getLang('$48.00')}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card">
+                            <div class="position-relative overflow-hidden">
+                                <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                    <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
+                                </div>
+                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">{{getLang('Quick View')}}</a>
+                                </div>
+                                <a href="javascript:;">
+                                    <img src="assets/images/products/15.png" class="img-fluid" alt="...">
+                                </a>
+                            </div>
+                            <div class="card-body px-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <p class="mb-1 product-short-name">{{getLang('Topwear')}}</p>
+                                        <h6 class="mb-0 fw-bold product-short-title">{{getLang('White Polo Shirt')}}</h6>
+                                    </div>
+                                    <div class="icon-wishlist">
+                                        <a href="javascript:;"><i class="bx bx-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="cursor-pointer rating mt-2">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                </div>
+                                <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                    <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">{{getLang('$59.00')}}</div>
+                                    <div class="h6 fw-bold">{{getLang('$48.00')}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card">
+                            <div class="position-relative overflow-hidden">
+                                <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                    <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
+                                </div>
+                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">{{getLang('Quick View')}}</a>
+                                </div>
+                                <a href="javascript:;">
+                                    <img src="assets/images/products/16.png" class="img-fluid" alt="...">
+                                </a>
+                            </div>
+                            <div class="card-body px-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <p class="mb-1 product-short-name">{{getLang('Topwear')}}</p>
+                                        <h6 class="mb-0 fw-bold product-short-title">{{getLang('White Polo Shirt')}}</h6>
+                                    </div>
+                                    <div class="icon-wishlist">
+                                        <a href="javascript:;"><i class="bx bx-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="cursor-pointer rating mt-2">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                </div>
+                                <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                    <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">{{getLang('$59.00')}}</div>
+                                    <div class="h6 fw-bold">{{getLang('$48.00')}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card">
+                            <div class="position-relative overflow-hidden">
+                                <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                    <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
+                                </div>
+                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">{{getLang('Quick View')}}</a>
+                                </div>
+                                <a href="javascript:;">
+                                    <img src="assets/images/products/17.png" class="img-fluid" alt="...">
+                                </a>
+                            </div>
+                            <div class="card-body px-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <p class="mb-1 product-short-name">{{getLang('Topwear')}}</p>
+                                        <h6 class="mb-0 fw-bold product-short-title">{{getLang('White Polo Shirt')}}</h6>
+                                    </div>
+                                    <div class="icon-wishlist">
+                                        <a href="javascript:;"><i class="bx bx-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="cursor-pointer rating mt-2">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                </div>
+                                <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                    <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">{{getLang('$59.00')}}</div>
+                                    <div class="h6 fw-bold">{{getLang('$48.00')}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card">
+                            <div class="position-relative overflow-hidden">
+                                <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                    <a href="javascript:;"><i class='bx bx-cart-add'></i></a>
+                                </div>
+                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                    <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#QuickViewProduct">{{getLang('Quick View')}}</a>
+                                </div>
+                                <a href="javascript:;">
+                                    <img src="assets/images/products/18.png" class="img-fluid" alt="...">
+                                </a>
+                            </div>
+                            <div class="card-body px-0">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div class="">
+                                        <p class="mb-1 product-short-name">{{getLang('Topwear')}}</p>
+                                        <h6 class="mb-0 fw-bold product-short-title">{{getLang('White Polo Shirt')}}</h6>
+                                    </div>
+                                    <div class="icon-wishlist">
+                                        <a href="javascript:;"><i class="bx bx-heart"></i></a>
+                                    </div>
+                                </div>
+                                <div class="cursor-pointer rating mt-2">
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                    <i class="bx bxs-star text-warning"></i>
+                                </div>
+                                <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                    <div class="h6 fw-light fw-bold text-secondary text-decoration-line-through">{{getLang('$59.00')}}</div>
+                                    <div class="h6 fw-bold">{{getLang('$48.00')}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--end New Arrivals-->
+    <!--start Advertise banners-->
+    <section ng-show="false" class="py-4 bg-dark">
+        <div class="container">
+            <div class="add-banner">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-4 g-4">
+                    <div class="col d-flex">
+                        <div class="card rounded-0 w-100 border-0 shadow-none">
+                            <img src="assets/images/promo/04.png" class="img-fluid" alt="...">
+                            <div class="position-absolute top-0 end-0 m-3 product-discount">
+                                <span class="">{{getLang('-10%')}}</span>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{getLang('Sunglasses Sale')}}</h5>
+                                <p class="card-text">{{getLang('See all Sunglasses and get 10% off at all Sunglasses')}}</p> <a href="javascript:;" class="btn btn-dark btn-ecomm">{{getLang('SHOP BY GLASSES')}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex">
+                        <div class="card rounded-0 w-100 border-0 shadow-none">
+                            <img src="assets/images/promo/08.png" class="img-fluid" alt="...">
+                            <div class="position-absolute top-0 end-0 m-3 product-discount">
+                                <span class="">{{getLang('-80%')}}</span>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{getLang('Cosmetics Sales')}}</h5>
+                                <p class="card-text">{{getLang('Buy Cosmetics products and get 30% off at all Cosmetics')}}</p> <a href="javascript:;" class="btn btn-dark btn-ecomm">{{getLang('SHOP BY COSMETICS')}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex">
+                        <div class="card rounded-0 w-100 border-0 shadow-none">
+                            <img src="assets/images/promo/06.png" class="img-fluid h-100" alt="...">
+                            <div class="card-img-overlay text-center top-20">
+                                <div class="border border-white border-2 py-3 bg-dark-3">
+                                    <h5 class="card-title text-white">{{getLang('Fashion Summer Sale')}}</h5>
+                                    <p class="card-text text-uppercase fs-1 lh-1 mt-3 mb-2 text-white">{{getLang('Up to 80% off')}}</p>
+                                    <p class="card-text fs-5 text-white">{{getLang('On Top Fashion Brands')}}</p>	<a href="javascript:;" class="btn btn-white btn-ecomm">{{getLang('SHOP BY FASHION')}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex">
+                        <div class="card rounded-0 w-100 border-0 shadow-none">
+                            <div class="position-absolute top-0 end-0 m-3 product-discount">
+                                <span class="">{{getLang('-50%')}}</span>
+                            </div>
+                            <img src="assets/images/promo/07.png" class="img-fluid" alt="...">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fs-2 fw-bold text-uppercase">{{getLang('Super Sale')}}</h5>
+                                <p class="card-text text-uppercase fs-5 lh-1 mb-2">{{getLang('Up to 50% off')}}</p>
+                                <p class="card-text">{{getLang('On All Electronic')}}</p> <a href="javascript:;" class="btn btn-dark btn-ecomm">{{getLang('HURRY UP!')}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+        </div>
+    </section>
+    <!--end Advertise banners-->
+    <!--start categories-->
+    <section ng-show="false" class="py-4">
+        <div class="container">
+            <div class="separator pb-4">
+                <div class="line"></div>
+                <h5 class="mb-0 fw-bold separator-title">{{getLang('Browse Catergory')}}</h5>
+                <div class="line"></div>
+            </div>
+
+            <div class="product-grid">
+                <div class="browse-category owl-carousel owl-theme">
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/01.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-0 text-uppercase fw-bold">{{getLang('Fashion')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('10 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/02.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Watches')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('8 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/03.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Shoes')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('14 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/04.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Bags')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('6 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/05.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Electronis')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('6 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/06.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Headphones')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('5 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/07.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Furniture')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('20 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/08.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Jewelry')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('16 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/09.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Sports')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('28 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/10.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Vegetable')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('15 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/11.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Medical')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('24 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0">
+                            <div class="card-body p-0">
+                                <img src="assets/images/categories/12.png" class="img-fluid" alt="...">
+                            </div>
+                            <div class="card-footer text-center bg-transparent border">
+                                <h6 class="mb-1 text-uppercase fw-bold">{{getLang('Sunglasses')}}</h6>
+                                <p class="mb-0 font-12 text-uppercase">{{getLang('18 Products')}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--end categories-->
+    <!--start News-->
+    <section ng-show="false" class="py-4">
+        <div class="container">
+            <div class="pb-4 text-center">
+                <h5 class="mb-0 fw-bold text-uppercase">{{getLang('Latest News')}}</h5>
+            </div>
+            <div class="product-grid">
+                <div class="latest-news owl-carousel owl-theme">
+                    <div class="item">
+                        <div class="card rounded-0 product-card border">
+                            <div class="news-date">
+                                <div class="date-number">{{getLang('24')}}</div>
+                                <div class="date-month">{{getLang('FEB')}}</div>
+                            </div>
+                            <a href="javascript:;">
+                                <img src="assets/images/blogs/01.png" class="card-img-top border-bottom" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <div class="news-title">
+                                    <a href="javascript:;">
+                                        <h5 class="mb-3 text-capitalize">{{getLang('Blog Short Title')}}</h5>
+                                    </a>
+                                </div>
+                                <p class="news-content mb-0">{{getLang('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...')}}</p>
+                            </div>
+                            <div class="card-footer border-top bg-transparent">
+                                <a href="javascript:;" class="link-dark">{{getLang('0 Comments')}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0 product-card border">
+                            <div class="news-date">
+                                <div class="date-number">{{getLang('24')}}</div>
+                                <div class="date-month">{{getLang('FEB')}}</div>
+                            </div>
+                            <a href="javascript:;">
+                                <img src="assets/images/blogs/02.png" class="card-img-top border-bottom" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <div class="news-title">
+                                    <a href="javascript:;">
+                                        <h5 class="mb-3 text-capitalize">{{getLang('Blog Short Title')}}</h5>
+                                    </a>
+                                </div>
+                                <p class="news-content mb-0">{{getLang('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...')}}</p>
+                            </div>
+                            <div class="card-footer border-top bg-transparent">
+                                <a href="javascript:;" class="link-dark">{{getLang('0 Comments')}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0 product-card border">
+                            <div class="news-date">
+                                <div class="date-number">{{getLang('24')}}</div>
+                                <div class="date-month">{{getLang('FEB')}}</div>
+                            </div>
+                            <a href="javascript:;">
+                                <img src="assets/images/blogs/03.png" class="card-img-top border-bottom" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <div class="news-title">
+                                    <a href="javascript:;">
+                                        <h5 class="mb-3 text-capitalize">{{getLang('Blog Short Title')}}</h5>
+                                    </a>
+                                </div>
+                                <p class="news-content mb-0">{{getLang('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...')}}</p>
+                            </div>
+                            <div class="card-footer border-top bg-transparent">
+                                <a href="javascript:;" class="link-dark">{{getLang('0 Comments')}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0 product-card border">
+                            <div class="news-date">
+                                <div class="date-number">{{getLang('24')}}</div>
+                                <div class="date-month">{{getLang('FEB')}}</div>
+                            </div>
+                            <a href="javascript:;">
+                                <img src="assets/images/blogs/04.png" class="card-img-top border-bottom" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <div class="news-title">
+                                    <a href="javascript:;">
+                                        <h5 class="mb-3 text-capitalize">{{getLang('Blog Short Title')}}</h5>
+                                    </a>
+                                </div>
+                                <p class="news-content mb-0">{{getLang('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...')}}</p>
+                            </div>
+                            <div class="card-footer border-top bg-transparent">
+                                <a href="javascript:;" class="link-dark">{{getLang('0 Comments')}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0 product-card border">
+                            <div class="news-date">
+                                <div class="date-number">{{getLang('24')}}</div>
+                                <div class="date-month">{{getLang('FEB')}}</div>
+                            </div>
+                            <a href="javascript:;">
+                                <img src="assets/images/blogs/05.png" class="card-img-top border-bottom" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <div class="news-title">
+                                    <a href="javascript:;">
+                                        <h5 class="mb-3 text-capitalize">{{getLang('Blog Short Title')}}</h5>
+                                    </a>
+                                </div>
+                                <p class="news-content mb-0">{{getLang('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...')}}</p>
+                            </div>
+                            <div class="card-footer border-top bg-transparent">
+                                <a href="javascript:;" class="link-dark">{{getLang('0 Comments')}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card rounded-0 product-card border">
+                            <div class="news-date">
+                                <div class="date-number">{{getLang('24')}}</div>
+                                <div class="date-month">{{getLang('FEB')}}</div>
+                            </div>
+                            <a href="javascript:;">
+                                <img src="assets/images/blogs/06.png" class="card-img-top border-bottom" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <div class="news-title">
+                                    <a href="javascript:;">
+                                        <h5 class="mb-3 text-capitalize">{{getLang('Blog Short Title')}}</h5>
+                                    </a>
+                                </div>
+                                <p class="news-content mb-0">{{getLang('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras non placerat mi. Etiam non tellus sem. Aenean...')}}</p>
+                            </div>
+                            <div class="card-footer border-top bg-transparent">
+                                <a href="javascript:;" class="link-dark">{{getLang('0 Comments')}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--end News-->
+    <!--start brands-->
+    <section ng-show="false" class="py-4">
+        <div class="container">
+            <h3 class="d-none">{{getLang('Brands')}}</h3>
+            <div class="brand-grid">
+                <div class="brands-shops owl-carousel owl-theme border">
+                    <div class="item border-end">
+                        <div class="p-4">
+                            <a href="javascript:;">
+                                <img src="assets/images/brands/01.png" class="img-fluid" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item border-end">
+                        <div class="p-4">
+                            <a href="javascript:;">
+                                <img src="assets/images/brands/02.png" class="img-fluid" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item border-end">
+                        <div class="p-4">
+                            <a href="javascript:;">
+                                <img src="assets/images/brands/03.png" class="img-fluid" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item border-end">
+                        <div class="p-4">
+                            <a href="javascript:;">
+                                <img src="assets/images/brands/04.png" class="img-fluid" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item border-end">
+                        <div class="p-4">
+                            <a href="javascript:;">
+                                <img src="assets/images/brands/05.png" class="img-fluid" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item border-end">
+                        <div class="p-4">
+                            <a href="javascript:;">
+                                <img src="assets/images/brands/06.png" class="img-fluid" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="item border-end">
+                        <div class="p-4">
+                            <a href="javascript:;">
+                                <img src="assets/images/brands/07.png" class="img-fluid" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--end brands-->
+</div>

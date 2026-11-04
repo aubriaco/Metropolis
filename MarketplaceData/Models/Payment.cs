@@ -46,6 +46,7 @@ namespace MarketplaceData.Models
         public string? ChargeID { get; set; }
         public string? ReceiptURL { get; set; }
         public string? TransactionID { get; set; }
+        public string? CheckoutFingerprint { get; set; }
 
         [ModelLocal]
         public string? Username { get; set; }

@@ -1,0 +1,70 @@
+﻿
+.gallery-thumb {
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.gallery-thumb img {
+    max-height: 100%;
+    display: none;
+}
+
+.gallery-image {
+    height: 50vh;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.gallery-thumblist {
+    max-height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.gallery-image img {
+    display: none;
+}
+
+.auction-table th {
+    width: 50%;
+    background-color: #fafafa;
+    padding: 7px;
+}
+
+.auction-table td {
+    width: 50%;
+    padding: 7px;
+}
+
+.auction-details > h4, .auction-details > div {
+    margin-top: 20px;
+}
+
+.auction-current table th, auction-current table td {
+    padding: 3px;
+}
+
+.auction-current table td {
+    padding-left: 15px;
+}
+
+
+@media (max-width: 767.98px) {
+    .auction-view {
+        padding-top: 120px;
+    }
+
+    .auction-sticky {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 90px;
+        background-color: #fff;
+        padding: 5px;
+    }
+}

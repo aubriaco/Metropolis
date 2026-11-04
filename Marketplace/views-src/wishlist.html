@@ -1,0 +1,67 @@
+<div class="page-wrapper" ng-init="requireUser()">
+    <div class="page-content">
+        <!--start breadcrumb-->
+        <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
+            <div class="container">
+                <div class="page-breadcrumb d-flex align-items-center">
+                    <h3 class="breadcrumb-title pe-3"> {{getLang('Wishlist')}} </h3>
+                    <div class="ms-auto">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item">
+                                    <a href="/"><i class="bx bx-home-alt"></i> {{getLang('Home')}} </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="javascript:;"> {{getLang('Wishlist')}} </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page"> {{getLang('Wishlist')}} </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end breadcrumb-->
+        <!--start Featured product-->
+        <section class="py-4">
+            <div class="container">
+                <div class="product-grid">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+                        <div ng-repeat="a in Wishlist.List" class="col">
+                            <div class="card rounded-0 border">
+                                <a href="/p/{{a.ident}}" style="min-height: 175px;" class="bg-light">
+                                    <img src="{{a.images[0].url}}" class="card-img-top" alt="..." style="display: block; max-height: 175px; width: auto; margin: 0 auto;" />
+                                </a>
+                                <div class="card-body">
+                                    <div class="product-info">
+                                        <a href="/c/{{a.categoryIdent}}">
+                                            <p class="product-catergory font-13 mb-1">{{a.categoryName}}</p>
+                                        </a>
+                                        <a href="/p/{{a.ident}}">
+                                            <h6 class="product-name mb-2">{{a.name}}</h6>
+                                        </a>
+                                        <div class="d-flex align-items-center">
+                                            <div class="mb-1 product-price">
+                                                <span ng-show="a.comparePrice && a.comparePrice != a.price" class="me-1 text-decoration-line-through">{{formatCurrency(a.comparePrice,'$')}}</span>
+                                                <span class="fs-5">{{formatCurrency(a.price,'$')}}</span>
+                                            </div>
+                                            <div class="cursor-pointer ms-auto" ng-bind-html="a.ratingHTML"></div>
+                                        </div>
+                                        <div class="product-action mt-2">
+                                            <div class="d-grid gap-2">
+                                                <a ng-click="Cart.add(a.id)" href="javascript:;" class="btn btn-dark btn-ecomm"><i class="bx bxs-cart-add"></i> {{getLang('Add to Cart')}} </a>
+                                                <a ng-click="Wishlist.remove(a)" href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-zoom-in"></i> {{getLang('Remove From List')}} </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end row-->
+                </div>
+            </div>
+        </section>
+        <!--end Featured product-->
+    </div>
+</div>

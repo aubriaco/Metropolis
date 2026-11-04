@@ -8,6 +8,7 @@ using MarketplaceData.Util;
 using MarketplaceData;
 using Marketplace.Util;
 using Microsoft.AspNetCore.Mvc;
+using Npgsql;
 using Newtonsoft.Json;
 using System.Dynamic;
 using Marketplace;
@@ -457,14 +458,17 @@ namespace Marketplace.Controllers
         {
             using(var db = await Database.CreateAsync())
             {
-                if(!req.Select(db, "SessionID"))
-                    return BASE(1, "Invalid session.");
+                using var consume = new NpgsqlCommand(
+                    "DELETE FROM inboundsession WHERE sessionid = @id AND expiresdate > @now AND expiresdate <= @latest AND createddate >= @oldest RETURNING userid", db.C);
+                consume.Parameters.AddWithValue("id", req.SessionID);
+                var now = DateTime.UtcNow;
+                consume.Parameters.AddWithValue("now", now);
+                consume.Parameters.AddWithValue("latest", now.AddMinutes(5));
+                consume.Parameters.AddWithValue("oldest", now.AddMinutes(-5));
+                if (await consume.ExecuteScalarAsync() is not long userId)
+                    return BASE(1, "Invalid or expired session.");
 
-                if(req.ExpiresDate < DateTime.UtcNow)
-                    return BASE(2, "Session has expired.");
-
-                var user = new User();
-                user.ID = req.UserID;
+                var user = new User { ID = userId };
                 if(!user.Select(db, "ID"))
                     return BASE(3, "User does not exist.");
 
@@ -474,6 +478,7 @@ namespace Marketplace.Controllers
                 string sid = UserUtil.PutToSession(user, db);
                 HttpContext.Response.Cookies.Append("CM-Auth", sid, new CookieOptions()
                 {
+                    HttpOnly = true,
                     Expires = DateTime.UtcNow.AddDays(7),
                     Secure = Config.I.Debug ? false : true,
                     SameSite = Config.I.Debug ? SameSiteMode.Lax : SameSiteMode.None

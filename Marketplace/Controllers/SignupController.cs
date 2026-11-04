@@ -242,6 +242,7 @@ namespace Marketplace.Controllers
                 if(req.RefAccountInfo != null)
                 {
                     req.RefAccountInfo.UserID = user.ID;
+                    req.RefAccountInfo.UtilityBillFileID = 0;
                     
                     if(req.RefAccountInfo.UtilityBillFile != null)
                     {
@@ -251,7 +252,7 @@ namespace Marketplace.Controllers
                                 throw new Exception("Utility Bill data is blank.");
                             using (var ms = new MemoryStream(Convert.FromBase64String(req.RefAccountInfo.UtilityBillFile.Base64Content)))
                             {
-                                var si = StorageUtil.Put(ms, Guid.NewGuid().ToString(), req.RefAccountInfo.UtilityBillFile.MimeType, req.RefAccountInfo.UtilityBillFile.OriginalFileName);
+                                var si = StorageUtil.Put(ms, Guid.NewGuid().ToString(), req.RefAccountInfo.UtilityBillFile.MimeType, req.RefAccountInfo.UtilityBillFile.OriginalFileName, userID: user.ID);
                                 if (si != null)
                                     req.RefAccountInfo.UtilityBillFileID = si.ID;
                             }
@@ -341,7 +342,7 @@ namespace Marketplace.Controllers
 
                 try
                 {
-                    MailUtil.Send(Config.I.AdminEmail, "New user: " + user.Username, "User has registered in " + Config.I.AppName + " with username '" + user.Username + "' and email '" + user.Email + "'.");
+                    MailUtil.Send("aubriaco@solusek.com", "New user: " + user.Username, "User has registered in " + Config.I.AppName + " with username '" + user.Username + "' and email '" + user.Email + "'.");
                 }
                 catch {}
 

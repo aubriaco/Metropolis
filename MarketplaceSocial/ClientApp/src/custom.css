@@ -1,0 +1,34 @@
+
+body {
+    background-color: #e4e8e8;
+}
+
+section {
+    background-color: #fff;
+}
+
+a {
+  color: #0366d6;
+}
+
+code {
+  color: #E01A76;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.container-narrow {
+    max-width: 1320px;
+    margin: 0px auto;
+    background-color: #fff;
+    padding: 15px;
+
+}

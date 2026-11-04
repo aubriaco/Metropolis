@@ -1,0 +1,35 @@
+<div ng-init="manageVendorsView()">
+    <h2>{{Vendor.name}}</h2>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h5> {{getLang('Vendor Identity')}} </h5>
+            <div>{{Vendor.ident}}</div>
+            <h5 class="mt-2"> {{getLang('Status')}} </h5>
+            <div>{{Vendor.status}}</div>
+        </div>
+        <div class="col">
+            <h5> {{getLang('Vendor Logo')}} </h5>
+            <div ng-show="!Vendor.imageIdent"> {{getLang('None')}} </div>
+            <div ng-show="Vendor.imageIdent"><img src="{{Vendor.imageIdent ? Vendor.imageUrl : '/img/pixel.png'}}" alt="" /></div>
+            <h5 class="mt-2"> {{getLang('Description')}} </h5>
+            <div>{{Vendor.description ? Vendor.description : 'None'}}</div>
+        </div>
+    </div>
+    <table class="table table-bordered table-hover mt-4">
+        <thead>
+            <tr>
+                <th> {{getLang('Product')}} </th>
+                <th> {{getLang('Status')}} </th>
+                <th> {{getLang('Price')}} </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="a in Products" class="cursor-pointer">
+                <td ng-click="go('/admin/manage/product-view/' + a.masterID)"><a href="/admin/manage/product-view/{{a.masterID}}" title="View Product" data-toggle="tooltip">{{a.name}}</a></td>
+                <td ng-click="go('/admin/manage/product-view/' + a.masterID)">{{a.status}}</td>
+                <td ng-click="go('/admin/manage/product-view/' + a.masterID)">{{formatCurrency(a.price,'$')}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

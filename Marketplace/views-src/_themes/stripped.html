@@ -1,0 +1,157 @@
+<div class="wrapper">
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true" ng-repeat="a in Toast.List">
+                <div class="toast-header">
+                    <i class="bx {{a.icon}}"></i>
+                    <strong class="me-auto">{{a.title}}</strong>
+                    <button ng-click="a.close()" type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    {{a.message}}
+                    <div ng-show="a.linkLoc"><a href="{{a.linkLoc}}">{{a.linkText}}</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="modal-alert">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-0 border-0">
+                <div class="modal-body">
+                    <button type="button" class="btn-close float-end" data-bs-dismiss="modal"></button>
+                    <div class="mt-2 mb-2">{{Alert.Current.msg}}</div>
+                    <div class="btn-group text-center" ng-show="Alert.Current.buttons.length == 0">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"> {{getLang('Dismiss')}} </button>
+                    </div>
+                    <div class="btn-group text-center" ng-show="Alert.Current.buttons.length != 0">
+                        <span ng-repeat="a in Alert.Current.buttons">
+                            <button type="button" class="btn btn-primary" ng-click="Alert.click(a)"> {{getLang(a)}} </button> {{getLang('&nbsp;')}} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--start top header wrapper-->
+    <div class="header-wrapper">
+        <div class="top-menu">
+            <div class="container">
+                <nav class="navbar navbar-expand">
+                    <div class="shiping-title d-none d-sm-flex">{{getLang('Welcome to the Metropolis Market vendor pre-release signup!')}}</div>
+                    <ul class="navbar-nav ms-auto d-none d-lg-flex">
+                        <li ng-show="!User" class="nav-item"><a class="nav-link" href="/signup">{{getLang('Sign Up')}}</a></li>
+                        <li ng-show="!User" class="nav-item"><a class="nav-link" href="/login">{{getLang('Login')}}</a></li>
+                        <li ng-show="User" class="nav-item"><a class="nav-link"> {{getLang('Welcome')}} <b>{{User.name}}</b> {{getLang('!')}} </a></li>
+                        <li ng-show="User" class="nav-item"><a class="nav-link" href="/my"><i class="bx bx-user"></i> {{getLang('My Account')}}</a></li>
+                        <li ng-show="User && User.isVendor" class="nav-item"><a class="nav-link" href="/my/vendors"><i class="bx bx-store"></i> {{getLang('My Stores')}}</a></li>
+                        <li ng-show="User && User.isAdmin" class="nav-item"><a class="nav-link" href="/admin"><i class="bx bx-certification"></i> {{getLang('Administration')}}</a></li>
+                        <li ng-show="User" class="nav-item"><a ng-click="logout()" title="Logout" data-toggle="tooltip" class="nav-link cursor-pointer"><i class="bx bx-log-out"></i></a></li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
+                                <div class="lang d-flex gap-1">
+                                    <div>
+                                        <i class="flag-icon flag-icon-{{CurrentLangItem.flag}}"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-uppercase">{{CurrentLangItem.ident}}</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg-end">
+                                <a ng-repeat="a in Languages" ng-click="setCurrentLang(a, true)" class="dropdown-item d-flex allign-items-center cursor-pointer">
+                                    <i class="flag-icon flag-icon-{{a.flag}} me-2"></i><span>{{a.name}}</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="header-content bg-warning">
+            <div class="container">
+                <div class="row align-items-center gx-4">
+                    <div class="col-auto">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="mobile-toggle-menu d-inline d-xl-none" data-bs-toggle="offcanvas"
+                                 data-bs-target="#offcanvasNavbar" ng-show="false">
+                                <i class="bx bx-menu"></i>
+                            </div>
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="/img/logo.png" class="logo-icon" alt="" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl order-4 order-xl-0">
+
+                    </div>
+                    <div class="col-auto d-none d-xl-flex" ng-show="false">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="fs-1 text-content"><i class='bx bx-headphone'></i></div>
+                            <div class="">
+                                <p class="mb-0 text-content"> {{getLang('CALL US NOW')}} </p>
+                                <h5 class="mb-0"> {{getLang('+011 5827918')}} </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto ms-auto">
+                        <div class="top-cart-icons">
+                            <nav class="navbar navbar-expand">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a href="/my" class="nav-link cart-link"><i style="visibility:hidden;" class="bx bx-user"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+        </div>
+    </div>
+    <!--end top header wrapper-->
+    <div class="view-wrapper">
+        <div ng-view></div>
+    </div>
+    <!--start footer section-->
+    <footer>
+
+        <section class="footer-strip text-center py-3 border-top positon-absolute bottom-0">
+            <div class="container">
+                <div class="d-flex flex-column flex-lg-row align-items-center gap-3 justify-content-between">
+                    <p class="mb-0">Metropolis Market v{{Version}} | Copyright &copy; 2023 Metropolis Market LLC. All right reserved. | Powered by: <a href="https://www.solusek.com/" target="_blank"> {{getLang('Solusek Systems')}} </a> <br /> <a href="/terms-of-service"> {{getLang('Terms of Service')}} </a> {{getLang('|')}} <a href="/privacy-policy"> {{getLang('Privacy Policy')}} </a></p>
+                    <div class="payment-icon">
+                        <div class="row row-cols-auto g-2 justify-content-end">
+                            <div class="col">
+                                <img src="assets/images/icons/visa.png" alt="" />
+                            </div>
+                            <div class="col">
+                                <img src="assets/images/icons/mastercard.png" alt="" />
+                            </div>
+                            <div class="col">
+                                <img src="assets/images/icons/american-express.png" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <a href="javaScript:;" class="back-to-top"><i class="bx bxs-up-arrow-alt"></i></a>
+
+</div>
+
+<style type="text/css">
+    html body .page-content > section:first-child {
+        display: none !important;
+    }
+
+    html body #body-wrapper .view-wrapper {
+        margin-top: 132px;
+    }
+</style>

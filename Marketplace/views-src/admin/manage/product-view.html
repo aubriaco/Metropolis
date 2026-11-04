@@ -1,0 +1,37 @@
+<div ng-init="manageProductsView()">
+    <h2>{{Product.name}} <small>{{Vendor.name}}</small></h2>
+    <div class="btn-group mt-2">
+        <a ng-show="Product.ident" href="/p/{{Product.ident}}" class="btn btn-default">
+            <i class="bx bx-box"></i>
+            {{getLang('View Product Page')}}
+        </a>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col">
+            <h5> {{getLang('Product Name')}} </h5>
+            <div>{{Product.name}}</div>
+            <h5 class="mt-2"> {{getLang('Short Description')}} </h5>
+            <div>{{Product.shortDescription}}</div>
+        </div>
+        <div class="col">
+            <h5> {{getLang('Product Images')}} </h5>
+            <div ng-show="Product.images.length == 0"> {{getLang('None')}} </div>
+            <div ng-show="Product.images.length != 0">
+                <div class="bg-light bg-light-white-1 rounded-2 border-2 p-3 ps-4 pe-4">
+                    <div class="row row-cols-3 product-images">
+                        <div class="product-images-item p-2 rounded-5" ng-repeat="a in Product.images">
+                            <div class="col">
+                                <div class="text-center">
+                                    <img src="{{a.url}}" class="img-thumbnail thumbnail-padding" alt="" style="height: 150px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h5 class="mt-2"> {{getLang('Description')}} </h5>
+            <div ng-bind-html="Product.description"></div>
+        </div>
+    </div>   
+</div>

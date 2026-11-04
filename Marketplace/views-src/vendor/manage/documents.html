@@ -1,0 +1,23 @@
+<div ng-init="manageDocuments()">
+    <form class="g-3" ng-submit="submitDocuments()">
+        <p>{{getLang('Please have the following documents in file:')}}</p>
+        <ul class="mb-2">
+            <li>{{getLang('Merchant Registration')}}</li>
+            <li>{{getLang('Form W-9')}} <a href="https://www.irs.gov/pub/irs-pdf/fw9.pdf" target="_blank"><i class="bx bx-link-external"></i> {{getLang('Download fillable form (PDF)')}}</a></li>
+        </ul>
+        <ul class="list-group mb-2" ng-show="Vendor.documents.length != 0">
+            <li class="list-group-item" ng-repeat="a in Vendor.documents">
+                <i class="bx bxs-file-pdf"></i>
+                {{a.name}}
+                <a ng-click="removeDocument(a)" ng-show="!a.accepted" class="badge bg-danger cursor-pointer"> {{getLang('remove')}} </a>
+            </li>
+        </ul>
+        <input id="uploader" type="file" accept="application/pdf,application/msword,application/vnd.openxml" nv-file-select="" uploader="Uploader" multiple="" style="visibility: hidden; width: 0; height: 0; margin: 0; padding: 0;" />
+        <div ng-click="triggerUpload($event)" class="card bg-dark bg-dark-1 border-2 rounded-2 cursor-pointer" uploader="Uploader" nv-file-drop="" nv-file-over="" over-class="bg-dark-4">
+            <div class="card-body text-center">
+                <span class="badge bg-primary"> {{getLang('Add Files')}} </span><br />
+                <span class="font-24"> {{getLang('Drop files or click here to upload...')}} </span>
+            </div>
+        </div>
+    </form>
+</div>

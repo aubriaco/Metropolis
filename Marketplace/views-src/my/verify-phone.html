@@ -1,0 +1,15 @@
+<div ng-init="verifyPhone()">
+    <div ng-show="!Completed">
+        <h3> {{getLang('Your phone is being verified...')}} </h3>
+        <p> {{getLang('Please wait...')}} </p>
+    </div>
+    <div ng-show="Completed && !Error">
+        <h1> {{getLang('Your phone has been verified!')}} </h1>
+        <p> {{getLang('Success!')}} </p>
+    </div>
+    <div ng-show="Completed && Error">
+        <h1> {{getLang('Error')}} </h1>
+        <p>{{Error}}</p>
+    </div>
+
+</div>

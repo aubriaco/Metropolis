@@ -1,0 +1,331 @@
+<div class="page-wrapper" ng-controller="Product" ng-init="view()">
+    <div class="page-content">
+        <!--start breadcrumb-->
+        <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
+            <div class="container">
+                <div class="page-breadcrumb d-flex align-items-center">
+                    <h3 class="breadcrumb-title pe-3">{{Product.name}}</h3>
+                    <div class="ms-auto">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item">
+                                    <a href="/"><i class="bx bx-home-alt"></i> {{getLang('Home')}} </a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/"> {{getLang('Marketplace')}} </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page"> {{getLang('Product Details')}} </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end breadcrumb-->
+
+        <section class="py-4" ng-show="Loaded && !Product.id">
+            <div class="container">
+                <div class="product-detail-card">
+                    <div class="product-detail-body">
+                        <h3 class="mt-3 mt-lg-0 mb-0"> {{getLang('Product Not Found')}} </h3>
+                        <hr />
+                        <p> {{getLang('Please check the URL or try your search again.')}} </p>
+                        <a class="btn btn-primary" href="/"><i class="bx bx-home"></i> {{getLang('Back to Home Page')}} </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--start product detail-->
+        <section class="py-4" ng-show="Product.id">
+            <div class="container">
+                <div class="product-detail-card">
+                    <div class="product-detail-body">
+                        <div class="row g-0">
+                            <div class="col-12 col-lg-5">
+                                <div class="image-zoom-section">
+                                    <div class="product-gallery owl-carousel owl-theme border mb-3 p-3 owl-loaded owl-drag" data-slider-id="1">
+                                        <div class="owl-stage-outer">
+                                            <div class="owl-stage" style="transform: translate3d(-1032px, 0px, 0px); transition: all 0s ease 0s; width: 4128px;">
+                                                <div ng-repeat="a in Product.images" class="owl-item cloned" style="width: 506px; margin-right: 10px;">
+                                                    <div class="item">
+                                                        <img src="{{a.url}}" class="img-fluid" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous"> {{getLang('‹')}} </span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next"> {{getLang('›')}} </span></button></div><div class="owl-dots disabled"></div>
+                                    </div>
+                                    <div class="owl-thumbs d-flex justify-content-center" data-slider-id="1">
+                                        <button class="owl-thumb-item active" ng-repeat="a in Product.images">
+                                            <img src="{{a.url}}" class="" alt="" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-7">
+                                <div class="product-info-section p-3">
+                                    <h3 class="mt-3 mt-lg-0 mb-0">{{Product.name}}</h3>
+                                    <div ng-show="!Product.isActive" class="mt-3 alert alert-danger">
+                                        <i class="bx bx-info-circle"></i>
+                                        {{getLang('This product is still not active in')}}
+                                        <span ng-show="User.isAdmin">{{getLang('the vendors product management.')}}</span>
+                                        <a ng-show="!User.isAdmin" href="/my/vendors">{{getLang('product management.')}}</a>
+                                    </div>
+                                    <div ng-show="!Product.vendor.isActive" class="mt-3 alert alert-danger">
+                                        <i class="bx bx-info-circle"></i>
+                                        {{getLang('This vendor is still not active.')}}
+                                    </div>
+                                    <div class="product-rating d-flex align-items-center mt-2">
+                                        <div class="rates cursor-pointer font-13" ng-bind-html="Product.ratingHTML"></div>
+                                        <div class="ms-1">
+                                            <p class="mb-0">({{Product.reviewCount}} Reviews)</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center mt-3 gap-2">
+                                        <h5 ng-show="Product.comparePrice && Product.price != Product.comparePrice" class="mb-0 text-decoration-line-through text-light-3">{{formatCurrency(Product.comparePrice,'$')}}</h5>
+                                        <h4 class="mb-0">{{formatCurrency(Product.price,'$')}}</h4>
+                                    </div>
+                                    <div class="mt-3">
+                                        <h6> {{getLang('Description:')}} </h6>
+                                        <p class="mb-0">{{Product.shortDescription}}</p>
+                                    </div>
+                                    <dl class="row mt-3">
+                                        <dt class="col-sm-3"> {{getLang('Product ID')}} </dt>
+                                        <dd class="col-sm-9">{{Product.masterID}}</dd>
+                                        <dt class="col-sm-3"> {{getLang('Delivery')}} </dt>
+                                        <dd class="col-sm-9"> {{getLang('Puerto Rico')}} </dd>
+                                    </dl>
+                                    <!--
+    <div class="row row-cols-auto align-items-center mt-3">
+        <div class="col">
+            <label class="form-label"> {{getLang('Quantity')}} </label>
+            <select class="form-select form-select-sm">
+                <option> {{getLang('1')}} </option>
+                <option> {{getLang('2')}} </option>
+                <option> {{getLang('3')}} </option>
+                <option> {{getLang('4')}} </option>
+                <option> {{getLang('5')}} </option>
+            </select>
+        </div>
+        <div class="col">
+            <label class="form-label"> {{getLang('Size')}} </label>
+            <select class="form-select form-select-sm">
+                <option> {{getLang('S')}} </option>
+                <option> {{getLang('M')}} </option>
+                <option> {{getLang('L')}} </option>
+                <option> {{getLang('XS')}} </option>
+                <option> {{getLang('XL')}} </option>
+            </select>
+        </div>
+        <div class="col">
+            <label class="form-label"> {{getLang('Colors')}} </label>
+            <div class="color-indigators d-flex align-items-center gap-2">
+                <div class="color-indigator-item bg-primary"></div>
+                <div class="color-indigator-item bg-danger"></div>
+                <div class="color-indigator-item bg-success"></div>
+                <div class="color-indigator-item bg-warning"></div>
+            </div>
+        </div>
+    </div>
+    -->
+                                    <!--end row-->
+                                    <div class="d-flex gap-2 mt-3">
+                                        <a ng-click="Cart.add(Product.id)" href="javascript:;" class="btn btn-dark btn-ecomm"><i class="bx bxs-cart-add"></i> {{getLang('Add to Cart')}} </a>
+                                        <a ng-click="Wishlist.add(Product.id)" href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i> {{getLang('Add to Wishlist')}} </a>
+                                    </div>
+                                    <hr>
+                                    <div class="product-sharing">
+                                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                                            <div class="">
+                                                <button type="button" class="btn-social bg-twitter"><i class="bx bxl-twitter"></i></button>
+                                            </div>
+                                            <div class="">
+                                                <button type="button" class="btn-social bg-facebook"><i class="bx bxl-facebook"></i></button>
+                                            </div>
+                                            <div class="">
+                                                <button type="button" class="btn-social bg-linkedin"><i class="bx bxl-linkedin"></i></button>
+                                            </div>
+                                            <div class="">
+                                                <button type="button" class="btn-social bg-youtube"><i class="bx bxl-youtube"></i></button>
+                                            </div>
+                                            <div class="">
+                                                <button type="button" class="btn-social bg-pinterest"><i class="bx bxl-pinterest"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end row-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end product detail-->
+        <!--start product more info-->
+        <section class="py-4" ng-show="Product.id">
+            <div class="container">
+                <div class="product-more-info">
+                    <ul class="nav nav-tabs mb-0" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#discription" aria-selected="true" tabindex="-1" role="tab">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title text-uppercase fw-500"> {{getLang('Description')}} </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#tags" aria-selected="false" tabindex="-1" role="tab">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title text-uppercase fw-500"> {{getLang('Tags')}} </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" data-bs-toggle="tab" href="#reviews" aria-selected="false" tabindex="-1" role="tab">
+                                <div class="d-flex align-items-center">
+                                    <div class="tab-title text-uppercase fw-500">Reviews ({{Product.reviewCount}})</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content pt-3">
+                        <div class="tab-pane show active" id="discription" role="tabpanel">
+                            <div class="m-2" ng-bind-html="Product.description"></div>
+                        </div>
+                        <div class="tab-pane fade" id="tags" role="tabpanel">
+                            <div class="tags-box d-flex flex-wrap gap-2">
+                                <a href="/c/{{Product.category.ident}}" class="btn btn-ecomm btn-outline-dark">{{Product.category.name}}</a>
+                                <a ng-repeat="a in Product.tags" href="/s/{{a}}" class="btn btn-ecomm btn-outline-dark">{{a}}</a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <div class="row">
+                                <div class="col col-lg-8">
+                                    <div class="product-review">
+                                        <h5 class="mb-4">{{Product.reviewCount}} Review{{Product.reviewCount != 1 ? 's' : ''}} For The Product</h5>
+                                        <div class="review-list">
+                                            <div ng-repeat="a in ReviewList">
+                                                <div class="d-flex align-items-start">
+                                                    <div class="review-content ms-3">
+                                                        <div class="rates cursor-pointer fs-6" ng-bind-html="a.ratingHTML"></div>
+                                                        <div class="d-flex align-items-center mb-2">
+                                                            <h6 class="mb-0">{{a.firstName}} {{a.lastName}}</h6>
+                                                            <p class="mb-0 ms-auto">{{convertDateNoTime(a.createdDate)}}</p>
+                                                        </div>
+                                                        <p>{{a.body}}</p>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-lg-4">
+                                    <div class="add-review border">
+                                        <div class="form-body p-3">
+                                            <form ng-submit="submitReview(Review)">
+                                                <h4 class="mb-4"> {{getLang('Write a Review')}} </h4>
+                                                <div ng-show="!User">
+                                                    <p> {{getLang('You must')}} <a href="/login?r={{encLoc()}}"> {{getLang('login to your account')}} </a> {{getLang('to write a review.')}} </p>
+                                                </div>
+                                                <div ng-show="User">
+                                                    <div class="mb-3">
+                                                        <label class="form-label"> {{getLang('Rating')}} </label>
+                                                        <div class="rates cursor-pointer fs-6">
+                                                            <i ng-click="Review.rating = 1" class="bx bxs-star {{Review.rating >= 1 ? 'text-warning' : 'text-light-4'}}"></i>
+                                                            <i ng-click="Review.rating = 2" class="bx bxs-star {{Review.rating >= 2 ? 'text-warning' : 'text-light-4'}}"></i>
+                                                            <i ng-click="Review.rating = 3" class="bx bxs-star {{Review.rating >= 3 ? 'text-warning' : 'text-light-4'}}"></i>
+                                                            <i ng-click="Review.rating = 4" class="bx bxs-star {{Review.rating >= 4 ? 'text-warning' : 'text-light-4'}}"></i>
+                                                            <i ng-click="Review.rating = 5" class="bx bxs-star {{Review.rating >= 5 ? 'text-warning' : 'text-light-4'}}"></i>
+                                                        </div>
+                                                        <small ng-show="Review.rating == 1"> {{getLang('Poor product')}} </small>
+                                                        <small ng-show="Review.rating == 2"> {{getLang('Fair product')}} </small>
+                                                        <small ng-show="Review.rating == 3"> {{getLang('Good product')}} </small>
+                                                        <small ng-show="Review.rating == 4"> {{getLang('Very Good product')}} </small>
+                                                        <small ng-show="Review.rating == 5"> {{getLang('Excellent product')}} </small>
+                                                        <small ng-show="ReviewErrors.rating">{{ReviewErrors.rating}}</small>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label"> {{getLang('Review')}} </label>
+                                                        <textarea ng-model="Review.body" class="form-control rounded-0" rows="3" ng-required="true"></textarea>
+                                                    </div>
+                                                    <div class="d-grid">
+                                                        <button type="submit" class="btn btn-dark btn-ecomm"> {{getLang('Submit a Review')}} </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end row-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end product more info-->
+        <!--start similar products-->
+        <section class="py-4" ng-show="Product.id">
+            <div class="container">
+                <div class="separator pb-4">
+                    <div class="line"></div>
+                    <h5 class="mb-0 fw-bold separator-title"> {{getLang('Similar Products')}} </h5>
+                    <div class="line"></div>
+                </div>
+                <div class="product-grid">
+                    <div class="similar-products owl-carousel owl-theme position-relative owl-loaded owl-drag">
+
+
+
+
+
+
+
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1848px;">
+                                <div ng-repeat="a in SimilarList" class="owl-item active" style="width: 240px; margin-right: 24px;">
+                                    <div class="item">
+                                        <div class="card">
+                                            <div class="position-relative overflow-hidden" style="height: 200px;">
+                                                <div class="add-cart position-absolute top-0 end-0 mt-3 me-3">
+                                                    <a ng-click="Cart.add(a.id)" href="javascript:;"><i class="bx bx-cart-add"></i></a>
+                                                </div>
+                                                <div class="quick-view position-absolute start-0 bottom-0 end-0">
+                                                    <a href="/p/{{a.ident}}"> {{getLang('View Product')}} </a>
+                                                </div>
+                                                <a href="/p/{{a.ident}}">
+                                                    <img src="{{a.images[0].url}}" class="img-fluid" alt="...">
+                                                </a>
+                                            </div>
+                                            <div class="card-body px-0">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div class="">
+                                                        <p class="mb-1 product-short-name">{{a.categoryName}}</p>
+                                                        <h6 class="mb-0 fw-bold product-short-title">{{a.name}}</h6>
+                                                    </div>
+                                                    <div class="icon-wishlist">
+                                                        <a ng-click="Wishlist.add(Product.id)" href="javascript:;"><i class="bx bx-heart"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="cursor-pointer rating mt-2" ng-bind-html="a.ratingHTML"></div>
+                                                <div class="product-price d-flex align-items-center justify-content-start gap-2 mt-2">
+                                                    <div ng-show="a.comparePrice && a.price != a.comparePrice" class="h6 fw-light fw-bold text-secondary text-decoration-line-through">{{formatCurrency(a.comparePrice,'$')}}</div>
+                                                    <div class="h6 fw-bold">{{formatCurrency(a.price,'$')}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><i class="bx bx-chevron-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="bx bx-chevron-right"></i></button></div><div class="owl-dots disabled"></div><div class="owl-thumbs"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end similar products-->
+    </div>
+</div>

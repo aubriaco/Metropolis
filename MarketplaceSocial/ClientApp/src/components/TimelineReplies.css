@@ -1,0 +1,9 @@
+﻿
+.TimelineReplies .card {
+    background-color: #f0f2f5;
+    border: 0;
+}
+
+.TimelineReplies .card-body {
+    padding: 10px;
+}

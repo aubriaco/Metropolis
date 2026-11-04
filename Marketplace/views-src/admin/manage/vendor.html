@@ -1,0 +1,25 @@
+<div ng-init="manageVendors()">
+    <div class="btn-group mb-2">
+        <button ng-click="approve()" type="button" class="btn btn-success"> {{getLang('Approve')}} </button>
+        <button ng-click="disable()" type="button" class="btn btn-danger"> {{getLang('Disable')}} </button>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th style="width: 50px;" class="text-center"><input ng-change="toggleAll(Vendors, CheckAll)" ng-model="CheckAll" type="checkbox" class="form-check-input form-check-inline" /></th>
+                <th> {{getLang('Vendor')}} </th>
+                <th> {{getLang('Date Created')}} </th>
+                <th> {{getLang('Status')}} </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="a in Vendors" class="cursor-pointer">
+                <td class="text-center"><input ng-model="a.selected" ng-change="checkChanged(Vendors, a)" type="checkbox" class="form-check-input form-check-inline" /></td>
+                <td ng-click="go('/admin/manage/vendor-view/' + a.masterID)"><a href="/admin/manage/vendor-view/{{a.masterID}}" title="View Vendor" data-toggle="tooltip">{{a.name}}</a></td>
+                <td ng-click="go('/admin/manage/vendor-view/' + a.masterID)"><a href="/admin/manage/vendor-view/{{a.masterID}}" title="View Vendor" data-toggle="tooltip">{{a.createdDate}}</a></td>
+                <td ng-click="go('/admin/manage/vendor-view/' + a.masterID)">{{a.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

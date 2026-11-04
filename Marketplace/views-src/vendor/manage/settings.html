@@ -1,0 +1,16 @@
+<div ng-init="manageSettings()">
+    <form ng-submit="saveSettings()">
+        <label class="form-label d-block"> {{getLang('Store Name')}} </label>
+        <input ng-model="Settings.name" ng-required="true" type="text" class="form-control" />
+        <label class="form-label d-block mt-2"> {{getLang('Store Description')}} </label>
+        <div>
+            <textarea ng-model="Settings.description" ng-required="false" class="form-control" maxlength="200"></textarea>
+            <small>{{getLang('Character count:')}} {{Settings.description.length}} {{getLang('Maximum Allowed:')}} 200</small>
+        </div>
+        <div class="float-end btn-group">
+            <button ng-disabled="Saving" type="submit" class="btn btn-success"><i class="bx bx-save"></i> {{getLang('Save')}} </button>
+            <button ng-click="loadSettings()" ng-disabled="Saving" type="button" class="btn btn-primary"><i class="bx bx-reset"></i> {{getLang('Reset')}} </button>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>

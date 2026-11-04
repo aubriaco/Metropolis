@@ -1,0 +1,51 @@
+
+html {
+    touch-action: pan-y;
+}
+
+body {
+    background-color: #f1f1f1;
+    font-size: 16px;
+    font-family: "Plus Jakarta Sans",sans-serif;
+    font-weight: 400;
+}
+
+
+.card {
+    background-color: #ffffff;
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.03);
+    border: 1px solid #F1F1F2;
+}
+
+.card-header {
+    border-bottom: 0;
+    color: #fff;
+    background-color: #96D055;
+    text-shadow: 0 0 4px rgba(0,0,0,0.5);
+    text-transform: uppercase;
+    padding-top: 15px;
+}
+
+a {
+    color: #3E97FF;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #96D055;
+    }
+
+code {
+  color: #E01A76;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #96D055;
+  border-color: #96D055;
+  text-shadow: 0 0 4px rgba(0,0,0,0.3);
+}

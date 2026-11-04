@@ -2,6 +2,36 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Publish: Marketplace",
+            "command": "C:\\Program Files\\Git\\bin\\bash.exe",
+            "type": "process",
+            "args": [
+                "-c",
+                "./release.sh portal"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Publish: Marketplace (Bin Only)",
+            "command": "C:\\Program Files\\Git\\bin\\bash.exe",
+            "type": "process",
+            "args": [
+                "-c",
+                "./release.sh portal-binonly"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Publish: WaitrNET",
+            "command": "C:\\Program Files\\Git\\bin\\bash.exe",
+            "type": "process",
+            "args": [
+                "-c",
+                "./release.sh waiter"
+            ],
+            "problemMatcher": []
+        },
+        {
             "label": "Run: Marketplace (Debug)",
             "command": "dotnet",
             "type": "process",
@@ -12,6 +42,16 @@
                 "${workspaceFolder}/Marketplace/Marketplace.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Publish: Worker",
+            "command": "C:\\Program Files\\Git\\bin\\bash.exe",
+            "type": "process",
+            "args": [
+                "-c",
+                "./release-worker-uat.sh"
+            ],
+            "problemMatcher": []
         },
         {
             "label": "Run: Worker (Debug)",

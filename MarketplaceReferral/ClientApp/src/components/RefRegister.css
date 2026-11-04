@@ -1,0 +1,55 @@
+﻿
+
+.RefRegister .tutorial img {
+    max-width: 80%;
+}
+
+.RefRegister .plans{
+    background-color: #f5f5fa;
+}
+
+.RefRegister .plans .container-lg > div {
+    background-color: #fff;
+}
+
+    .RefRegister .plans hr {
+        border-color: #999;
+        margin: 0 auto;
+        max-width: 50vw;
+    }
+
+    .RefRegister .plans .col {
+        border-bottom: 1px solid rgb(217, 217, 217);
+    }
+
+    .RefRegister .plans .hot {
+        border: 1px solid rgb(254, 178, 33) !important;
+    }
+
+.RefRegister .recommended {
+    border: 1px solid rgb(254, 178, 33);
+}
+
+    .RefRegister .plans .line {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .RefRegister .plans .fav {
+        color: rgb(1, 25, 63);
+        background-color: rgb(255, 244, 216);
+    }
+
+
+@media (min-width: 768px) {
+    .RefRegister .plans .col {
+        border-right: 1px solid rgb(217, 217, 217);
+        border-bottom: 0;
+    }
+
+    .RefRegister .plans hr {
+        max-width: auto;
+        border-color: #999;
+    }
+
+}

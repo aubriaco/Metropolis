@@ -1,23 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Npgsql" Version="8.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Npgsql" Version="10.0.3" />
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Ubriaco">
-      <HintPath>../lib/Ubriaco.dll</HintPath>
-  </Reference>
-  <Reference Include="UbriacoUtil">
-      <HintPath>../lib/UbriacoUtil.dll</HintPath>
-  </Reference>
+    <ProjectReference Include="$(UbriacoRoot)/Ubriaco/Ubriaco.csproj" />
+    <ProjectReference Include="$(UbriacoRoot)/UbriacoUtil/UbriacoUtil.csproj" />
   </ItemGroup>
 
 </Project>

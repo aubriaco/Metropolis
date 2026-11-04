@@ -1,0 +1,12 @@
+<div class="card bg-transparent rounded-0 shadow-none">
+    <div class="card-body">
+        <div class="steps steps-light">
+            <a ng-repeat="a in Steps" class="step-item {{a.active ? 'active' : ''}} {{a.current ? 'current' : ''}}">
+                <div class="step-progress">
+                    <span class="step-count">{{a.ident}}</span>
+                </div>
+                <div class="step-label"><i class="bx {{a.icon}}"></i>{{a.title}}</div>
+            </a>
+        </div>
+    </div>
+</div>

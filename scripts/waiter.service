@@ -1,0 +1,12 @@
+[Unit]
+Description=WaiterNET
+
+[Service]
+ExecStart=/home/aubriaco/.dotnet/dotnet /home/aubriaco/waiter/WaiterNet.dll
+WorkingDirectory=/home/aubriaco/waiter
+User=aubriaco
+Group=aubriaco
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

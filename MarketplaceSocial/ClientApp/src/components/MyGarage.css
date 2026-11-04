@@ -1,0 +1,20 @@
+﻿
+.my-garage .car {
+    height: 250px;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+}
+
+.my-garage .overlay {
+    display: none;
+    background-color: rgb(0,0,0,0.5);
+    position: absolute;
+    width: 100%;
+    height: 250px;
+}
+
+.my-garage .overlay.show {
+    display: block;
+    padding-top: 100px;
+}

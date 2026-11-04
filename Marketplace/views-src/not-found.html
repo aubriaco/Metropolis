@@ -1,0 +1,61 @@
+		<!--start page wrapper -->
+<div class="page-wrapper">
+    <div class="page-content">
+        <!--start breadcrumb-->
+        <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
+            <div class="container">
+                <div class="page-breadcrumb d-flex align-items-center">
+                    <h3 class="breadcrumb-title pe-3">{{getLang('Page Not Found')}}</h3>
+                    <div class="ms-auto">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item">
+                                    <a href="/"><i class="bx bx-home-alt"></i>{{getLang('Home')}}</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">{{getLang('Page Not Found')}}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end breadcrumb-->
+        <!--start shop cart-->
+        <div>
+            <section class="py-0 py-lg-5">
+                <div class="container">
+                    <div class="section-authentication-signin d-flex align-items-center justify-content-center my-5">
+                        <div class="row row-cols-1">
+                            <div class="col mx-auto">
+                                <div class="card mb-0">
+                                    <div class="card-body">
+                                        <div class="border p-4 rounded">
+                                            <div class="text-center">
+                                                <h3 class="">{{getLang('Page Not Found')}}</h3>
+                                            </div>
+                                            <div class="login-separater text-center mb-4">
+                                                <hr />
+                                            </div>
+                                            <p> {{getLang('The requested page has not been found. Please continue to:')}} </p>
+                                            <ul>
+                                                <li><a href="/index"> {{getLang('Homepage')}} </a></li>
+                                                <li ng-show="!User"><a href="/login"> {{getLang('Login')}} </a></li>
+                                                <li ng-show="!User"><a href="/signup"> {{getLang('Sign Up')}} </a></li>
+                                                <li ng-show="User"><a href="/my"> {{getLang('My Account')}} </a></li>
+                                                <li ng-show="User"><a href="/my/vendors"> {{getLang('My Stores')}} </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end row-->
+                    </div>
+                </div>
+            </section>
+            <!--end shop cart-->
+            
+        </div>
+    </div>
+</div>
+<!--end page wrapper -->

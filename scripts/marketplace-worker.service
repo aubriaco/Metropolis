@@ -1,0 +1,12 @@
+[Unit]
+Description=Marketplace Worker
+
+[Service]
+ExecStart=/home/aubriaco/.dotnet/dotnet /home/aubriaco/worker/MarketplaceWorker.dll
+WorkingDirectory=/home/aubriaco/worker
+User=aubriaco
+Group=aubriaco
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

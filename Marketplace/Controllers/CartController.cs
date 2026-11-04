@@ -101,7 +101,7 @@ namespace Marketplace.Controllers
             if (cart.Order == null)
                 cart.Order = new Order();
 
-            cart.Order.Ident = Guid.NewGuid().ToString();
+            cart.Order.Ident ??= Guid.NewGuid().ToString();
             cart.Order.ShippingAddress = req.ShippingAddress;
             cart.Order.BillingAddress = req.BillingAddress;
 
@@ -143,6 +143,9 @@ namespace Marketplace.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> PostAdd([FromBody] CartProduct req)
         {
+            if (req.ProductID <= 0 || req.Quantity <= 0)
+                return BASE(2, "Product and positive quantity are required.");
+
             CartUtil.Add(HttpContext, req, CurrentUser);
             return Ok(new BaseResponse());
         }
@@ -157,6 +160,9 @@ namespace Marketplace.Controllers
         [HttpPost("update")]
         public async Task<IActionResult> PostUpdate([FromBody] CartProduct req)
         {
+            if (req.ProductID <= 0 || req.Quantity <= 0)
+                return BASE(2, "Product and positive quantity are required.");
+
             CartUtil.Update(HttpContext, req, CurrentUser);
             return Ok(new BaseResponse());
         }

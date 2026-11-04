@@ -1,0 +1,6 @@
+{
+  "appName": "Shop",
+  "domainName": "localhost",
+  "serverUrl": "https://localhost:3006",
+  "devMode": false
+}

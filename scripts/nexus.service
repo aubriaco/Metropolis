@@ -1,0 +1,12 @@
+[Unit]
+Description=Nexus Admin
+
+[Service]
+ExecStart=/home/aubriaco/.dotnet/dotnet /home/aubriaco/nexus/NexusAdmin.dll
+WorkingDirectory=/home/aubriaco/nexus
+User=aubriaco
+Group=aubriaco
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

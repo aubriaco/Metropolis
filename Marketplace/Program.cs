@@ -1,8 +1,8 @@
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) by Solusek Systems. All rights reserved.
  *--------------------------------------------------------------------------------------------*/
- 
- using MarketplaceData;
+
+using MarketplaceData;
 using Marketplace;
 using Marketplace.Util;
 using System.Net;
@@ -21,13 +21,12 @@ Config.I.ApplicationID = 0;
 
 var app = builder.Build();
 
-var origins = new List<string>
+var origins = new List<string>();
+origins.Add(Config.I.AppUrl ?? Config.I.BaseUrl);
+Console.WriteLine("Origin: " + (Config.I.AppUrl ?? Config.I.BaseUrl));
+if (Config.I.AdditionalAppUrls != null)
 {
-    Config.I.AppUrl
-};
-if(Config.I.AdditionalAppUrls != null)
-{
-    foreach(var i in Config.I.AdditionalAppUrls)
+    foreach (var i in Config.I.AdditionalAppUrls)
     {
         Console.WriteLine("Additional origin: " + i);
         origins.Add(i);
@@ -87,7 +86,6 @@ if (Config.I.Ident.ToLower() != "prod")
     {
         _ = Task.Run(() =>
         {
-            Console.WriteLine("Frontend will run on: http://localhost:3000");
             cmd.StartInfo.FileName = "cmd.exe";
             cmd.StartInfo.RedirectStandardInput = true;
             cmd.StartInfo.RedirectStandardOutput = false;
@@ -99,7 +97,6 @@ if (Config.I.Ident.ToLower() != "prod")
             cmd.StandardInput.WriteLine("npm start");
             cmd.StandardInput.Flush();
             cmd.WaitForExit();
-
             Console.WriteLine(cmd.StandardOutput.ReadToEnd());
         });
 
@@ -116,7 +113,8 @@ if (Config.I.Ident.ToLower() != "prod")
         {
             cleanupCallback();
         });
+        app.Run("https://0.0.0.0:8080");
     }
 }
-
-app.Run("http://0.0.0.0:8080");
+else
+    app.Run("http://0.0.0.0:9990");

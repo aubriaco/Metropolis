@@ -1,0 +1,6 @@
+{
+  "appName": "PistaCalle",
+  "domainName": "localhost",
+  "serverUrl": "https://localhost:3002",
+  "devMode": false
+}

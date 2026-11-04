@@ -1,0 +1,97 @@
+<div class="page-wrapper" ng-controller="Vendor">
+
+    <div class="floating-block-menu">
+        <ul class="nav">
+            <li class="nav-item">
+                <a href="/vendor/manage/{{Vendor.masterID}}" class="nav-link {{Sub == 'dashboard' ? 'active' : ''}}"> <i class="bx bx-store"></i> {{getLang('Dashboard')}} </a>
+            </li>
+            <li class="nav-item">
+                <a href="/vendor/manage/{{Vendor.masterID}}/products" class="nav-link {{Sub.indexOf('products') == 0 ? 'active' : ''}}"> <i class="bx bx-box"></i> {{getLang('Products')}} </a>
+            </li>
+            <li class="nav-item">
+                <a href="/vendor/manage/{{Vendor.masterID}}/services" class="nav-link {{Sub.indexOf('services') == 0 ? 'active' : ''}}"> <i class="bx bx-box"></i> {{getLang('Services')}} </a>
+            </li>
+            <li class="nav-item">
+                <a href="/vendor/manage/{{Vendor.masterID}}/settings" class="nav-link {{Sub == 'settings' ? 'active' : ''}}"> <i class="bx bx-cog"></i> {{getLang('Settings')}} </a>
+            </li>
+            <li class="nav-item">
+                <a href="/vendor/manage/{{Vendor.masterID}}/documents" class="nav-link {{Sub == 'documents' ? 'active' : ''}}"> <i class="bx bxs-file-doc"></i> {{getLang('Documents')}} </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="page-content" ng-init="manage()">
+        <!--start breadcrumb-->
+        <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
+            <div class="container-fluid">
+                <div class="page-breadcrumb d-flex align-items-center">
+                    <h3 class="breadcrumb-title pe-3">{{getLang('Vendor')}}</h3>
+                    <div class="ms-auto">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item">
+                                    <a href="/"><i class="bx bx-home-alt"></i>{{getLang('Home')}}</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/my/vendors">{{getLang('My Stores')}}</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">{{getLang('Manage')}} {{Vendor.name}}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end breadcrumb-->
+        <div ng-show="Loaded">
+            <section class="py-0">
+                <div>
+                    <div class="align-items-center justify-content-center">
+                        <div class="row">
+                            <div class="col mx-auto">
+                                <div class="card mb-0">
+                                    <div class="card-body bg-mid">
+                                        <div class="btn-group float-end hide-on-mobile">
+                                            <a ng-show="Sub != 'products-edit' && Sub != 'services-edit'" href="/" class="btn btn-default"><i class="bx bx-arrow-back"></i> {{getLang('Marketplace Home')}} </a>
+                                            <a ng-show="Sub != 'products-edit' && Sub != 'services-edit'" href="/my/vendors" class="btn btn-primary"><i class="bx bx-arrow-back"></i> {{getLang('Back to Stores')}} </a>
+                                        </div>
+                                        <h2>{{Vendor.name}}</h2>
+                                        <hr />
+                                        <ul class="nav nav-tabs fw-bolder big-tabs web-menu">
+                                            <li class="nav-item">
+                                                <a href="/vendor/manage/{{Vendor.masterID}}" class="nav-link {{Sub == 'dashboard' ? 'active' : ''}}"> {{getLang('Dashboard')}} </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/vendor/manage/{{Vendor.masterID}}/products" class="nav-link {{Sub.indexOf('products') == 0 ? 'active' : ''}}"> {{getLang('Products')}} </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/vendor/manage/{{Vendor.masterID}}/services" class="nav-link {{Sub.indexOf('services') == 0 ? 'active' : ''}}"> {{getLang('Services')}} </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/vendor/manage/{{Vendor.masterID}}/settings" class="nav-link {{Sub == 'settings' ? 'active' : ''}}"> {{getLang('Settings')}} </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="/vendor/manage/{{Vendor.masterID}}/documents" class="nav-link {{Sub == 'documents' ? 'active' : ''}}"> {{getLang('Documents')}} </a>
+                                            </li>
+                                        </ul>
+                                        <div class="bg-reset p-4">
+
+                                            <div ng-include="SubInc"></div>
+                                        
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+  
+                    </div>
+
+                    <!--end row-->
+                </div>
+            </section>
+            
+        </div>
+    </div>
+</div>

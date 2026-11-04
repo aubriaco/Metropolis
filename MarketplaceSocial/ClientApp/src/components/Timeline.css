@@ -1,0 +1,20 @@
+﻿
+.Timeline .t-avatar {
+    width: 50px;
+    max-height: 50px;
+}
+
+.Timeline .card {
+    background-color: #fff;
+    border: 0;
+}
+
+.Timeline .t-input {
+    background-color: #e4e8e8;
+    border: 0;
+}
+
+.Timeline .t-reply {
+    background-color: #e4e8e8;
+    border: 0;
+}

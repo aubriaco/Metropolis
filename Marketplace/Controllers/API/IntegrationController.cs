@@ -60,6 +60,10 @@ namespace Marketplace.Controllers.API
                 return BadRequest(new BaseResponse(2, "ExternalMerchantID is required."));
 
 
+            if (Config.I.IntegrationMerchants == null || !Config.I.IntegrationMerchants.TryGetValue(token.Name, out var merchants) ||
+                merchants == null || !merchants.Contains(req.ExternalMerchantID, StringComparer.Ordinal))
+                return StatusCode(403, new BaseResponse(1, "Token is not authorized for this merchant."));
+
             if (!req.Address.ValidateBlanks())
                 return BadRequest(new BaseResponse(2, "Address fields are required."));
 
@@ -121,6 +125,9 @@ namespace Marketplace.Controllers.API
                     if(!await user2.SelectAsync(db, "Email"))
                         return BadRequest(new BaseResponse(2, "Vendor already exists with this ExternalMerchantID but user does not exist. Please contact support."));
 
+                    if (user2.IsAdmin || user2.IsRefAdmin || user2.IsValidator)
+                        return StatusCode(403, new BaseResponse(1, "This account cannot sign in through the integration."));
+
                     var uv2 = new UserVendor()
                     {
                         UserID = user2.ID,
@@ -146,7 +153,16 @@ namespace Marketplace.Controllers.API
                 //if (test != null)
                 //    return BadRequest(new BaseResponse(3, "Vendor name is already taken."));
 
-                var user = req.UserInfo;
+                var user = new User
+                {
+                    Email = req.UserInfo.Email,
+                    Username = req.UserInfo.Username,
+                    FirstName = req.UserInfo.FirstName,
+                    LastName = req.UserInfo.LastName,
+                    Phone = req.UserInfo.Phone,
+                    Address = req.UserInfo.Address,
+                    IsVendor = true
+                };
 
                 if (await user.SelectAsync(db, "Email"))
                     return BadRequest(new BaseResponse(2, "Email already is registered."));
@@ -194,9 +210,8 @@ namespace Marketplace.Controllers.API
                 }
 
 
-                user.Password = "unset-" + Guid.NewGuid().ToString();
-                user.AddressID = user.Address.Insert(db);
-                user.IsVendor = true;
+                user.Password = CryptUtil.HashPassword(Guid.NewGuid().ToString("N"));
+                user.AddressID = user.Address!.Insert(db);
                 user.ID = user.Insert(db);
 
                 user.Password = null;
@@ -206,6 +221,9 @@ namespace Marketplace.Controllers.API
 
                 req.Address.MasterID = Guid.NewGuid().ToString();
                 req.AddressID = req.Address.Insert(db);
+                req.IsActive = false;
+                req.IsDeclined = false;
+                req.IsLocalReviewed = false;
                 req.CreatedByUserID = user.ID;
                 req.CreatedDate = DateTime.UtcNow;
                 req.ID = req.Insert(db);

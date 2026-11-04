@@ -1,0 +1,14 @@
+<div>
+    <h4>{{getLang('Dashboard')}}</h4>
+    <p>{{getLang('Hello')}} <strong>{{User.name}}</strong> {{getLang('(not')}} <strong>{{User.name}}?</strong>  <a class="cursor-pointer" ng-click="logout()">{{getLang('Logout')}}</a> {{getLang(')')}} </p>
+    <p>{{getLang('From your account dashboard you can view your Recent Orders, manage your shipping and billing addesses and edit your password and account details')}}</p>
+    <div ng-show="!User.emailVerified" class="mt-2 alert alert-warning">
+        <p> {{getLang('Your email')}} <strong>{{User.email}}</strong> {{getLang('is still not verified.')}} </p>
+        <button ng-click="resendVerifyEmail()" class="btn btn-primary"><i class="bx bx-mail-send"></i> {{getLang('Resend Verification Email')}} </button>
+    </div>
+    <div ng-show="false && !User.phoneVerified" class="mt-2 alert alert-warning">
+        <p> {{getLang('Your phone')}} <strong>{{formatPhone(User.phone)}}</strong> {{getLang('is still not verified.')}} </p>
+        <button ng-click="resendVerifyPhone()" class="btn btn-primary"><i class="bx bx-mail-send"></i> {{getLang('Resend Verification SMS')}} </button>
+    </div>
+
+</div>

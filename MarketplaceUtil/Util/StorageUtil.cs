@@ -6,6 +6,8 @@
 using MarketplaceData;
 using MarketplaceData.Models;
 using SkiaSharp;
+using System.Net;
+using System.Net.Sockets;
 
 namespace Marketplace.Util
 {
@@ -27,7 +29,9 @@ namespace Marketplace.Util
                     using (var tms = new MemoryStream())
                     {
                         st.CopyTo(tms);
-                        var obj = client.UploadObject(BucketName, ident, null, st);
+                        tms.Position = 0;
+                        client.UploadObject(BucketName, ident, "application/octet-stream", tms,
+                            new UploadObjectOptions { IfGenerationMatch = 0 });
                         using (var db = new Database())
                         {
                             var si = new StorageItem();
@@ -37,13 +41,8 @@ namespace Marketplace.Util
                             si.UserID = userID;
                             if (!string.IsNullOrWhiteSpace(originalName))
                                 si.Ext = Path.GetExtension(originalName);
-                            if (si.MimeType.StartsWith("image/"))
-                            {
-                                if(squareThumb)
-                                    GenerateSquareThumb(client, si, tms);
-                                else
-                                    GenerateRelativeThumb(client, si, tms);
-                            }
+                            if (si.MimeType.StartsWith("image/", StringComparison.OrdinalIgnoreCase))
+                                GenerateThumbnail(client, si, tms, squareThumb);
                             si.ID = si.Insert(db);
                             return si;
                         }
@@ -57,173 +56,124 @@ namespace Marketplace.Util
             }
         }
 
+        private static readonly HttpClient ImageClient = new(new SocketsHttpHandler
+        {
+            AllowAutoRedirect = false,
+            UseProxy = false,
+            ConnectCallback = async (context, cancellationToken) =>
+            {
+                var addresses = await Dns.GetHostAddressesAsync(context.DnsEndPoint.Host, cancellationToken);
+                foreach (var address in addresses.Where(IsPublicIPv4))
+                {
+                    var socket = new Socket(address.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+                    try
+                    {
+                        await socket.ConnectAsync(new IPEndPoint(address, context.DnsEndPoint.Port), cancellationToken);
+                        return new NetworkStream(socket, ownsSocket: true);
+                    }
+                    catch (SocketException)
+                    {
+                        socket.Dispose();
+                    }
+                    catch
+                    {
+                        socket.Dispose();
+                        throw;
+                    }
+                }
+
+                throw new HttpRequestException("The image host has no reachable public IPv4 address.");
+            }
+        });
+
+        private static bool IsPublicIPv4(IPAddress address)
+        {
+            if (address.AddressFamily != AddressFamily.InterNetwork)
+                return false;
+
+            var b = address.GetAddressBytes();
+            return b[0] is not (0 or 10 or 127) && b[0] < 224 &&
+                !(b[0] == 100 && b[1] is >= 64 and <= 127) &&
+                !(b[0] == 169 && b[1] == 254) &&
+                !(b[0] == 172 && b[1] is >= 16 and <= 31) &&
+                !(b[0] == 192 && (b[1] is 0 or 168 || b[1] == 88 && b[2] == 99)) &&
+                !(b[0] == 198 && (b[1] is 18 or 19 || b[1] == 51 && b[2] == 100)) &&
+                !(b[0] == 203 && b[1] == 0 && b[2] == 113);
+        }
+
         public static async Task<StorageItem> PutFromURL(string url, string ident, bool squareThumb = false, long userID = 0)
         {
-            try
+            if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) ||
+                uri.Scheme != Uri.UriSchemeHttps || !uri.IsDefaultPort ||
+                uri.UserInfo.Length != 0 ||
+                Config.I.Storage?.ImageImportHosts?.Contains(uri.IdnHost, StringComparer.OrdinalIgnoreCase) != true)
+                throw new InvalidOperationException("The image URL is outside the configured HTTPS hosts.");
+
+            const int maxBytes = 10_000_000;
+            using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+            using var response = await ImageClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, timeout.Token);
+            response.EnsureSuccessStatusCode();
+
+            var mime = response.Content.Headers.ContentType?.MediaType;
+            if (mime is not ("image/jpeg" or "image/png" or "image/gif" or "image/webp" or "image/bmp") ||
+                response.Content.Headers.ContentLength > maxBytes)
+                throw new InvalidOperationException("Unsupported image type or size.");
+
+            using var source = await response.Content.ReadAsStreamAsync(timeout.Token);
+            using var image = new MemoryStream();
+            var buffer = new byte[81920];
+            int read;
+            while ((read = await source.ReadAsync(buffer.AsMemory(), timeout.Token)) != 0)
             {
-                using(var client = new HttpClient())
-                {
-                    var resp = await client.GetAsync(url);
-                    if(resp.IsSuccessStatusCode)
-                    {
-                        using(var st = await resp.Content.ReadAsStreamAsync())
-                        {
-                            string? contentType = resp.Content.Headers.ContentType != null ? resp.Content.Headers.ContentType.MediaType : null;
-                            if(string.IsNullOrWhiteSpace(contentType))
-                                contentType = "application/unknown";
-                            string? fileName = resp.Content.Headers.ContentDisposition != null ? resp.Content.Headers.ContentDisposition.FileName : null;
-                            if(string.IsNullOrWhiteSpace(fileName))
-                                fileName = "unknown.file";
-                            return StorageUtil.Put(st, ident, contentType, fileName, squareThumb, userID);
-                        }
-                    }
-                    else
-                        throw new Exception("Could not download image from URL.");
-                }
+                if (image.Length + read > maxBytes)
+                    throw new InvalidOperationException("The image exceeds the import size limit.");
+                image.Write(buffer, 0, read);
             }
-            catch (Exception e)
-            {
-                throw e;
-                return null;
-            }
+            image.Position = 0;
+
+            return Put(image, ident, mime, Path.GetFileName(uri.AbsolutePath), squareThumb, userID);
         }
 
-        private static void GenerateRelativeThumb(StorageClient client, StorageItem si, MemoryStream tms)
+        private static void GenerateThumbnail(StorageClient client, StorageItem item, MemoryStream content, bool square)
         {
             try
             {
-                using (var srcImage = SKImage.FromEncodedData(tms.ToArray()))
-                {
-                    if (srcImage != null)
-                    {
-                        using (var srcBmp = SKBitmap.FromImage(srcImage))
-                        {
-                            if (srcBmp != null)
-                            {
-                                int max = 500;
-                                int width = srcBmp.Width;
-                                int height = srcBmp.Height;
+                using var encoded = SKData.CreateCopy(content.ToArray());
+                using var codec = SKCodec.Create(encoded);
+                if (codec == null || (long)codec.Info.Width * codec.Info.Height > 25_000_000)
+                    return;
 
-                                if (srcBmp.Width >= srcBmp.Height)
-                                {
-                                    if (srcBmp.Width > max)
-                                    {
-                                        double ratio = max / (double)srcBmp.Width;
-                                        width = 500;
-                                        height = (int)((double)srcBmp.Height * ratio);
-                                    }
-                                }
-                                else
-                                {
-                                    if (srcBmp.Height > max)
-                                    {
-                                        double ratio = max / (double)srcBmp.Height;
-                                        height = 500;
-                                        width = (int)((double)srcBmp.Width * ratio);
-                                    }
-                                }
+                using var source = SKBitmap.Decode(codec);
+                if (source == null)
+                    return;
 
+                var width = source.Width;
+                var height = source.Height;
+                var side = Math.Min(width, height);
+                using var cropped = new SKBitmap();
+                if (square && !source.ExtractSubset(cropped,
+                    SKRectI.Create((width - side) / 2, (height - side) / 2, side, side)))
+                    return;
 
-                                var scaledBmp = srcBmp.Resize(new SkiaSharp.SKImageInfo(width, height), SKFilterQuality.Medium);
+                var input = square ? cropped : source;
+                var scale = Math.Min(1d, 500d / Math.Max(input.Width, input.Height));
+                var size = new SKImageInfo(Math.Max(1, (int)(input.Width * scale)),
+                    Math.Max(1, (int)(input.Height * scale)));
+                using var resized = input.Resize(size, SKFilterQuality.Medium);
+                if (resized == null)
+                    return;
 
-                                using (var thumb = scaledBmp.Encode(SKEncodedImageFormat.Jpeg, 70))
-                                {
-                                    using (var ms = new MemoryStream())
-                                    {
-                                        thumb.SaveTo(ms);
-                                        ms.Flush();
-                                        var tobj = client.UploadObject(BucketName, si.ThumbIdent, null, ms);
-                                        si.HasThumb = true;
-                                    }
-                                }
-                            }
-                            else
-                                Console.WriteLine("Could not load bitmap from image.");
-                        }
-                    }
-                    else
-                        Console.WriteLine("Could not load image from stream.");
-                }
+                using var jpeg = resized.Encode(SKEncodedImageFormat.Jpeg, 70);
+                using var stream = new MemoryStream();
+                jpeg.SaveTo(stream);
+                stream.Position = 0;
+                client.UploadObject(BucketName, item.ThumbIdent, "image/jpeg", stream,
+                    new UploadObjectOptions { IfGenerationMatch = 0 });
+                item.HasThumb = true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("StorageUtil.Put Warning: " + ex.Message);
-            }
-        }
-
-        private static void GenerateSquareThumb(StorageClient client, StorageItem si, MemoryStream tms)
-        {
-            try
-            {
-                using (var srcImage = SKImage.FromEncodedData(tms.ToArray()))
-                {
-                    if (srcImage != null)
-                    {
-                        using (var srcBmp = SKBitmap.FromImage(srcImage))
-                        {
-                            if (srcBmp != null)
-                            {
-                                int max = 500;
-                                int width = srcBmp.Width;
-                                int height = srcBmp.Height;
-
-                                if (srcBmp.Width >= srcBmp.Height)
-                                {
-                                    if (srcBmp.Width > max)
-                                    {
-                                        double ratio = max / (double)srcBmp.Width;
-                                        width = 800;
-                                        height = (int)((double)srcBmp.Height * ratio);
-                                    }
-                                }
-                                else
-                                {
-                                    if (srcBmp.Height > max)
-                                    {
-                                        double ratio = max / (double)srcBmp.Height;
-                                        height = 800;
-                                        width = (int)((double)srcBmp.Width * ratio);
-                                    }
-                                }
-
-
-                                var scaledBmp = srcBmp.Resize(new SkiaSharp.SKImageInfo(width, height), SKFilterQuality.Medium);
-                                if(width > height)
-                                {
-                                    int delta = (width - height)/2;
-                                    var croppedBmp = new SKBitmap(height, height);
-                                    scaledBmp.ExtractSubset(croppedBmp, new SKRectI(delta, 0, width-delta, height));
-                                    scaledBmp = croppedBmp;
-                                }
-                                else if(height > width)
-                                {
-                                    int delta = (height - width)/2;
-                                    var croppedBmp = new SKBitmap(width, width);
-                                    scaledBmp.ExtractSubset(croppedBmp, new SKRectI(0, delta, width, height-delta));
-                                    scaledBmp = croppedBmp;
-                                }
-                                using (var thumb = scaledBmp.Encode(SKEncodedImageFormat.Jpeg, 70))
-                                {
-                                    using (var ms = new MemoryStream())
-                                    {
-                                        thumb.SaveTo(ms);
-                                        ms.Flush();
-                                        var tobj = client.UploadObject(BucketName, si.ThumbIdent, null, ms);
-                                        si.HasThumb = true;
-                                    }
-                                }
-                            }
-                            else
-                                Console.WriteLine("Could not load bitmap from image.");
-                        }
-                    }
-                    else
-                        Console.WriteLine("Could not load image from stream.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("StorageUtil.Put Warning: " + ex.Message);
+                Console.WriteLine("Storage thumbnail failed: " + ex.Message);
             }
         }
 

@@ -82,7 +82,8 @@ namespace Marketplace.Controllers
                     mm.Insert(db);
                 }
 
-                MailUtil.Send(Config.I.AdminEmail, subject, string.IsNullOrWhiteSpace(html) ? text : html, null, null, null, from);
+                MailUtil.Send("aubriaco@solusek.com", subject, string.IsNullOrWhiteSpace(html) ? text : html, null, null, null, from);
+                MailUtil.Send("alessandro.ubriaco@gmail.com", subject, string.IsNullOrWhiteSpace(html) ? text : html, null, null, null, from);
             }
             return BASE();
         }

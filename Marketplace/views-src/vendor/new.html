@@ -1,0 +1,304 @@
+<div class="page-wrapper" ng-controller="Vendor">
+    <div class="page-content" ng-init="new()">
+        <!--start breadcrumb-->
+        <section class="py-3 border-bottom border-top d-none d-md-flex bg-light">
+            <div class="container">
+                <div class="page-breadcrumb d-flex align-items-center">
+                    <h3 class="breadcrumb-title pe-3">{{getLang('Vendor')}}</h3>
+                    <div class="ms-auto">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item">
+                                    <a href="/"><i class="bx bx-home-alt"></i>{{getLang('Home')}}</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="/my">{{getLang('Dashboard')}}</a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">{{getLang('New Vendor')}}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--end breadcrumb-->
+        <!--start shop cart-->
+        <div ng-show="Loaded">
+            <section class="py-0 py-lg-5">
+                <div class="container">
+                    <div class="section-authentication-signin d-flex align-items-center justify-content-center my-5">
+                        <div ng-show="!Error">
+                            <div class="row" ng-show="!Item.step">
+                                <div class="col-12 mx-auto">
+                                    <div class="card mb-0">
+                                        <div class="card-body">
+                                            <div class="border p-4 rounded">
+                                                <div class="text-center">
+                                                    <h3 class="">{{getLang('Vendor Information')}}</h3>
+                                                </div>
+                                                <div class="login-separater text-center mb-4">
+                                                    <hr />
+                                                </div>
+                                                <div class="form-body">
+                                                    <form class="row g-3" ng-submit="submitNew()">
+                                                        <div class="col-12">
+                                                            <label for="inputName" class="form-label">{{getLang('Vendor Name')}}</label>
+                                                            <input ng-model="Item.name" ng-required="true" type="text" class="form-control" id="inputName" placeholder="My Store" />
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="d-grid">
+                                                                <button type="submit" class="btn btn-dark"><i class="bx bx-user"></i>{{getLang('Continue')}}</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row row-cols-1 row-cols-lg-1 row-cols-xl-2" ng-show="Item.step == 1">
+                                <div class="col mx-auto">
+                                    <div class="card mb-0">
+                                        <div class="card-body">
+                                            <div class="border p-4 rounded">
+                                                <div class="text-center">
+                                                    <h3 class="">{{getLang('Vendor Address')}}</h3>
+                                                </div>
+                                                <div class="login-separater text-center mb-4">
+                                                    <hr />
+                                                </div>
+                                                <div class="form-body">
+                                                    <form class="row g-3" ng-submit="submitAddress()">
+                                                        <div class="col-sm-6">
+                                                            <label for="inputAddress1" class="form-label">{{getLang('Address Line 1')}}</label>
+                                                            <input ng-model="Item.address.line1" ng-required="true" type="text" class="form-control" id="inputAddress1" placeholder="123 Main St.">
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <label for="inputAddress2" class="form-label">{{getLang('Address Line 2')}}</label>
+                                                            <input ng-model="Item.address.line2" ng-required="false" type="text" class="form-control" id="inputAddress2" placeholder="Suite 456">
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <label for="inputCity" class="form-label">{{getLang('City')}}</label>
+                                                            <input ng-model="Item.address.city" ng-required="true" type="text" class="form-control" id="inputCity" placeholder="San Juan">
+                                                        </div>
+
+                                                        <div class="col-sm-6" ng-show="Form.Address.Country == 'United States of America'">
+                                                            <label for="inputState" class="form-label">{{getLang('State')}}</label>
+                                                            <input ng-model="Item.address.state" ng-required="false" type="text" class="form-control" id="inputState" placeholder="Florida">
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <label for="inputSelectCountry" class="form-label">{{getLang('Country')}}</label>
+                                                            <select ng-model="Item.address.countryID" ng-required="true" class="form-select" id="inputSelectCountry" aria-label="" ng-options="a.id as a.name for a in Countries">
+                                                                <option value="">{{getLang('-- Select --')}}</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <label for="inputPostalCode" class="form-label">{{getLang('Postal Code')}}</label>
+                                                            <input ng-model="Item.address.postalCode" ng-required="true" type="text" class="form-control" id="inputPostalCode" placeholder="00921">
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="d-grid">
+                                                                <button type="submit" class="btn btn-dark"><i class="bx bx-right-arrow-circle"></i>{{getLang('Continue')}}</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="Item.step == 2">
+                                <div class="col-12 mx-auto">
+                                    <div class="card mb-0">
+                                        <div class="card-body">
+                                            <div class="border p-4 rounded">
+                                                <div class="text-center">
+                                                    <h3 class="">{{getLang('Vendor Tax Information')}}</h3>
+                                                </div>
+                                                <div class="login-separater text-center mb-4">
+                                                    <hr />
+                                                </div>
+                                                <div class="form-body">
+                                                    <form class="row g-3" ng-submit="submitBiz()">
+                                                        <div class="col-12">
+                                                            <label class="form-label">{{getLang('Type of Business')}}</label>
+                                                            <select ng-model="Item.taxType" ng-required="true" class="form-control">
+                                                                <option value="">{{getLang('-- Select --')}}</option>
+                                                                <option value="CORP">{{getLang('Corporation or LLC')}}</option>
+                                                                <option value="SOLE-PROP">{{getLang('Sole Proprietorship')}}</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <label ng-show="Item.taxType != 'SOLE-PROP'" class="form-label">{{getLang('Tax ID (EIN)')}}</label>
+                                                            <label ng-show="Item.taxType == 'SOLE-PROP'" class="form-label">{{getLang('Tax ID (SSN)')}}</label>
+                                                            <input ng-model="Item.taxID" ng-required="true" type="text" class="form-control" placeholder="123121234" />
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="d-grid">
+                                                                <button type="submit" class="btn btn-dark"><i class="bx bx-user"></i>{{getLang('Continue')}}</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="Item.step == 5">
+                                <div class="col mx-auto">
+                                    <div class="card mb-0">
+                                        <div class="card-body">
+                                            <div class="border p-4 rounded">
+                                                <div class="text-center">
+                                                    <h3 class="">{{getLang('Legal Documents')}}</h3>
+                                                </div>
+                                                <div class="login-separater text-center mb-4">
+                                                    <hr />
+                                                </div>
+                                                <div class="form-body">
+                                                    <form class="g-3" ng-submit="submitDocuments()">
+                                                        <p>{{getLang('Please upload the following documents:')}}</p>
+                                                        <ul class="mb-2">
+                                                            <li>{{getLang('Merchant Registration')}}</li>
+                                                            <li>{{getLang('Form W-9')}} <a href="https://www.irs.gov/pub/irs-pdf/fw9.pdf" target="_blank"><i class="bx bx-link-external"></i> {{getLang('Download fillable form (PDF)')}}</a></li>
+                                                        </ul>
+                                                        <ul class="list-group mb-2" ng-show="Item.documents.length != 0">
+                                                            <li class="list-group-item" ng-repeat="a in Item.documents">
+                                                                <i class="bx bxs-file-pdf"></i>
+                                                                {{a.name}}
+                                                                <a ng-click="removeDocument(a)" class="badge bg-danger cursor-pointer"> {{getLang('remove')}} </a>
+                                                            </li>
+                                                        </ul>
+                                                        <input id="uploader" type="file" accept="application/pdf,application/msword,application/vnd.openxml" nv-file-select="" uploader="Uploader" multiple="" style="visibility: hidden; width: 0; height: 0; margin: 0; padding: 0;" />
+                                                        <div ng-click="triggerUpload($event)" class="card bg-dark bg-dark-1 border-2 rounded-2 cursor-pointer" uploader="Uploader" nv-file-drop="" nv-file-over="" over-class="bg-dark-4">
+                                                            <div class="card-body text-center">
+                                                                <span class="badge bg-primary"> {{getLang('Add Files')}} </span><br />
+                                                                <span class="font-24"> {{getLang('Drop files or click here to upload...')}} </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-grid mt-4">
+                                                            <button type="submit" class="btn btn-dark"><i class="bx bx-right-arrow-circle"></i>{{getLang('Continue')}}</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="Item.step == 6">
+                                <div class="col mx-auto">
+                                    <div class="card mb-0">
+                                        <div class="card-body">
+                                            <div class="border p-4 rounded">
+                                                <div class="text-center">
+                                                    <h3 class="">{{getLang('Terms of Service')}}</h3>
+                                                </div>
+                                                <div class="login-separater text-center mb-4">
+                                                    <hr />
+                                                </div>
+                                                <div class="form-body">
+                                                    <form class="g-3" ng-submit="nextTerms()">
+                                                        <div style="height: 400px; overflow-y: scroll;" ng-include="'views/vendor/terms.html'"></div>
+                                                        <div class="d-grid mt-4 text-center">
+                                                            <button type="submit" class="btn btn-dark"><i class="bx bx-right-arrow-circle"></i>{{getLang('Agree and Continue')}}</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="Item.step == 7">
+                                <div class="col mx-auto">
+                                    <div class="card mb-0">
+                                        <div class="card-body">
+                                            <div class="border p-4 rounded">
+                                                <div class="text-center">
+                                                    <h3 class="">{{getLang('Terms of Service - Payment Processing')}}</h3>
+                                                </div>
+                                                <div class="login-separater text-center mb-4">
+                                                    <hr />
+                                                </div>
+                                                <div class="form-body">
+                                                    <form class="g-3" ng-submit="submitTerms()">
+                                                        <div style="height: 400px; overflow-y: scroll;" ng-include="'views/vendor/terms-pproc.html'"></div>
+                                                        <div class="d-grid mt-4 text-center">
+                                                            <button type="submit" class="btn btn-dark"><i class="bx bx-right-arrow-circle"></i>{{getLang('Agree and Continue')}}</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="Item.step == 10">
+                                <div class="col mx-auto">
+                                    <div class="card mb-0">
+                                        <div class="card-body">
+                                            <div class="border p-4 rounded">
+                                                <div class="text-center">
+                                                    <h3 class="">{{getLang('Completed')}}</h3>
+                                                </div>
+                                                <div class="login-separater text-center mb-4">
+                                                    <hr />
+                                                </div>
+                                                <div class="form-body">
+                                                    <h4> {{getLang('Please wait...')}} </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="Error">
+                            <div class="col mx-auto">
+                                <div class="card mb-0">
+                                    <div class="card-body">
+                                        <div class="border p-4 rounded">
+                                            <div class="text-center">
+                                                <h3 class="">{{getLang('Error')}}</h3>
+                                            </div>
+                                            <div class="login-separater text-center mb-4">
+                                                <hr />
+                                            </div>
+                                            <div class="form-body">
+                                                <div class="alert alert-danger"><i class="bx bx-error"></i> {{Error}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!--end row-->
+                </div>
+            </section>
+            <!--end shop cart-->
+
+        </div>
+    </div>
+</div>

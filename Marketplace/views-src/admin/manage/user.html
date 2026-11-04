@@ -1,0 +1,33 @@
+<div ng-init="manageUsers()">
+    <div class="btn-group mb-2">
+        <button ng-click="newUser()" type="button" class="btn btn-success"> {{getLang('New User')}} </button>
+        <button ng-click="disable()" type="button" class="btn btn-danger"> {{getLang('Disable')}} </button>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th style="width: 50px;" class="text-center"><input ng-change="toggleAll(Users, CheckAll)" ng-model="CheckAll" type="checkbox" class="form-check-input form-check-inline" /></th>
+                <th> {{getLang('Full Name')}} </th>
+                <th> {{getLang('Email')}} </th>
+                <th> {{getLang('Date Created')}} </th>
+                <th> {{getLang('Flags')}} </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="a in Users" class="cursor-pointer">
+                <td class="text-center"><input ng-model="a.selected" ng-change="checkChanged(Users, a)" type="checkbox" class="form-check-input form-check-inline" /></td>
+                <td ng-click="go('/admin/manage/user-view/' + a.masterID)"><a href="/admin/manage/user-view/{{a.masterID}}" title="View User" data-toggle="tooltip">{{a.name}}</a></td>
+                <td ng-click="go('/admin/manage/user-view/' + a.masterID)"><a href="/admin/manage/user-view/{{a.masterID}}" title="View User" data-toggle="tooltip">{{a.email}}</a></td>
+                <td ng-click="go('/admin/manage/user-view/' + a.masterID)"><a href="/admin/manage/user-view/{{a.masterID}}" title="View User" data-toggle="tooltip">{{a.createdDate}}</a></td>
+                <td ng-click="go('/admin/manage/user-view/' + a.masterID)">
+                    <span ng-show="a.isAdmin" class="badge bg-success"> {{getLang('Admin')}} </span>
+                    <span ng-show="a.isValidator" class="badge bg-primary"> {{getLang('Validator')}} </span>
+                    <span ng-show="a.isVendor" class="badge bg-primary"> {{getLang('Vendor')}} </span>
+                    <span ng-show="a.emailVerified" class="badge bg-primary"> {{getLang('Email Verified')}} </span>
+                    <span ng-show="a.phoneVerified" class="badge bg-primary"> {{getLang('Phone Verified')}} </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

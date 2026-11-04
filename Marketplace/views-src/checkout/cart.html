@@ -1,0 +1,119 @@
+<div class="shop-cart" ng-init="cart()">
+    <div class="row">
+        <div class="col-12 col-xl-8">
+            <div class="checkout-review">
+                <div ng-include="'views/checkout/steps.html'"></div>
+                <div class="card  rounded-0 shadow-none mb-3 border">
+                    <div class="card-body">
+                        <h5 class="mb-0"> {{getLang('Review Your Order')}} </h5>
+                        <div class="my-3 border-bottom"></div>
+                        <div ng-repeat="a in Cart.List">
+                            <div class="row align-items-center g-3">
+                                <div class="col-12 col-lg-6">
+                                    <div class="d-lg-flex align-items-center gap-3">
+                                        <div class="cart-img text-center text-lg-start bg-light" style="min-width: 200px;">
+                                            <a href="/p/{{a.ident}}">
+                                                <img src="{{a.images[0].url}}" alt="" style="max-height: 100px; max-width: 200px; display: block; margin: 0 auto;" />
+                                            </a>
+                                        </div>
+                                        <div class="cart-detail text-center text-lg-start">
+                                            <h6 class="mb-2"><a href="/p/{{a.ident}}">{{a.name}}</a></h6>
+                                            <h5 class="mb-0">{{formatCurrency(a.price,'$')}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-lg-3">
+                                    <div class="cart-action text-center">
+                                        <div class="input-group">
+                                            <span class="input-group-text">{{getLang('Quantity')}}</span>
+                                            <input ng-model="a.cart.quantity" type="number" class="form-control rounded-0" min="1" step="1" />
+                                        </div>
+                                    </div>                                 
+                                </div>
+                                <div class="col-6 col-lg-3">
+                                    <div class="text-left">
+                                        <div class="d-flex gap-2 justify-content-lg-end">
+                                            <a ng-click="Cart.remove(a)" href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-x-circle me-0"></i> {{getLang('Remove')}} </a>
+                                            <a ng-show="false" href="javascript:;" class="btn btn-light rounded-0 btn-ecomm"><i class="bx bx-edit"></i> {{getLang('Edit')}} </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-4 border-top"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card rounded-0 shadow-none mb-3 border">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="shipping-aadress">
+                                    <h5 class="mb-3"> {{getLang('Shipping to:')}} </h5>
+                                    <p class="mb-1"><span class="text-dark"> {{getLang('Customer:')}} </span> {{User.name}}</p>
+                                    <p class="mb-1"><span class="text-dark"> {{getLang('Address:')}} </span> {{getLang('TODO')}} </p>
+                                    <p class="mb-1"><span class="text-dark"> {{getLang('Phone:')}} </span> {{getLang('TODO')}} </p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="payment-mode">
+                                    <h5 class="mb-3"> {{getLang('Payment Mode:')}} </h5>
+                                    <img src="assets/images/icons/visa.png" width="150" class="p-2 border bg-light rounded" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-xl-4">
+            <div class="checkout-form p-3 bg-light">
+                <div class="card rounded-0 border bg-transparent shadow-none">
+                    <div class="card-body">
+                        <p class="fs-5"> {{getLang('Apply Discount Code')}} </p>
+                        <div class="input-group">
+                            <input type="text" class="form-control rounded-0" placeholder="Enter discount code" />
+                            <button class="btn btn-dark btn-ecomm" type="button"> {{getLang('Apply')}} </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card rounded-0 border bg-transparent shadow-none">
+                    <div class="card-body">
+                        <p class="fs-5"> {{getLang('Estimate Shipping and Tax')}} </p>
+                        <div class="my-3 border-top"></div>
+                        <div class="mb-3">
+                            <label class="form-label"> {{getLang('Country Name')}} </label>
+                            <input type="text" class="form-control rounded-0" value="TODO" ng-disabled="true" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"> {{getLang('State/Province')}} </label>
+                            <input type="text" class="form-control rounded-0" value="TODO" ng-disabled="true" />
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label"> {{getLang('Zip/Postal Code')}} </label>
+                            <input type="text" class="form-control rounded-0" value="TODO" ng-disabled="true" />
+                        </div>
+                    </div>
+                </div>
+                <div class="card rounded-0 border bg-transparent mb-0 shadow-none">
+                    <div class="card-body">
+                        <p class="mb-2"> {{getLang('Subtotal:')}} <span class="float-end">{{formatCurrency(Cart.Total,'$')}}</span>
+                        </p>
+                        <p class="mb-2"> {{getLang('Shipping:')}} <span class="float-end"> {{getLang('--')}} </span>
+                        </p>
+                        <p class="mb-2"> {{getLang('Taxes:')}} <span class="float-end"> {{getLang('$0.00')}} </span>
+                        </p>
+                        <p class="mb-0"> {{getLang('Discount:')}} <span class="float-end"> {{getLang('--')}} </span>
+                        </p>
+                        <div class="my-3 border-top"></div>
+                        <h5 class="mb-0"> {{getLang('Order Total:')}} <span class="float-end">{{formatCurrency(Cart.Total,'$')}}</span></h5>
+                        <div class="my-4"></div>
+                        <div class="d-grid">
+                            <a href="javascript:;" class="btn btn-dark btn-ecomm"> {{getLang('Proceed to Checkout')}} </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end row-->
+</div>

@@ -1,0 +1,147 @@
+
+<div ng-controller="Sell">
+    <section class="slider-section mb-4" ng-init="initBanner()">
+        <div class="first-slider p-0">
+
+            <div class="banner-slider owl-carousel owl-theme">
+                <div class="item bg-light">
+                    <div class="position-relative">
+                        <div class="position-absolute top-50 slider-content translate-middle">
+                            <h3 class="h3 fw-bold d-none d-md-block bg-light-t"> {{getLang('Stores and distributors of Puerto Rico')}} </h3>
+                            <h1 class="h1 fw-bold d-none d-md-block bg-light-t"> {{getLang('Start selling with Metropolis')}} </h1>
+                            <h1 class="h1 fw-bold d-md-none d-sm-block bg-light-t"> {{getLang('Sell with Metropolis')}} </h1>
+                            <div class="">
+                                <a class="btn btn-primary btn-lg btn-ecomm px-md-4 py-md-3 rounded-1 mb-1 drop-shadow" href="/signup/"> <i class="bx bx-store"></i> {{getLang('Sign Up!')}} </a>
+                                <a class="btn btn-secondary btn-lg btn-ecomm px-md-4 py-md-3 rounded-1 mb-1" ng-click="scrollTo('v-learn')"> {{getLang('Learn more...')}} </a>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="position-absolute slider-content d-none d-lg-block" style="margin-left: 500px; margin-top: 10%;">
+                            <img src="img/sell-banner.png" alt="" />
+                        </div>
+                        -->
+                        <a href="javascript:;">
+                            <img src="/img/slides/sell-1.png" class="img-fluid" alt="..." />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <div class="page-wrapper">
+        <div class="page-content">
+            <!--start breadcrumb-->
+            <section></section>
+            <!--end breadcrumb-->
+            <div class="container d-block d-lg-none text-center">
+                <img src="img/sell-banner.png" alt="" class="img-fluid" />
+            </div>
+            <section class="py-0 py-lg-4">
+                <div class="container" id="v-learn">
+                    <h4> {{getLang('About Metropolis Market')}} </h4>
+                    <hr />
+                    <div class="font-18">
+                        <p> {{getLang('Join the revolution in e-commerce and unleash the full potential of your business! Our e-marketplace is designed to connect vendors like you with a massive, global audience. With a user-friendly interface and advanced features, you\'ll be able to showcase your products and services like never before. Get access to a wealth of resources, analytics, and tools to help you grow your business. So why wait? Sign up today and start reaching new customers, increase sales, and build your brand!')}} </p>
+                        <p> {{getLang('Our e-marketplace offers an all-in-one platform that streamlines your sales process and gives you a competitive edge. From creating a professional online store to managing orders and payments, we make it easy for you to reach new customers and grow your business. With 24/7 support and a dedicated team to help you succeed, you\'ll never feel alone in your journey.')}} </p>
+                        <p> {{getLang('What\'s more, our platform integrates with popular shipping carriers and payment gateways, so you can get up and running in no time. And with advanced analytics, you\'ll have access to real-time insights into your business performance and customer behavior.')}} </p>
+                        <p> {{getLang('Don\'t miss out on this opportunity to join a thriving community of vendors and take your business to new heights. Sign up today and experience the power of our e-marketplace for yourself!')}} </p>
+                    </div>
+                    <a class="btn btn-primary btn-lg mt-4 p-2 d-block rounded-1 drop-shadow" href="/signup/"> <i class="bx bx-store"></i> {{getLang('Click here to sign up and start selling online!')}} </a>
+                    <hr class="mt-4 border-dark" style="border-width: 2px;" />
+                    <!--tmp:d-none-->
+                    <div class="d-none">
+                        <h4 class="mt-2"> {{getLang('Our management tools are top-notch.')}} </h4>
+                        <small> {{getLang('Setting up your store in our marketplace is easy. You can even do it from your mobile phone!')}} </small>
+                        <hr />
+                        <h5 class="bg-light p-2"> {{getLang('Computer')}} </h5>
+                        <div class="row text-center">
+                            <div class="col-md">
+                                <img src="img/screenshot/ss2023-03-27-19_17_15.png" class="img-fluid" alt="" />
+                            </div>
+                            <div class="col-md">
+                                <img src="img/screenshot/ss2023-03-27-19_18_30.png" class="img-fluid" alt="" />
+                            </div>
+                        </div>
+                        <hr />
+                        <h5 class="bg-light p-2"> {{getLang('Mobile Device')}} </h5>
+                        <div class="row text-center">
+                            <div class="col-md">
+                                <img src="img/screenshot/ss2023-03-27-19_19_29.png" class="img-fluid" alt="" />
+                            </div>
+                            <div class="col-md">
+                                <img src="img/screenshot/ss2023-03-27-19_20_07.png" class="img-fluid" alt="" />
+                            </div>
+                        </div>
+                        <hr class="mt-4 border-dark" style="border-width: 2px;" />
+                        <h4 class="mt-2"> {{getLang('What our consumer portal looks like.')}} </h4>
+                        <small> {{getLang('Your products will be showcased in an easy-to-use consumer marketplace with integrated payment processor and tracking.')}} </small>
+                        <hr />
+                        <h5 class="bg-light p-2"> {{getLang('Computer')}} </h5>
+                        <div class="row text-center">
+                            <div class="col-md">
+                                <img src="img/screenshot/ss171335.png" class="img-fluid" alt="" />
+                            </div>
+                            <div class="col-md">
+                                <img src="img/screenshot/ss171750.png" class="img-fluid" alt="" />
+                            </div>
+                            <div class="col-md">
+                                <img src="img/screenshot/ss171722.png" class="img-fluid" alt="" />
+                            </div>
+                        </div>
+                        <hr />
+                        <h5 class="bg-light p-2"> {{getLang('Mobile Device')}} </h5>
+                        <div class="row text-center">
+                            <div class="col-md">
+                                <img src="img/screenshot/ss171501.png" class="img-fluid" alt="" />
+                            </div>
+                            <div class="col-md">
+                                <img src="img/screenshot/ss171526.png" class="img-fluid" alt="" />
+                            </div>
+                            <div class="col-md">
+                                <img src="img/screenshot/ss171515.png" class="img-fluid" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <!--/tmp:d-none-->
+                </div>
+            </section>
+            <section class="py-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="p-5 bg-dark text-light rounded-5">
+                                <form ng-submit="submitNewsletter(NewsletterForm)" ng-show="!NewsletterSubscribed">
+                                    <div class="form-body">
+                                        <h4 class="mb-0 text-uppercase text-light fw-bolder title-light-big"> {{getLang('Stay Connected')}} </h4>
+                                        <h6 class="text-light"> {{getLang('Get helpful tips on selling with us!')}} </h6>
+                                        <div class="mb-1 border-bottom bg-light"></div>
+                                        <div class="mb-3">
+                                            <div class="row">
+                                                <div class="col-12 col-md-10 mt-2">
+                                                    <input ng-model="NewsletterForm.email" type="email" class="form-control form-control-lg" placeholder="Enter your email address" ng-required="true" />
+                                                </div>
+                                                <div class="col-12 col-md-2 mt-2">
+                                                    <button class="btn btn-light btn-lg rounded"> {{getLang('Subscribe')}} </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <small> {{getLang('Unsubscribe at any time!')}} </small>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div ng-show="NewsletterSubscribed">
+                                    <h4 class="mb-0 text-uppercase text-light fw-bolder" style="font-size: 50px; font-family: Book Antiqua, Helvetica, sans-serif;"> {{getLang('Thank you for subscribing!')}} </h4>
+                                    <h6 class="text-light"> {{getLang('You can subscribe any time via embedded link in the email.')}} </h6>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end row-->
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
