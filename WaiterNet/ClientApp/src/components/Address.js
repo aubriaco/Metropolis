@@ -83,8 +83,8 @@ export default class Address extends BaseCom {
                 </div>
                 {this.state.item.city && this.state.item.country && this.state.item.state ?
                     <iframe title="map" width="100%" height="450" style={{ border: '0' }} loading="lazy" allowFullScreen
-                        src={'https://www.google.com/maps/embed/v1/place?q=' + encodeURIComponent(this.getJoined()) + '&key=AIzaSyAODVLw-qstgustgBsp62_XOg0HzuIugKU'}></iframe> : ''}
+                        src={'https://www.google.com/maps/embed/v1/place?q=' + encodeURIComponent(this.getJoined()) + '&key=GOOGLEMAPSAPIKEY'}></iframe> : ''}
             </Card>
-           );
+        );
     }
 }
